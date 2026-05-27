@@ -1,0 +1,120 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">EETEPA Vilhena Alves Logo</title>
+  <desc id="desc">Logo oficial original vetorizado de alta definição para a Escola Estadual de Educação Tecnológica do Pará Vilhena Alves.</desc>
+  <defs>
+    <!-- Drop shadow for the symbol shapes to give a subtle 3D lift -->
+    <filter id="subtle-shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#003c71" flood-opacity="0.1" />
+    </filter>
+  </defs>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@700;900&amp;family=Inter:wght@400;600;800;900&amp;display=swap');
+    
+    .title-eetepa {
+      font-family: 'Outfit', 'Inter', sans-serif;
+      font-weight: 900;
+      font-size: 72px;
+      fill: #004b93; /* Match original logo blue */
+      text-anchor: middle;
+      letter-spacing: 2px;
+    }
+    
+    .subtitle-vilhena {
+      font-family: 'Outfit', 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 38px;
+      fill: #004b93;
+      text-anchor: middle;
+      letter-spacing: 0.5px;
+    }
+  </style>
+
+  <!-- Clean White Card Background (Ensures contrast on all theme styles) -->
+  <rect width="512" height="512" rx="96" fill="#ffffff" stroke="#eef2f7" stroke-width="4" />
+
+  <!-- Logo Symbol (Book Pages & Flying Diamonds) -->
+  <g filter="url(#subtle-shadow)">
+    <!-- 1. Left Spine Dark Blue shape (Cover/Spine) -->
+    <!-- Curved at bottom and slanted at top -->
+    <path d="M 174,60 L 195,60 L 195,178 C 195,188 206,196 222,196 L 272,196 L 272,208 L 222,208 C 196,208 174,188 174,165 Z" fill="#005ca9" />
+
+    <!-- 2. Left Spine Light Blue shape (Page spine) -->
+    <path d="M 201,36 L 222,36 L 222,154 C 222,164 233,172 249,172 L 299,172 L 299,184 L 249,184 C 223,184 201,164 201,141 Z" fill="#00a2e8" />
+
+    <!-- 3. Light Blue Curved Arch (Sweeping open page outline) -->
+    <path d="M 222,36 C 222,36 265,10 310,10 C 352,10 376,46 376,78 C 376,108 358,138 310,154 C 326,150 342,144 354,134 C 392,104 398,72 398,50 C 398,18 368,0 322,0 C 275,0 222,36 222,36 Z" fill="#00a2e8" opacity="0.9" />
+
+    <!-- 4. Under-Shadow (Dark Blue bottom shadow curve) -->
+    <path d="M 188,212 C 205,224 235,228 262,228 C 295,228 310,218 310,218 C 310,218 285,214 262,214 C 235,214 205,206 188,212 Z" fill="#0c2340" />
+
+    <!-- 5. Flying Red/Pink Squares (Diamonds) -->
+    <!-- Tilted by 45 degrees, match sizes and placements in the logo -->
+    <!-- Large top-right red diamond -->
+    <rect x="0" y="0" width="34" height="34" fill="#e31c25" transform="translate(352, 75) rotate(45) translate(-17, -17)" />
+    <!-- Large bottom-right red diamond -->
+    <rect x="0" y="0" width="28" height="28" fill="#e31c25" transform="translate(358, 125) rotate(45) translate(-14, -14)" />
+    <!-- Medium-large red/pink diamond -->
+    <rect x="0" y="0" width="22" height="22" fill="#ec407a" transform="translate(315, 108) rotate(45) translate(-11, -11)" />
+    <!-- Medium diamond (left-ish) -->
+    <rect x="0" y="0" width="18" height="18" fill="#e31c25" transform="translate(285, 120) rotate(45) translate(-9, -9)" />
+    <!-- Medium diamond (top-left) -->
+    <rect x="0" y="0" width="16" height="16" fill="#e31c25" transform="translate(325, 62) rotate(45) translate(-8, -8)" />
+    <!-- Small diamond (bottom) -->
+    <rect x="0" y="0" width="12" height="12" fill="#f06292" transform="translate(255, 138) rotate(45) translate(-6, -6)" />
+    <!-- Small diamond (right) -->
+    <rect x="0" y="0" width="12" height="12" fill="#e31c25" transform="translate(390, 110) rotate(45) translate(-6, -6)" />
+    <!-- Very small diamond -->
+    <rect x="0" y="0" width="8" height="8" fill="#e31c25" transform="translate(290, 150) rotate(45) translate(-4, -4)" />
+  </g>
+
+  <!-- Typography -->
+  <text x="256" y="295" class="title-eetepa">EETEPA</text>
+  <text x="256" y="348" class="subtitle-vilhena">Vilhena Alves</text>
+
+  <!-- Divider Line -->
+  <line x1="80" y1="390" x2="432" y2="390" stroke="#cbd5e1" stroke-width="2" stroke-linecap="round" />
+
+  <!-- Government of Pará and SECTET Signature -->
+  <g transform="translate(68, 410)">
+    <!-- SECTET Text (Left, 4 lines match original logo) -->
+    <text x="0" y="8" font-family="'Inter', sans-serif" font-size="7px" font-weight="600" fill="#475569">SECRETARIA DE</text>
+    <text x="0" y="16" font-family="'Inter', sans-serif" font-size="7px" font-weight="600" fill="#475569">CIÊNCIA, TECNOLOGIA</text>
+    <text x="0" y="24" font-family="'Inter', sans-serif" font-size="7px" font-weight="600" fill="#475569">E EDUCAÇÃO SUPERIOR, PROFISSIONAL</text>
+    <text x="0" y="32" font-family="'Inter', sans-serif" font-size="7px" font-weight="600" fill="#475569">E TECNOLÓGICA</text>
+
+    <!-- Pará State Stylized Wave/Flag (Center-Right) -->
+    <g transform="translate(245, 0)">
+      <!-- Wave Red Background shape -->
+      <path d="M 0,5 C 8,5 12,0 20,0 L 40,0 C 40,0 35,24 35,28 C 27,28 23,32 15,32 L 0,32 C 0,32 5,8 5,5 Z" fill="#d32f2f" />
+      <!-- Wave White Diagonal -->
+      <path d="M 0,22 L 5,5 C 8,5 12,0 20,0 L 25,0 L 5,32 L 0,32 Z" fill="#ffffff" />
+      <!-- Blue Star at center of White diagonal -->
+      <polygon points="12.5,12.5 13.1,14.2 14.8,14.2 13.4,15.2 14,16.8 12.5,15.8 11,16.8 11.6,15.2 10.2,14.2 11.9,14.2" fill="#005ca9" />
+    </g>
+
+    <!-- GOVERNO DO PARÁ Text (Right, custom stylized path typography for 'PARÁ') -->
+    <g transform="translate(295, 0)">
+      <!-- 'GOVERNO DO' text in bold grey sans-serif -->
+      <text x="0" y="10" font-family="'Inter', sans-serif" font-size="9px" font-weight="800" fill="#475569" letter-spacing="0.5px">GOVERNO DO</text>
+      
+      <!-- 'PARÁ' drawing as paths for perfect vector rendering and stylized letter 'A' -->
+      <g transform="translate(0, 14)">
+        <!-- P -->
+        <path d="M 0,0 L 9,0 C 13,0 15,2 15,5 C 15,8 13,10 9,10 L 4,10 L 4,16 L 0,16 Z M 4,3 L 4,7 L 9,7 C 11,7 11.5,6.5 11.5,5 C 11.5,3.5 11,3 9,3 Z" fill="#005ca9" />
+        <!-- A (stylized slant, open crossbar) -->
+        <path d="M 23,0 L 27.5,16 L 23.5,16 L 19,0 Z" fill="#005ca9" />
+        <path d="M 23,0 L 18.5,16 L 22.5,16 L 27,0 Z" fill="#005ca9" />
+        <!-- R -->
+        <path d="M 33,0 L 42,0 C 46,0 48,2 48,5 C 48,8 46,10 42,10 L 37,10 L 37,16 L 33,16 Z M 37,3 L 37,7 L 42,7 C 44,7 44.5,6.5 44.5,5 C 44.5,3.5 44,3 42,3 Z M 41,10 L 46.5,16 L 41.5,16 L 37.5,11 Z" fill="#005ca9" />
+        <!-- A (stylized slant, open crossbar) with Red Accent -->
+        <g transform="translate(34, 0)">
+          <path d="M 23,0 L 27.5,16 L 23.5,16 L 19,0 Z" fill="#005ca9" />
+          <path d="M 23,0 L 18.5,16 L 22.5,16 L 27,0 Z" fill="#005ca9" />
+          <!-- Red Accent -->
+          <path d="M 20,-3 L 26,-7 L 27.5,-5.5 L 21.5,-1.5 Z" fill="#e31c25" />
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

@@ -2246,3 +2246,145 @@ h3 {
   }
 }
 
+/* ============================================================
+   SQUADS EM AÇÃO - SEÇÃO HOME E GALERIAS
+   ============================================================ */
+.squads-acao-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 24px;
+  width: var(--container);
+  margin: 40px auto 0;
+}
+
+.squad-acao-card {
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--line);
+  background: var(--surface);
+  transition: transform 300ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 300ms ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+}
+
+.squad-acao-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(3, 18, 35, 0.08);
+}
+
+.squad-acao-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.squad-acao-id {
+  font-size: 0.76rem;
+  font-weight: 800;
+  color: var(--text-soft);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.squad-acao-tag {
+  font-size: 0.72rem;
+  font-weight: 800;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(33, 216, 255, 0.1);
+  color: #008ac2;
+}
+
+.squad-acao-card h3 {
+  margin: 0 0 8px 0;
+  font-size: 1.35rem;
+  color: var(--text);
+  font-weight: 800;
+}
+
+.squad-acao-project {
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: var(--text);
+  margin: 0 0 16px 0;
+}
+
+.squad-acao-gallery {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin: 0 0 16px 0;
+}
+
+.squad-acao-gallery.cols-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.squad-acao-gallery img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+  background: var(--surface-soft);
+  border: 1px solid var(--line);
+  transition: transform 200ms ease;
+}
+
+.squad-acao-gallery img:hover {
+  transform: scale(1.05);
+  border-color: var(--cyan);
+}
+
+.squad-acao-details {
+  margin-top: auto;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: var(--text-soft);
+  display: grid;
+  gap: 8px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+}
+
+.squad-acao-details p {
+  margin: 0;
+}
+
+.squad-acao-details strong {
+  color: var(--text);
+}
+
+/* Sidebar Squad Info and Gallery */
+.squad-sidebar-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.squad-gallery-sidebar {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+  margin-top: 12px;
+}
+
+.squad-gallery-sidebar.cols-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.squad-gallery-sidebar img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.1);
+  transition: transform 200ms ease;
+}
+
+.squad-gallery-sidebar img:hover {
+  transform: scale(1.08);
+}
+
+

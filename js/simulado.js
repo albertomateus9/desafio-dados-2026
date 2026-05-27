@@ -3,17 +3,68 @@
 // ============================================================
 
 const SQUADS_LIST = [
-  { id: "581", name: "Infinity Tech" },
-  { id: "568", name: "AS++" },
-  { id: "570", name: "Tronadores" },
-  { id: "571", name: "Comando SQL" },
-  { id: "572", name: "REJY" },
-  { id: "574", name: "Requiem" },
-  { id: "578", name: "Tec" },
-  { id: "576", name: "Smile Friends" },
-  { id: "579", name: "MFCP" },
-  { id: "580", name: "JJM" }
+  {
+    id: "581",
+    name: "Infinity Tech",
+    members: "Emilly Layse Nunes Eleres, Felipe Diamantino da Silva, Estefany Lourrane Moreira da Silva, Pedro Lucas Espindola Moraes",
+    images: ["aluno_1.webp", "aluno_2.webp", "aluno_3.webp", "aluno_4.webp"]
+  },
+  {
+    id: "568",
+    name: "AS++",
+    members: "Carla Regina dos Santos, Myrza da Silva Alhadef, Dafne da Silva Carvalho",
+    images: ["aluno_5.webp", "aluno_6.webp"]
+  },
+  {
+    id: "570",
+    name: "Tronadores",
+    members: "Matheus Neyson do Carmo de Souza, Yan Walber de Oliveira Mandu, Hendrew Nascimento Negrão, Rodrigo Daniel Batista dos Santos",
+    images: ["aluno_7.webp", "aluno_8.webp", "aluno_9.webp", "aluno_10.webp"]
+  },
+  {
+    id: "571",
+    name: "Comando SQL",
+    members: "Christian dos Santos Paraguassu, Carlos Eduardo dos Santos Teixeira, Miguel Rocca de Araújo",
+    images: ["aluno_11.webp", "aluno_12.webp"]
+  },
+  {
+    id: "572",
+    name: "REJY",
+    members: "Emanuela Souza Amaral, Rykelme Cavalcante de Moura, Yago de Jesus Ferreira de Souza, João Guilherme Teixeira Cardoso da Silva",
+    images: ["aluno_13.webp", "aluno_14.webp", "aluno_15.webp", "aluno_16.webp"]
+  },
+  {
+    id: "574",
+    name: "Requiem",
+    members: "Wallace Reis Soares, Aryane Nazare Melo de Oliveira, Gustavo Barroso Santiago, Pedro Sales de Souza",
+    images: ["aluno_17.webp", "aluno_18.webp", "aluno_19.webp", "aluno_20.webp"]
+  },
+  {
+    id: "578",
+    name: "Tec",
+    members: "Kauã Gabriel Fernandes Amaral, Samuel Abner Silva da Silva, Rômulo Caio da Silva de Oliveira",
+    images: ["aluno_21.webp", "aluno_22.webp"]
+  },
+  {
+    id: "576",
+    name: "Smile Friends",
+    members: "Abner Santiago Amaral Lopes, Josué Carvalho de Abreu, Marcelo Henrique Pereira Silva de Souza, Luiz Henrique Ferreira Araújo",
+    images: ["aluno_23.webp", "aluno_24.webp", "aluno_25.webp", "aluno_26.webp"]
+  },
+  {
+    id: "579",
+    name: "MFCP",
+    members: "Miguel Carlos Chaves Rodrigues, Felipe Gabriel França da Costa, Cauã Giovanni Pinheiro dos Santos, Pedro Vinícius Costa da Silva",
+    images: ["aluno_27.webp", "aluno_28.webp", "aluno_29.webp", "aluno_30.webp"]
+  },
+  {
+    id: "580",
+    name: "JJM",
+    members: "João Danilo Gomes Acácio, Mikael Chrystian Duarte Melo, João Guilherme Seabra de Castro",
+    images: ["aluno_31.webp", "aluno_32.webp"]
+  }
 ];
+
 
 const QUESTIONS_DATABASE = [
   {
@@ -435,31 +486,51 @@ const btnRestartQuiz = document.getElementById("btn-restart-quiz");
 
 // Initialize Squad Select
 function initSimulado() {
-  if (!squadSelectSection || !quizSection || !resultsSection) return;
+  if (!quizSection || !resultsSection) return;
 
-  btnStartSimulado?.addEventListener("click", () => {
-    const squadId = selectSquadDropdown.value;
-    if (!squadId) {
-      alert("Por favor, selecione seu Squad para começar o simulado!");
-      return;
-    }
-    selectedSquad = SQUADS_LIST.find(s => s.id === squadId);
-    
-    // Transition Screen
-    squadSelectSection.style.display = "none";
-    quizSection.style.display = "grid";
-    
-    // Reset state
-    currentQuestionIndex = 0;
-    answersState = {};
-    hintsUsed = {};
-    xp = 0;
-    unlockedBadges.clear();
-    updateXpDisplay();
-    
-    renderSidebar();
-    loadQuestion(0);
-  });
+  // Render the quiz UI immediately on startup
+  quizSection.style.display = "grid";
+  currentQuestionIndex = 0;
+  answersState = {};
+  hintsUsed = {};
+  xp = 0;
+  unlockedBadges.clear();
+  updateXpDisplay();
+  renderSidebar();
+  loadQuestion(0);
+
+  // Set up the sidebar squad selection listener
+  const sidebarSelectDropdown = document.getElementById("squad-select-dropdown");
+  const squadInfoSidebar = document.getElementById("squad-info-sidebar");
+  const squadMembersList = document.getElementById("squad-members-list");
+  const squadGallerySidebar = document.getElementById("squad-gallery-sidebar");
+
+  if (sidebarSelectDropdown) {
+    sidebarSelectDropdown.addEventListener("change", () => {
+      const squadId = sidebarSelectDropdown.value;
+      if (squadId) {
+        selectedSquad = SQUADS_LIST.find(s => s.id === squadId);
+        if (selectedSquad) {
+          if (squadInfoSidebar) squadInfoSidebar.style.display = "block";
+          if (squadMembersList) squadMembersList.textContent = selectedSquad.members;
+          if (squadGallerySidebar) {
+            // Apply grid columns layout based on number of images
+            if (selectedSquad.images.length === 2) {
+              squadGallerySidebar.className = "squad-gallery-sidebar cols-2";
+            } else {
+              squadGallerySidebar.className = "squad-gallery-sidebar";
+            }
+            squadGallerySidebar.innerHTML = selectedSquad.images.map(img => 
+              `<img src="assets/alunos/${img}" alt="Ilustracao do Squad ${selectedSquad.name}" />`
+            ).join("");
+          }
+        }
+      } else {
+        selectedSquad = null;
+        if (squadInfoSidebar) squadInfoSidebar.style.display = "none";
+      }
+    });
+  }
 
   // Caesar tool real-time crypt
   if (caesarInput && caesarShift && caesarOutput) {
@@ -502,8 +573,24 @@ function initSimulado() {
 
   btnRestartQuiz?.addEventListener("click", () => {
     resultsSection.style.display = "none";
-    squadSelectSection.style.display = "block";
-    selectSquadDropdown.value = "";
+    quizSection.style.display = "grid";
+    
+    // Clear selections and reload
+    currentQuestionIndex = 0;
+    answersState = {};
+    hintsUsed = {};
+    xp = 0;
+    unlockedBadges.clear();
+    updateXpDisplay();
+    
+    if (sidebarSelectDropdown) {
+      sidebarSelectDropdown.value = "";
+    }
+    selectedSquad = null;
+    if (squadInfoSidebar) squadInfoSidebar.style.display = "none";
+    
+    renderSidebar();
+    loadQuestion(0);
   });
 
   btnExportTxt?.addEventListener("click", exportSquadAnswers);

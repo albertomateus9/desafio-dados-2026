@@ -8,6 +8,7 @@
       content="Área de Treino e Simulado do Desafio dos Dados 2026. Exercite seus conhecimentos nas 20 questões oficiais e prepare sua equipe da EETEPA Vilhena Alves."
     />
     <title>Treino dos Squads | Desafio dos Dados 2026</title>
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body class="student-portal-page">
@@ -43,41 +44,8 @@
     </header>
 
     <main class="simulado-main">
-      <!-- Section 1: Squad Selection -->
-      <section class="section section-dark squad-select-section" id="squad-select-section">
-        <div class="hero-bg" aria-hidden="true"></div>
-        <div class="squad-select-container container-box">
-          <div class="squad-select-card glass-panel">
-            <span class="section-label">Aquecimento e Preparação</span>
-            <h1>Simulado Interativo dos Squads</h1>
-            <p>
-              Seja bem-vindo ao portal de treinamento didático para o Desafio dos Dados 2026! 
-              Esta área foi criada para que as equipes da EETEPA Vilhena Alves exercitem os conceitos, 
-              leiam dicas metodológicas e preparem suas respostas oficiais com facilidade.
-            </p>
-            <div class="squad-select-form">
-              <label for="squad-select-dropdown">Selecione seu Squad da Escola:</label>
-              <select id="squad-select-dropdown" class="glass-input">
-                <option value="" disabled selected>-- Escolha seu Squad --</option>
-                <option value="581">Squad 01 — Infinity Tech</option>
-                <option value="568">Squad 02 — AS++</option>
-                <option value="570">Squad 03 — Tronadores</option>
-                <option value="571">Squad 04 — Comando SQL</option>
-                <option value="572">Squad 05 — REJY</option>
-                <option value="574">Squad 06 — Requiem</option>
-                <option value="578">Squad 07 — Tec</option>
-                <option value="576">Squad 08 — Smile Friends</option>
-                <option value="579">Squad 09 — MFCP</option>
-                <option value="580">Squad 10 — JJM</option>
-              </select>
-              <button class="btn btn-primary" id="btn-start-simulado">Começar Simulado 🚀</button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Section 2: Quiz Wizard (Hidden by default) -->
-      <section class="section section-light quiz-section" id="quiz-section" style="display: none;">
+      <!-- Section 2: Quiz Wizard (Visible by default) -->
+      <section class="section section-light quiz-section" id="quiz-section">
         <div class="simulado-layout container-box">
           
           <!-- Column 1: Questions Wizard -->
@@ -167,6 +135,32 @@
 
           <!-- Column 2: Sidebar Status & Gamification -->
           <div class="quiz-sidebar-panel">
+            
+            <!-- Squad Selector Card -->
+            <div class="sidebar-card glass-panel squad-sidebar-card">
+              <h3>Squad Ativo</h3>
+              <div class="squad-select-group">
+                <select id="squad-select-dropdown" class="glass-input" style="width: 100%; margin-bottom: 8px;">
+                  <option value="" disabled selected>-- Escolha seu Squad --</option>
+                  <option value="581">Squad 01 — Infinity Tech</option>
+                  <option value="568">Squad 02 — AS++</option>
+                  <option value="570">Squad 03 — Tronadores</option>
+                  <option value="571">Squad 04 — Comando SQL</option>
+                  <option value="572">Squad 05 — REJY</option>
+                  <option value="574">Squad 06 — Requiem</option>
+                  <option value="578">Squad 07 — Tec</option>
+                  <option value="576">Squad 08 — Smile Friends</option>
+                  <option value="579">Squad 09 — MFCP</option>
+                  <option value="580">Squad 10 — JJM</option>
+                </select>
+              </div>
+              <div id="squad-info-sidebar" style="display: none; border-top: 1px solid var(--line); padding-top: 10px; margin-top: 10px;">
+                <p style="font-size: 0.8rem; line-height: 1.4; margin: 0 0 10px 0; color: var(--text-soft);">
+                  <strong>Integrantes:</strong> <span id="squad-members-list"></span>
+                </p>
+                <div class="squad-gallery-sidebar" id="squad-gallery-sidebar" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px;"></div>
+              </div>
+            </div>
             
             <!-- Points and XP Card -->
             <div class="sidebar-card glass-panel stats-card">
