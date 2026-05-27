@@ -89,7 +89,7 @@ const QUESTIONS_DATABASE = [
       "E) I, II, III e IV"
     ],
     resposta_enc: "RA==", // D
-    dica: "Dica: Os LLMs podem sofrer 'alucinações' (gerar fatos falsos que parecem verdadeiros), logo eles NÃO garantem validação automática (a afirmativa II é falsa).",
+    dica: "Dica: Os LLMs podem sofrer 'alucinações' (gerar fatos falsos que parecem verdadeiros), logo eles não garantem validação automática (a afirmativa II é falsa).",
     justificativa: "Correto! As afirmativas I, III e IV são verdadeiras. A II está incorreta porque os LLMs não validam informações automaticamente e podem induzir ao erro se não checados."
   },
   {
@@ -908,7 +908,7 @@ function exportSquadAnswers() {
   let textContent = `========================================================\n`;
   textContent += `GABARITO DE APOIO - DESAFIO DOS DADOS 2026\n`;
   textContent += `SQUAD: ${selectedSquad.name.toUpperCase()} (ID: ${selectedSquad.id})\n`;
-  textContent += `DATA DE EXPORTAÇÃO: ${new Date().toLocaleDateString("pt-BR")}\n`;
+  textContent += `Data da exportação: ${new Date().toLocaleDateString("pt-BR")}\n`;
   textContent += `XP ACUMULADO: ${xp} XP\n`;
   textContent += `========================================================\n\n`;
 
@@ -916,7 +916,7 @@ function exportSquadAnswers() {
     const answer = answersState[q.code] || "";
     textContent += `Questão ${q.code} [${q.nivel}]: ${q.tema}\n`;
     if (q.tipo === "resposta construída") {
-      textContent += `-> RESPOSTA ESCRITA SQUAD:\n${answer || "(Não respondida)"}\n`;
+      textContent += `-> RESPOSTA ESCRITA SQUAD: \n${answer || "(Não respondida)"}\n`;
     } else {
       const selectedStr = Array.isArray(answer) ? answer.join(", ") : answer;
       textContent += `-> ALTERNATIVA MARCADA: ${selectedStr || "(Nenhuma)"}\n`;
