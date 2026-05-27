@@ -40,6 +40,7 @@
         <a href="orientacao.html">Área do Professor</a>
       </nav>
 
+      <button class="theme-toggle-btn" aria-label="Alternar tema" type="button">🌙</button>
       <a class="header-action" href="index.html#participar">Inscrever</a>
     </header>
 
@@ -56,6 +57,17 @@
                 <span class="q-level-badge" id="q-level-label">Fácil</span>
               </div>
               <span class="q-type-badge" id="q-type-label">múltipla escolha</span>
+            </div>
+
+            <!-- Timer bar -->
+            <div class="timer-wrapper" style="margin-bottom: 15px; display: none;" id="timer-wrapper">
+              <div style="display: flex; justify-content: space-between; font-size: 0.8rem; margin-bottom: 4px; font-weight: bold;">
+                <span style="color: var(--amber);">⏳ Tempo Restante (Bônus):</span>
+                <span id="timer-counter">60s</span>
+              </div>
+              <div class="progress-bar-outer" style="height: 6px; background: var(--line); border-radius: 99px; overflow: hidden; margin: 0;">
+                <div class="progress-bar-inner" id="timer-progress" style="width: 100%; height: 100%; background: var(--amber); transition: width 1s linear;"></div>
+              </div>
             </div>
 
             <h2 id="q-title-label" class="q-title">Carregando tema...</h2>
@@ -124,6 +136,29 @@
             <div class="feedback-panel" id="feedback-panel" style="display: none;">
               <p id="feedback-text">Feedback explicativo...</p>
             </div>
+
+            <!-- Concept Key Panel -->
+            <button class="btn btn-secondary" id="btn-show-concept" style="margin-top: 10px; width: 100%; justify-content: center; display: flex; align-items: center; gap: 8px;"><span>📖</span> Ver Conceitos-Chave</button>
+            <div class="concept-panel glass-panel" id="concept-panel" style="display: none; margin-top: 12px; padding: 16px; border-left: 4px solid var(--blue); text-align: left;">
+              <h4 style="margin: 0 0 8px 0; color: var(--blue); font-size: 0.95rem;">📖 Conceitos-Chave da Questão</h4>
+              <p id="concept-text" style="font-size: 0.86rem; line-height: 1.5; margin: 0; color: var(--text-soft);"></p>
+            </div>
+
+            <!-- Teacher Mode Content Panel -->
+            <div class="teacher-panel glass-panel" id="teacher-panel" style="display: none; margin-top: 15px; padding: 18px; border-left: 4px solid var(--green); background: rgba(50,240,161,0.03); text-align: left;">
+              <h4 style="margin: 0 0 8px 0; color: var(--green); font-size: 0.95rem;">👨‍🏫 Notas do Professor (Exclusivo)</h4>
+              <div style="margin-bottom: 10px; font-size: 0.86rem;">
+                <strong>Resposta Correta:</strong> <span id="teacher-correct-answer" style="color: var(--green); font-weight: bold; font-size: 1rem;"></span>
+              </div>
+              <div style="margin-bottom: 10px; font-size: 0.86rem; line-height: 1.5;">
+                <strong>Justificativa Pedagógica:</strong>
+                <p id="teacher-explanation" style="margin: 4px 0 0 0; color: var(--text-soft);"></p>
+              </div>
+              <div style="font-size: 0.86rem; line-height: 1.5;">
+                <strong>Dica de Lousa (Notas de Aula):</strong>
+                <p id="teacher-notes" style="margin: 4px 0 0 0; color: var(--text-soft); font-style: italic;"></p>
+              </div>
+            </div>
             
             <!-- Navigation controls -->
             <div class="quiz-nav-row">
@@ -172,6 +207,10 @@
                 <span>XP Acumulado:</span>
                 <strong id="xp-counter">0 XP</strong>
               </div>
+              <div class="stats-row" style="margin-top: 8px;">
+                <span>Rank do Squad:</span>
+                <strong id="rank-label" style="color: var(--cyan);">Explorador 🌐</strong>
+              </div>
             </div>
 
             <!-- Questions Checklist Grid -->
@@ -193,6 +232,19 @@
               <h3>Medalhas Conquistadas</h3>
               <div class="badges-list" id="badges-list">
                 <!-- Badges generated via JS -->
+              </div>
+            </div>
+
+            <!-- Teacher Mode Access Card -->
+            <div class="sidebar-card glass-panel teacher-card-access">
+              <h3>Modo Professor</h3>
+              <button class="btn btn-secondary" id="btn-toggle-teacher-mode" style="width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px;">
+                <span>👨‍🏫</span> Ativar Modo Aula
+              </button>
+              <div id="teacher-projection-controls" style="display: none; margin-top: 10px; border-top: 1px solid var(--line); padding-top: 10px; text-align: center;">
+                <label style="font-size: 0.8rem; font-weight: bold; cursor: pointer; display: inline-flex; align-items: center; gap: 6px;">
+                  <input type="checkbox" id="check-projection-mode" /> Aumentar Fontes (Projeção)
+                </label>
               </div>
             </div>
             
@@ -218,8 +270,18 @@
               <!-- Medal list -->
             </div>
 
-            <div class="results-actions" style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
-              <button class="btn btn-primary" id="btn-export-txt">💾 Exportar Respostas (.TXT)</button>
+            <div class="results-actions" style="display: flex; flex-direction: column; align-items: center; gap: 16px; justify-content: center; margin-bottom: 24px;">
+              <div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap; justify-content: center;">
+                <label for="export-format-select" style="font-weight: bold; color: var(--text-inverse);">Formato de Exportação:</label>
+                <select id="export-format-select" class="glass-input" style="padding: 8px 12px; border-radius: 6px; background: rgba(255,255,255,0.05); color: var(--text-inverse); border: 1px solid var(--line-dark); min-width: 220px; outline: none; font-family: inherit;">
+                  <option value="txt" style="background: var(--bg-strong); color: var(--text-inverse);">Arquivo de Texto (.TXT)</option>
+                  <option value="json" style="background: var(--bg-strong); color: var(--text-inverse);">Dados Estruturados (.JSON)</option>
+                  <option value="csv" style="background: var(--bg-strong); color: var(--text-inverse);">Planilha Separada por Ponto e Vírgula (.CSV)</option>
+                  <option value="xlsx" style="background: var(--bg-strong); color: var(--text-inverse);">Planilha Excel (.XLSX)</option>
+                  <option value="pdf" style="background: var(--bg-strong); color: var(--text-inverse);">Documento PDF para Impressão (.PDF)</option>
+                </select>
+                <button class="btn btn-primary" id="btn-export-gabarito">💾 Exportar Gabarito</button>
+              </div>
               <button class="btn btn-secondary" id="btn-restart-quiz">Reiniciar Simulado 🔄</button>
             </div>
             <p style="font-size: 0.86rem; color: var(--muted-inverse); margin-top: 24px;">

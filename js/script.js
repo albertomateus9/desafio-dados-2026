@@ -1,3 +1,33 @@
+// Theme Toggle Script
+const themeKey = "desafio-dados-theme";
+function applyTheme(theme) {
+  document.documentElement.setAttribute("data-theme", theme);
+  document.body.setAttribute("data-theme", theme);
+  localStorage.setItem(themeKey, theme);
+  
+  // Update toggle buttons text/emoji
+  const toggles = document.querySelectorAll(".theme-toggle-btn");
+  toggles.forEach(btn => {
+    btn.textContent = theme === "light" ? "🌙" : "☀️";
+  });
+}
+
+const savedTheme = localStorage.getItem(themeKey);
+const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+const activeTheme = savedTheme || (prefersDark ? "dark" : "light");
+applyTheme(activeTheme);
+
+window.addEventListener("DOMContentLoaded", () => {
+  const toggles = document.querySelectorAll(".theme-toggle-btn");
+  toggles.forEach(btn => {
+    btn.addEventListener("click", () => {
+      const current = document.body.getAttribute("data-theme") || "light";
+      const next = current === "light" ? "dark" : "light";
+      applyTheme(next);
+    });
+  });
+});
+
 const body = document.body;
 const header = document.querySelector("[data-header]");
 const navToggle = document.querySelector("[data-nav-toggle]");

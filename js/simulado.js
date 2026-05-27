@@ -426,6 +426,93 @@ const QUESTIONS_DATABASE = [
 ];
 
 // ============================================================
+// DADOS PEDAGÓGICOS E SUPORTE DE AULA
+// ============================================================
+
+const PEDAGOGICAL_DATA = {
+  "TD01": {
+    concept: "Desordem informacional: o fenômeno popular de 'fake news' se divide em três eixos: Misinformation (erro sem intenção), Disinformation (mentira intencional para causar dano) e Mal-information (verdades usadas com intenção maliciosa, como vazamentos de privacidade).",
+    notes: "Lousa: Falso + Intencional = Desinformação (ex: mentiras eleitorais). Falso + Sem intenção = Info. Falsa (ex: receitas caseiras de tias). Verdadeiro + Intencional = Info. Maliciosa."
+  },
+  "TD02": {
+    concept: "Realidade Virtual (RV): ambiente imersivo digital gerado por computador que substitui o ambiente real. Vantagem: treinamento seguro em cenários de alto risco (ex: plataformas de petróleo). Limitação: alto custo inicial de headsets e desenvolvimento de software.",
+    notes: "Lousa: RV = Imersão total (exclusão do ambiente real). Ideal para simulação industrial de risco. Custo alto de hardware (headsets) e equipe de desenvolvimento."
+  },
+  "TD03": {
+    concept: "Operadores de busca avançada: comandos que instruem o robô de busca a filtrar dados. 'site:gov.br' restringe resultados a órgãos do governo brasileiro; 'filetype:pdf' filtra apenas arquivos PDF; operador lógico 'OR' permite buscar múltiplos formatos alternativos.",
+    notes: "Lousa: string recomendada: edital startups site:gov.br (filetype:pdf OR filetype:docx). Explicar que OR agrupa os tipos."
+  },
+  "TD04": {
+    concept: "Diferença entre motores de busca e LLMs: motores de busca indexam e rastreiam links diretos da web (verificabilidade). LLMs (Large Language Models) são preditores de texto treinados em grandes corpora de dados que geram textos fluidos e plausíveis, mas podem 'alucinar' (inventar fatos).",
+    notes: "Lousa: Motores de busca = Indexação e rastreamento de links. LLM = Geração estatística de texto. Sempre checar as fontes citadas por IAs generativas."
+  },
+  "TD05": {
+    concept: "Impacto da IA no futuro do trabalho: a inteligência artificial automatiza facilmente tarefas lógicas, repetitivas e baseadas em regras de processamento de dados (ex: planilhas). Habilidades humanas intrínsecas como empatia, inteligência emocional e julgamento ético são difíceis de replicar no curto prazo.",
+    notes: "Lousa: Automatizável = Tarefas repetitivas e lógica pura. Não-automatizável = Inteligência social, negociação complexa, mediação com empatia."
+  },
+  "TD06": {
+    concept: "Cidadania e Ética Digital: o cyberbullying e a exposição não-autorizada de fotos violam leis brasileiras (ECA e LGPD). Diante de infrações, a contenção envolve interromper o compartilhamento, apoiar a vítima e reportar aos canais competentes (escola/plataforma).",
+    notes: "Lousa: Atitudes éticas: 1. Não compartilhar fotos ofensivas. 2. Denunciar na plataforma/escola. 3. Apoiar a vítima. Exposição de nomes na internet por conta própria gera linchamento virtual."
+  },
+  "TD07": {
+    concept: "Treinamento de Modelos de IA: algoritmos aprendem padrões históricos. Se a base de treinamento for enviesada ou faltarem cenários normais (ex: caminhões pesados perto de sensores), o modelo erra. Um falso positivo ocorre quando a IA aciona um alerta sem perigo real.",
+    notes: "Lousa: Falso Positivo = Alerta de rompimento sem barragem romper. Solução: treinar com mais dados de controle (ruído normal) e cruzar com dados meteorológicos e diários de obras."
+  },
+  "TD08": {
+    concept: "Processamento de Linguagem Natural (PLN/NLP): ramo da inteligência artificial que visa entender, processar e replicar a linguagem humana por computadores. É a base da tradução de idiomas e das interfaces de conversação com chatbots.",
+    notes: "Lousa: Chatbots utilizam PLN para extrair a intenção e entidades de mensagens escritas por usuários em linguagem natural, respondendo adequadamente."
+  },
+  "TD09": {
+    concept: "Autenticação Multifator (MFA): técnica de segurança cibernética que requer dois ou mais fatores de autenticação independentes para validar um login: algo que você sabe (senha), algo que você possui (token no celular) ou algo que você é (biometria).",
+    notes: "Lousa: Se o hacker rouba a senha (conhecimento) em um ataque de phishing, ele ainda assim será bloqueado porque não possui o token do seu celular (posse)."
+  },
+  "TD10": {
+    concept: "Metodologia Combinada de Pesquisa: otimização de tempo. Usar buscas tradicionais para informações exatas que requerem fontes primárias e veracidade garantida (normas, leis). Usar IAs generativas para estruturar, sintetizar ou revisar textos formais.",
+    notes: "Lousa: Busca = Localizar a norma técnica (ABNT/lei) no site oficial. LLM = Rascunhar o e-mail educativo ou reescrever de forma mais didática."
+  },
+  "TD11": {
+    concept: "Proteção de dados de menores de idade: a LGPD e o ECA exigem consentimento explícito e específico dos pais para processar ou publicar imagens e dados de crianças/adolescentes. Perfis de mídias sociais públicas possuem limite etário que deve ser respeitado.",
+    notes: "Lousa: Termos escolares genéricos não cobrem redes sociais pessoais de professores. Menores de 13 anos não podem criar perfis públicos sem consentimento explícito."
+  },
+  "TD12": {
+    concept: "Prevenção a boatos digitais: a pressa para compartilhar e o pânico gerado por boatos locais alimentam fake news. O processo correto envolve cruzar o fato com os canais oficiais de comunicação antes de disseminar qualquer alerta alarmista.",
+    notes: "Lousa: Em caso de pânico (ex: barragem rompeu), verifique a Defesa Civil e portais jornalísticos credenciados. Nunca repasse em grupos de família sem verificar."
+  },
+  "TD13": {
+    concept: "Realidade Aumentada (RA) vs Blockchain: a RA projeta elementos virtuais no ambiente físico real do usuário (interface e engajamento). O Blockchain armazena um livro-razão público distribuído, imutável e auditável (rastreabilidade de dados de sustentabilidade).",
+    notes: "Lousa: RA = Interação visual e educativa (Front-end). Blockchain = Segurança, histórico imutável do plantio ao produto (Back-end/Confiança)."
+  },
+  "TD14": {
+    concept: "Confiabilidade científica: a busca em bases confiáveis (site governamental ou base acadêmica com filetype:pdf) reduz o ruído da internet. Alucinações de LLM são o maior risco: elas geram links e referências acadêmicas que parecem reais mas não existem.",
+    notes: "Lousa: Nunca use referências de IA sem testar se o artigo realmente existe. Use site:unesco.org ou filetype:pdf para pesquisas de fontes fidedignas."
+  },
+  "TD15": {
+    concept: "Cidades Inteligentes (Smart Cities): cidades que utilizam tecnologia e sensores IoT de forma conectada para otimizar serviços urbanos, trânsito, coleta de resíduos e consumo de energia, melhorando o bem-estar e a sustentabilidade municipal.",
+    notes: "Lousa: Exemplo clássico: semáforo inteligente com sensor de fluxo vs semáforo com temporizador fixo analógico."
+  },
+  "TD16": {
+    concept: "Integração de IAs: sensores ópticos enviam imagens para redes neurais convolucionais (Visão Computacional) que classificam o tipo de material. A lógica decide o destino (lixeira) e um motor de PLN redige uma resposta didática e atende dúvidas de descarte.",
+    notes: "Lousa: Fluxo: Câmera -> Visão (identifica plástico) -> Lógica (lixeira vermelha) -> PLN (gera mensagem interativa: 'Obrigado por reciclar esta garrafa!')."
+  },
+  "TD17": {
+    concept: "Economia Circular e TI Verde: modelo econômico que busca eliminar resíduos na cadeia, mantendo recursos circulando por reuso ou reciclagem. A logística reversa obriga fabricantes a receberem resíduos pós-consumo para reaproveitamento.",
+    notes: "Lousa: Reuso de segunda vida de baterias de veículos para armazenar energia residencial é um exemplo premium de economia circular."
+  },
+  "TD18": {
+    concept: "Cifra de César: método de criptografia de substituição simétrica clássico, onde cada caractere da mensagem é deslocado circularmente k casas no alfabeto. Ex: com chave 3, a letra 'a' torna-se 'd', 'b' torna-se 'e', etc.",
+    notes: "Lousa: Mensagem: 'desafio dos dados' com chave 3 torna-se 'ghvdilr grv gdgrv'. Trate caractere a caractere, pulando os espaços."
+  },
+  "TD19": {
+    concept: "Programação e Inovação Criativa: o código e algoritmos servem como meio de expressão artística e economia criativa (arte generativa, design de interações). Unir computação com ciências humanas expande as competências e gera valor cultural.",
+    notes: "Lousa: Algoritmos não apenas automatizam, mas criam novas linguagens artísticas e novos setores econômicos baseados em inovação."
+  },
+  "TD20": {
+    concept: "Trade-offs em Datacenters: a escolha de infraestruturas de dados requer ponderar estabilidade de fornecimento elétrico (uptime constante) e refrigeração adequada com o menor impacto ecológico e viabilidade econômica de longo prazo.",
+    notes: "Lousa: Local C (hidrelétricas limpas, boa refrigeração hídrica, custo médio) é mais viável operacionalmente e ecologicamente que fontes térmicas fósseis."
+  }
+};
+
+// ============================================================
 // SIMULATION ENGINE
 // ============================================================
 
@@ -435,6 +522,12 @@ let answersState = {}; // { 'TD01': 'C', 'TD07': 'texto discursivo' }
 let hintsUsed = {}; // { 'TD01': true }
 let xp = 0;
 let unlockedBadges = new Set();
+
+// Gamification Timer & Teacher Mode State
+let questionTimer = null;
+let timeLeft = 60;
+let timerBonusActive = true;
+let isTeacherMode = false;
 
 // Elements
 const squadSelectSection = document.getElementById("squad-select-section");
@@ -481,7 +574,8 @@ const caesarOutput = document.getElementById("caesar-output");
 const resultsSquadName = document.getElementById("res-squad-name");
 const resultsScoreText = document.getElementById("res-score-text");
 const resultsMedalsList = document.getElementById("res-medals-list");
-const btnExportTxt = document.getElementById("btn-export-txt");
+const btnExportGabarito = document.getElementById("btn-export-gabarito");
+const exportFormatSelect = document.getElementById("export-format-select");
 const btnRestartQuiz = document.getElementById("btn-restart-quiz");
 
 // Initialize Squad Select
@@ -593,7 +687,52 @@ function initSimulado() {
     loadQuestion(0);
   });
 
-  btnExportTxt?.addEventListener("click", exportSquadAnswers);
+  btnExportGabarito?.addEventListener("click", () => {
+    const format = exportFormatSelect ? exportFormatSelect.value : "txt";
+    exportGabarito(format);
+  });
+
+  // Setup Teacher Mode Card Toggles
+  const btnToggleTeacherMode = document.getElementById("btn-toggle-teacher-mode");
+  const checkProjectionMode = document.getElementById("check-projection-mode");
+  const teacherProjectionControls = document.getElementById("teacher-projection-controls");
+  const conceptPanel = document.getElementById("concept-panel");
+
+  btnToggleTeacherMode?.addEventListener("click", () => {
+    if (isTeacherMode) {
+      isTeacherMode = false;
+      if (btnToggleTeacherMode) btnToggleTeacherMode.innerHTML = "<span>👨‍🏫</span> Ativar Modo Aula";
+      if (teacherProjectionControls) teacherProjectionControls.style.display = "none";
+      const teacherPanel = document.getElementById("teacher-panel");
+      if (teacherPanel) teacherPanel.style.display = "none";
+    } else {
+      const pwd = prompt("Digite a senha do professor:");
+      if (pwd === "admin2026") {
+        isTeacherMode = true;
+        if (btnToggleTeacherMode) btnToggleTeacherMode.innerHTML = "<span>👨‍🏫</span> Desativar Modo Aula";
+        if (teacherProjectionControls) teacherProjectionControls.style.display = "block";
+        loadQuestion(currentQuestionIndex);
+      } else {
+        alert("Senha incorreta!");
+      }
+    }
+  });
+
+  checkProjectionMode?.addEventListener("change", () => {
+    if (checkProjectionMode.checked) {
+      document.body.classList.add("projection-mode");
+    } else {
+      document.body.classList.remove("projection-mode");
+    }
+  });
+
+  // Setup Concept Toggle
+  const btnShowConcept = document.getElementById("btn-show-concept");
+  btnShowConcept?.addEventListener("click", () => {
+    if (conceptPanel) {
+      conceptPanel.style.display = conceptPanel.style.display === "block" ? "none" : "block";
+    }
+  });
 }
 
 // Load Question in Wizard
@@ -710,6 +849,39 @@ function loadQuestion(index) {
     discursivaTextarea.oninput = handleInput;
   }
 
+  // Lógica do Temporizador
+  startQuestionTimer(q);
+
+  // Carregar Conceitos-Chave
+  const conceptData = PEDAGOGICAL_DATA[q.code];
+  const conceptPanel = document.getElementById("concept-panel");
+  const conceptText = document.getElementById("concept-text");
+  const btnShowConcept = document.getElementById("btn-show-concept");
+  if (conceptData) {
+    if (conceptText) conceptText.textContent = conceptData.concept;
+    if (btnShowConcept) btnShowConcept.style.display = "flex";
+  } else {
+    if (btnShowConcept) btnShowConcept.style.display = "none";
+    if (conceptPanel) conceptPanel.style.display = "none";
+  }
+
+  // Carregar Notas de Aula do Professor
+  const teacherPanel = document.getElementById("teacher-panel");
+  const teacherCorrectAnswer = document.getElementById("teacher-correct-answer");
+  const teacherExplanation = document.getElementById("teacher-explanation");
+  const teacherNotes = document.getElementById("teacher-notes");
+
+  if (isTeacherMode && conceptData) {
+    if (teacherPanel) teacherPanel.style.display = "block";
+    if (teacherCorrectAnswer) {
+      teacherCorrectAnswer.textContent = q.tipo === "resposta construída" ? "Critério Discursivo (Livre fundamentação)" : atob(q.resposta_enc);
+    }
+    if (teacherExplanation) teacherExplanation.textContent = q.justificativa;
+    if (teacherNotes) teacherNotes.textContent = conceptData.notes;
+  } else {
+    if (teacherPanel) teacherPanel.style.display = "none";
+  }
+
   updateProgress();
 }
 
@@ -762,6 +934,7 @@ function checkAnswerAndGiveFeedback() {
   const stateKeyXP = `${q.code}_xp_awarded`;
   
   if (isCorrect) {
+    stopQuestionTimer();
     showVerifyFeedback(true, q.justificativa);
     btnCheckAnswer.disabled = true;
     
@@ -771,9 +944,33 @@ function checkAnswerAndGiveFeedback() {
     // Award XP (if not already awarded for this question)
     if (!localStorage.getItem(stateKeyXP)) {
       const hintBonus = hintsUsed[q.code] ? 5 : 10;
-      xp += hintBonus;
+      let speedBonus = 0;
+      if (timerBonusActive) {
+        speedBonus = 2;
+      }
+      xp += (hintBonus + speedBonus);
       localStorage.setItem(stateKeyXP, "true");
       updateXpDisplay();
+      
+      // Trigger celebration
+      triggerConfetti();
+      
+      // Show speed bonus toast if earned
+      if (speedBonus > 0) {
+        const toastContainer = document.getElementById("toast-container-element");
+        if (toastContainer) {
+          const toast = document.createElement("div");
+          toast.className = "toast";
+          toast.style.background = "linear-gradient(135deg, var(--green), #42f7c8)";
+          toast.style.color = "#001826";
+          toast.innerHTML = `<span class="toast-icon">⚡</span> <span class="toast-message">Bônus de velocidade: +2 XP!</span>`;
+          toastContainer.appendChild(toast);
+          setTimeout(() => {
+            toast.classList.add("fade-out");
+            setTimeout(() => { toastContainer.removeChild(toast); }, 350);
+          }, 3000);
+        }
+      }
     }
   } else {
     showVerifyFeedback(false, "Alternativa incorreta! Revise o enunciado, leia a 'Dica' se precisar, e tente novamente.");
@@ -988,40 +1185,563 @@ function showResultsScreen() {
   }
 }
 
-// Export Squad Answers as text file (.txt)
-function exportSquadAnswers() {
-  if (!selectedSquad) return;
+function startQuestionTimer(q) {
+  stopQuestionTimer();
 
-  let textContent = `========================================================\n`;
-  textContent += `GABARITO DE APOIO - DESAFIO DOS DADOS 2026\n`;
-  textContent += `SQUAD: ${selectedSquad.name.toUpperCase()} (ID: ${selectedSquad.id})\n`;
-  textContent += `Data da exportação: ${new Date().toLocaleDateString("pt-BR")}\n`;
-  textContent += `XP ACUMULADO: ${xp} XP\n`;
-  textContent += `========================================================\n\n`;
+  const timerWrapper = document.getElementById("timer-wrapper");
+  const timerCounter = document.getElementById("timer-counter");
+  const timerProgress = document.getElementById("timer-progress");
 
-  QUESTIONS_DATABASE.forEach(q => {
-    const answer = answersState[q.code] || "";
-    textContent += `Questão ${q.code} [${q.nivel}]: ${q.tema}\n`;
-    if (q.tipo === "resposta construída") {
-      textContent += `-> RESPOSTA ESCRITA SQUAD: \n${answer || "(Não respondida)"}\n`;
-    } else {
-      const selectedStr = Array.isArray(answer) ? answer.join(", ") : answer;
-      textContent += `-> ALTERNATIVA MARCADA: ${selectedStr || "(Nenhuma)"}\n`;
+  if (!timerWrapper) return;
+
+  // If question is already answered correctly, hide timer
+  const status = getAnsweredStatus(q.code);
+  const hasValue = answersState[q.code] && answersState[q.code].length > 0;
+  if (status === "verified-correct" || (q.tipo === "resposta construída" && hasValue)) {
+    timerWrapper.style.display = "none";
+    return;
+  }
+
+  // Show timer and init variables
+  timerWrapper.style.display = "block";
+  timeLeft = 60;
+  timerBonusActive = true;
+
+  if (timerCounter) timerCounter.textContent = "60s";
+  if (timerProgress) {
+    timerProgress.style.width = "100%";
+    timerProgress.style.background = "var(--amber)";
+  }
+
+  questionTimer = setInterval(() => {
+    timeLeft--;
+    if (timerCounter) timerCounter.textContent = `${timeLeft}s`;
+    if (timerProgress) {
+      const percentage = (timeLeft / 60) * 100;
+      timerProgress.style.width = `${percentage}%`;
     }
-    textContent += `--------------------------------------------------------\n\n`;
-  });
 
-  textContent += `\nDesenvolvido com carinho para as equipes da EETEPA Vilhena Alves. Gabaritem a Fase 1! 🚀\n`;
+    if (timeLeft <= 0) {
+      stopQuestionTimer();
+      timerBonusActive = false;
+      if (timerCounter) timerCounter.textContent = "Expirado (Sem bônus)";
+      if (timerProgress) timerProgress.style.background = "var(--line)";
+    }
+  }, 1000);
+}
 
-  // Generate downloadable file
-  const blob = new Blob([textContent], { type: "text/plain;charset=utf-8" });
-  const url = URL.createObjectURL(blob);
-  const link = document.createElement("a");
-  link.href = url;
-  link.download = `DesafioDados2026_Squad_${selectedSquad.name.replace(/\s+/g, "_")}.txt`;
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
+function stopQuestionTimer() {
+  if (questionTimer) {
+    clearInterval(questionTimer);
+    questionTimer = null;
+  }
+}
+
+function triggerConfetti() {
+  const duration = 2000;
+  const animationEnd = Date.now() + duration;
+  const colors = ['#16f4a4', '#2cb8ff', '#ffd166', '#ff708d', '#a8bad2'];
+
+  const container = document.createElement("div");
+  container.style.position = "fixed";
+  container.style.top = "0";
+  container.style.left = "0";
+  container.style.width = "100vw";
+  container.style.height = "100vh";
+  container.style.pointerEvents = "none";
+  container.style.zIndex = "9999";
+  document.body.appendChild(container);
+
+  const interval = setInterval(() => {
+    if (Date.now() > animationEnd) {
+      clearInterval(interval);
+      document.body.removeChild(container);
+      return;
+    }
+
+    for (let i = 0; i < 5; i++) {
+      const p = document.createElement("div");
+      p.style.position = "absolute";
+      p.style.width = Math.random() * 8 + 6 + "px";
+      p.style.height = Math.random() * 8 + 6 + "px";
+      p.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+      p.style.left = Math.random() * 100 + "vw";
+      p.style.top = "-10px";
+      p.style.borderRadius = "50%";
+      
+      const speedX = (Math.random() - 0.5) * 5;
+      const speedY = Math.random() * 5 + 3;
+      let currentTop = -10;
+      let currentLeft = parseFloat(p.style.left);
+
+      container.appendChild(p);
+
+      const move = () => {
+        currentTop += speedY;
+        currentLeft += speedX;
+        p.style.top = currentTop + "px";
+        p.style.left = currentLeft + "px";
+
+        if (currentTop < window.innerHeight) {
+          requestAnimationFrame(move);
+        } else {
+          p.remove();
+        }
+      };
+      requestAnimationFrame(move);
+    }
+  }, 100);
+}
+
+function updateRank(xpVal) {
+  const rankLabel = document.getElementById("rank-label");
+  if (!rankLabel) return;
+  let rankName = "Explorador de Dados 🌐";
+  if (xpVal >= 200) {
+    rankName = "Mestre dos Dados 🏆";
+  } else if (xpVal >= 150) {
+    rankName = "Engenheiro de Dados ⚙️";
+  } else if (xpVal >= 100) {
+    rankName = "Cientista Aprendiz 🧪";
+  } else if (xpVal >= 50) {
+    rankName = "Analista Júnior 📊";
+  }
+  rankLabel.textContent = rankName;
+}
+
+// Wrap updateXpDisplay to also update rank
+const originalUpdateXpDisplay = updateXpDisplay;
+updateXpDisplay = function() {
+  if (xpCounter) {
+    xpCounter.textContent = `${xp} XP`;
+  }
+  updateRank(xp);
+};
+
+function exportGabarito(format) {
+  if (!selectedSquad) {
+    alert("Por favor, selecione seu Squad antes de exportar o gabarito!");
+    return;
+  }
+
+  const squadName = selectedSquad.name;
+  const squadId = selectedSquad.id;
+  const squadMembers = selectedSquad.members;
+
+  if (format === "txt") {
+    let textContent = `========================================================\n`;
+    textContent += `GABARITO DE APOIO - DESAFIO DOS DADOS 2026\n`;
+    textContent += `SQUAD: ${squadName.toUpperCase()} (ID: ${squadId})\n`;
+    textContent += `Integrantes: ${squadMembers}\n`;
+    textContent += `Data da exportação: ${new Date().toLocaleDateString("pt-BR")}\n`;
+    textContent += `XP ACUMULADO: ${xp} XP\n`;
+    textContent += `========================================================\n\n`;
+
+    QUESTIONS_DATABASE.forEach(q => {
+      const answer = answersState[q.code] || "";
+      textContent += `Questão ${q.code} [${q.nivel}]: ${q.tema}\n`;
+      if (q.tipo === "resposta construída") {
+        textContent += `-> RESPOSTA ESCRITA SQUAD: \n${answer || "(Não respondida)"}\n`;
+      } else {
+        const selectedStr = Array.isArray(answer) ? answer.join(", ") : answer;
+        textContent += `-> ALTERNATIVA MARCADA: ${selectedStr || "(Nenhuma)"}\n`;
+      }
+      textContent += `--------------------------------------------------------\n\n`;
+    });
+
+    textContent += `\nDesenvolvido com carinho para as equipes da EETEPA Vilhena Alves. Gabaritem a Fase 1! 🚀\n`;
+
+    const blob = new Blob([textContent], { type: "text/plain;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = `DesafioDados2026_Squad_${squadName.replace(/\s+/g, "_")}.txt`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+
+  } else if (format === "json") {
+    const exportData = {
+      squad: {
+        id: squadId,
+        name: squadName,
+        members: squadMembers
+      },
+      xpAcumulado: xp,
+      dataExportacao: new Date().toISOString(),
+      gabarito: QUESTIONS_DATABASE.map(q => {
+        const ans = answersState[q.code] || "";
+        const status = q.tipo === "resposta construída" ? (ans ? "respondida" : "não respondida") : (getAnsweredStatus(q.code) === "verified-correct" ? "correto" : ans ? "incorreto" : "não respondida");
+        return {
+          questao: q.code,
+          tema: q.tema,
+          nivel: q.nivel,
+          tipo: q.tipo,
+          alternativaMarcada: q.tipo === "resposta construída" ? null : (Array.isArray(ans) ? ans.join(",") : ans),
+          respostaEscrita: q.tipo === "resposta construída" ? ans : null,
+          status: status
+        };
+      })
+    };
+
+    const jsonString = JSON.stringify(exportData, null, 2);
+    const blob = new Blob([jsonString], { type: "application/json;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = `DesafioDados2026_Squad_${squadName.replace(/\s+/g, "_")}.json`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+
+  } else if (format === "csv") {
+    let csvContent = "\uFEFF";
+    csvContent += `Gabarito de Apoio - Desafio dos Dados 2026\r\n`;
+    csvContent += `Squad;${squadName} (ID: ${squadId})\r\n`;
+    csvContent += `Integrantes;${squadMembers}\r\n`;
+    csvContent += `Data;${new Date().toLocaleDateString("pt-BR")}\r\n`;
+    csvContent += `XP Acumulado;${xp} XP\r\n\r\n`;
+    csvContent += "Questão;Tema;Nível;Tipo;Resposta;Status\r\n";
+
+    QUESTIONS_DATABASE.forEach(q => {
+      const ans = answersState[q.code] || "";
+      const status = q.tipo === "resposta construída" ? (ans ? "Respondida" : "Não respondida") : (getAnsweredStatus(q.code) === "verified-correct" ? "Correto" : ans ? "Incorreto" : "Não respondida");
+      
+      const rawAns = q.tipo === "resposta construída" ? ans : (Array.isArray(ans) ? ans.join(", ") : ans);
+      const cleanAns = rawAns.replace(/"/g, '""');
+      const formattedAns = rawAns.includes(";") || rawAns.includes("\n") || rawAns.includes("\r") || rawAns.includes('"') ? `"${cleanAns}"` : cleanAns;
+      
+      csvContent += `${q.code};"${q.tema}";${q.nivel};"${q.tipo}";${formattedAns};${status}\r\n`;
+    });
+
+    const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = `DesafioDados2026_Squad_${squadName.replace(/\s+/g, "_")}.csv`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+
+  } else if (format === "xlsx") {
+    const escapeXml = (str) => {
+      if (!str) return "";
+      return str.toString()
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&apos;");
+    };
+
+    let xml = '<?xml version="1.0" encoding="utf-8"?>\r\n' +
+      '<?mso-application progid="Excel.Sheet"?>\r\n' +
+      '<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"\r\n' +
+      ' xmlns:o="urn:schemas-microsoft-com:office:office"\r\n' +
+      ' xmlns:x="urn:schemas-microsoft-com:office:excel"\r\n' +
+      ' xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"\r\n' +
+      ' xmlns:html="http://www.w3.org/TR/REC-html40">\r\n' +
+      ' <DocumentProperties xmlns="urn:schemas-microsoft-com:office:office">\r\n' +
+      '  <Author>EETEPA Vilhena Alves</Author>\r\n' +
+      '  <Created>' + new Date().toISOString() + '</Created>\r\n' +
+      ' </DocumentProperties>\r\n' +
+      ' <Styles>\r\n' +
+      '  <Style ss:ID="Default" ss:Name="Normal">\r\n' +
+      '   <Alignment ss:Vertical="Bottom"/>\r\n' +
+      '   <Borders/>\r\n' +
+      '   <Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="11" ss:Color="#000000"/>\r\n' +
+      '   <Interior/>\r\n' +
+      '   <NumberFormat/>\r\n' +
+      '   <Protection/>\r\n' +
+      '  </Style>\r\n' +
+      '  <Style ss:ID="Header">\r\n' +
+      '   <Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="12" ss:Color="#FFFFFF" ss:Bold="1"/>\r\n' +
+      '   <Interior ss:Color="#0b1830" ss:Pattern="Solid"/>\r\n' +
+      '  </Style>\r\n' +
+      '  <Style ss:ID="Title">\r\n' +
+      '   <Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="14" ss:Color="#0b1830" ss:Bold="1"/>\r\n' +
+      '  </Style>\r\n' +
+      ' </Styles>\r\n' +
+      ' <Worksheet ss:Name="Gabarito 2026">\r\n' +
+      '  <Table>\r\n' +
+      '   <Column ss:Width="80"/>\r\n' +
+      '   <Column ss:Width="200"/>\r\n' +
+      '   <Column ss:Width="80"/>\r\n' +
+      '   <Column ss:Width="100"/>\r\n' +
+      '   <Column ss:Width="300"/>\r\n' +
+      '   <Column ss:Width="100"/>\r\n' +
+      '   <Row ss:Height="25">\r\n' +
+      '    <Cell ss:StyleID="Title"><Data ss:Type="String">GABARITO DE TREINO - DESAFIO DOS DADOS 2026</Data></Cell>\r\n' +
+      '   </Row>\r\n' +
+      '   <Row>\r\n' +
+      '    <Cell><Data ss:Type="String">Squad:</Data></Cell>\r\n' +
+      '    <Cell><Data ss:Type="String">' + escapeXml(squadName) + ' (ID: ' + escapeXml(squadId) + ')</Data></Cell>\r\n' +
+      '   </Row>\r\n' +
+      '   <Row>\r\n' +
+      '    <Cell><Data ss:Type="String">Integrantes:</Data></Cell>\r\n' +
+      '    <Cell><Data ss:Type="String">' + escapeXml(squadMembers) + '</Data></Cell>\r\n' +
+      '   </Row>\r\n' +
+      '   <Row>\r\n' +
+      '    <Cell><Data ss:Type="String">XP Total:</Data></Cell>\r\n' +
+      '    <Cell><Data ss:Type="String">' + xp + ' XP</Data></Cell>\r\n' +
+      '   </Row>\r\n' +
+      '   <Row>\r\n' +
+      '    <Cell><Data ss:Type="String">Data:</Data></Cell>\r\n' +
+      '    <Cell><Data ss:Type="String">' + new Date().toLocaleDateString("pt-BR") + '</Data></Cell>\r\n' +
+      '   </Row>\r\n' +
+      '   <Row></Row>\r\n' +
+      '   <Row ss:Height="20">\r\n' +
+      '    <Cell ss:StyleID="Header"><Data ss:Type="String">Questão</Data></Cell>\r\n' +
+      '    <Cell ss:StyleID="Header"><Data ss:Type="String">Tema</Data></Cell>\r\n' +
+      '    <Cell ss:StyleID="Header"><Data ss:Type="String">Nível</Data></Cell>\r\n' +
+      '    <Cell ss:StyleID="Header"><Data ss:Type="String">Tipo</Data></Cell>\r\n' +
+      '    <Cell ss:StyleID="Header"><Data ss:Type="String">Resposta do Squad</Data></Cell>\r\n' +
+      '    <Cell ss:StyleID="Header"><Data ss:Type="String">Status</Data></Cell>\r\n' +
+      '   </Row>\r\n';
+
+    QUESTIONS_DATABASE.forEach(q => {
+      const ans = answersState[q.code] || "";
+      const status = q.tipo === "resposta construída" ? (ans ? "Respondida" : "Não respondida") : (getAnsweredStatus(q.code) === "verified-correct" ? "Correto" : ans ? "Incorreto" : "Não respondida");
+      
+      const rawAns = q.tipo === "resposta construída" ? ans : (Array.isArray(ans) ? ans.join(", ") : ans);
+      
+      xml += '   <Row>\r\n' +
+        '    <Cell><Data ss:Type="String">' + escapeXml(q.code) + '</Data></Cell>\r\n' +
+        '    <Cell><Data ss:Type="String">' + escapeXml(q.tema) + '</Data></Cell>\r\n' +
+        '    <Cell><Data ss:Type="String">' + escapeXml(q.nivel) + '</Data></Cell>\r\n' +
+        '    <Cell><Data ss:Type="String">' + escapeXml(q.tipo) + '</Data></Cell>\r\n' +
+        '    <Cell><Data ss:Type="String">' + escapeXml(rawAns) + '</Data></Cell>\r\n' +
+        '    <Cell><Data ss:Type="String">' + escapeXml(status) + '</Data></Cell>\r\n' +
+        '   </Row>\r\n';
+    });
+
+    xml += '  </Table>\r\n' +
+      ' </Worksheet>\r\n' +
+      '</Workbook>\r\n';
+
+    const blob = new Blob([xml], { type: "application/vnd.ms-excel;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = `DesafioDados2026_Squad_${squadName.replace(/\s+/g, "_")}.xls`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+
+  } else if (format === "pdf") {
+    const printWindow = window.open("", "_blank");
+    if (!printWindow) {
+      alert("Por favor, permita pop-ups para gerar o PDF!");
+      return;
+    }
+
+    let htmlContent = `
+    <!DOCTYPE html>
+    <html lang="pt-BR">
+    <head>
+      <meta charset="UTF-8">
+      <title>Gabarito - ${squadName} - Desafio dos Dados 2026</title>
+      <style>
+        body {
+          font-family: Arial, sans-serif;
+          color: #333;
+          padding: 30px;
+          margin: 0;
+          line-height: 1.4;
+        }
+        .header-table {
+          width: 100%;
+          border-collapse: collapse;
+          margin-bottom: 30px;
+        }
+        .header-table td {
+          border: none;
+          padding: 5px;
+        }
+        .logo-placeholder {
+          font-weight: bold;
+          font-size: 1.5rem;
+          color: #0b1830;
+        }
+        h1 {
+          font-size: 1.8rem;
+          margin: 0 0 10px 0;
+          color: #0b1830;
+        }
+        .meta-info {
+          font-size: 0.9rem;
+          color: #555;
+          margin-bottom: 20px;
+          border-bottom: 2px solid #0b1830;
+          padding-bottom: 10px;
+        }
+        .summary-box {
+          background: #f4f8fb;
+          border: 1px solid #c8d9e6;
+          border-radius: 6px;
+          padding: 15px;
+          margin-bottom: 25px;
+        }
+        table.data-table {
+          width: 100%;
+          border-collapse: collapse;
+          margin-bottom: 30px;
+        }
+        table.data-table th, table.data-table td {
+          border: 1px solid #ddd;
+          padding: 10px 12px;
+          text-align: left;
+          font-size: 0.9rem;
+        }
+        table.data-table th {
+          background-color: #0b1830;
+          color: #fff;
+        }
+        table.data-table tr:nth-child(even) {
+          background-color: #f9f9f9;
+        }
+        .discursiva-section {
+          margin-bottom: 25px;
+          page-break-inside: avoid;
+        }
+        .discursiva-title {
+          font-weight: bold;
+          color: #0b1830;
+          font-size: 1rem;
+          margin-bottom: 6px;
+          border-bottom: 1px solid #ddd;
+          padding-bottom: 4px;
+        }
+        .discursiva-text {
+          font-size: 0.9rem;
+          white-space: pre-wrap;
+          background: #fafafa;
+          border: 1px solid #eee;
+          padding: 12px;
+          border-radius: 4px;
+          color: #444;
+          margin-top: 5px;
+        }
+        .footer {
+          margin-top: 50px;
+          font-size: 0.8rem;
+          color: #777;
+          text-align: center;
+          border-top: 1px solid #ddd;
+          padding-top: 15px;
+        }
+        @media print {
+          body { padding: 0; }
+          .no-print { display: none; }
+        }
+      </style>
+    </head>
+    <body>
+      <table class="header-table">
+        <tr>
+          <td>
+            <h1>Desafio dos Dados 2026</h1>
+            <div class="logo-placeholder">EETEPA Vilhena Alves</div>
+          </td>
+          <td style="text-align: right; vertical-align: top;">
+            <strong>Gabarito de Apoio</strong><br>
+            Fase de Treino
+          </td>
+        </tr>
+      </table>
+
+      <div class="meta-info">
+        <strong>Squad:</strong> ${squadName} &nbsp;|&nbsp;
+        <strong>ID:</strong> ${squadId} &nbsp;|&nbsp;
+        <strong>Data:</strong> ${new Date().toLocaleDateString("pt-BR")}
+      </div>
+
+      <div class="summary-box">
+        <strong>XP Acumulado:</strong> ${xp} XP<br>
+        <strong>Integrantes:</strong> ${squadMembers}
+      </div>
+
+      <h2>Resumo do Gabarito</h2>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th style="width: 10%;">Questão</th>
+            <th style="width: 35%;">Tema</th>
+            <th style="width: 15%;">Nível</th>
+            <th style="width: 25%;">Resposta Marcada</th>
+            <th style="width: 15%;">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+    `;
+
+    QUESTIONS_DATABASE.forEach(q => {
+      const ans = answersState[q.code] || "";
+      const status = q.tipo === "resposta construída" ? (ans ? "Respondida" : "Não respondida") : (getAnsweredStatus(q.code) === "verified-correct" ? "Correto" : ans ? "Incorreto" : "Não respondida");
+      
+      let formattedAns = ans;
+      if (q.tipo !== "resposta construída") {
+        formattedAns = Array.isArray(ans) ? ans.join(", ") : ans;
+        if (!formattedAns) formattedAns = "(Nenhuma)";
+      } else {
+        formattedAns = ans ? "Resposta Discursiva (ver detalhes abaixo)" : "(Não respondida)";
+      }
+
+      htmlContent += `
+          <tr>
+            <td><strong>${q.code}</strong></td>
+            <td>${q.tema}</td>
+            <td>${q.nivel}</td>
+            <td>${formattedAns}</td>
+            <td>${status}</td>
+          </tr>
+      `;
+    });
+
+    htmlContent += `
+        </tbody>
+      </table>
+
+      <h2>Respostas Discursivas Detalhadas</h2>
+    `;
+
+    let hasDiscursiva = false;
+    QUESTIONS_DATABASE.forEach(q => {
+      if (q.tipo === "resposta construída") {
+        hasDiscursiva = true;
+        const ans = answersState[q.code] || "";
+        htmlContent += `
+          <div class="discursiva-section">
+            <div class="discursiva-title">Questão ${q.code} - ${q.tema} (${q.nivel})</div>
+            <div class="discursiva-text">${ans ? ans.replace(/</g, "&lt;").replace(/>/g, "&gt;") : "(Não respondida pelo squad)"}</div>
+          </div>
+        `;
+      }
+    });
+
+    if (!hasDiscursiva) {
+      htmlContent += `<p style="font-size: 0.9rem; color: #777;">Não há questões discursivas neste simulado.</p>`;
+    }
+
+    htmlContent += `
+      <div class="footer">
+        Documento gerado automaticamente pelo portal de treino do Desafio dos Dados 2026 - EETEPA Vilhena Alves.<br>
+        Gabaritem a primeira fase! 🚀
+      </div>
+
+      <script>
+        window.onload = function() {
+          window.print();
+          setTimeout(function() { window.close(); }, 500);
+        };
+      </script>
+    </body>
+    </html>
+    `;
+
+    printWindow.document.write(htmlContent);
+    printWindow.document.close();
+  }
 }
 
 // Caesar cipher encriptor function
