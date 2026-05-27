@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Área de Treino e Simulado do Desafio dos Dados 2026. Exercite seus conhecimentos nas 20 questões oficiais e prepare sua equipe da EETEPA Vilhena Alves."
+    />
+    <title>Treino dos Squads | Desafio dos Dados 2026</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body class="student-portal-page">
+    <header class="site-header" data-header>
+      <a class="brand" href="index.html" aria-label="Ir para a página inicial">
+        <span class="brand-mark" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+        <span>
+          <strong>Desafio</strong>
+          <strong>dos Dados <em>2026</em></strong>
+        </span>
+      </a>
+
+      <button class="nav-toggle" type="button" aria-label="Abrir menu" aria-expanded="false" data-nav-toggle>
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav class="main-nav" aria-label="Navegação principal" data-nav>
+        <a href="index.html">Início</a>
+        <a href="index.html#sobre">Sobre</a>
+        <a href="index.html#fases">Fases</a>
+        <a href="index.html#dados">Painel</a>
+        <a href="simulado.html" class="active">Treino dos Squads</a>
+        <a href="orientacao.html">Área do Professor</a>
+      </nav>
+
+      <a class="header-action" href="index.html#participar">Inscrever</a>
+    </header>
+
+    <main class="simulado-main">
+      <!-- Section 1: Squad Selection -->
+      <section class="section section-dark squad-select-section" id="squad-select-section">
+        <div class="hero-bg" aria-hidden="true"></div>
+        <div class="squad-select-container container-box">
+          <div class="squad-select-card glass-panel">
+            <span class="section-label">Aquecimento e Preparação</span>
+            <h1>Simulado Interativo dos Squads</h1>
+            <p>
+              Seja bem-vindo ao portal de treinamento didático para o Desafio dos Dados 2026! 
+              Esta área foi criada para que as equipes da EETEPA Vilhena Alves exercitem os conceitos, 
+              leiam dicas metodológicas e preparem suas respostas oficiais com facilidade.
+            </p>
+            <div class="squad-select-form">
+              <label for="squad-select-dropdown">Selecione seu Squad da Escola:</label>
+              <select id="squad-select-dropdown" class="glass-input">
+                <option value="" disabled selected>-- Escolha seu Squad --</option>
+                <option value="581">Squad 01 — Infinity Tech</option>
+                <option value="568">Squad 02 — AS++</option>
+                <option value="570">Squad 03 — Tronadores</option>
+                <option value="571">Squad 04 — Comando SQL</option>
+                <option value="572">Squad 05 — REJY</option>
+                <option value="574">Squad 06 — Requiem</option>
+                <option value="578">Squad 07 — Tec</option>
+                <option value="576">Squad 08 — Smile Friends</option>
+                <option value="579">Squad 09 — MFCP</option>
+                <option value="580">Squad 10 — JJM</option>
+              </select>
+              <button class="btn btn-primary" id="btn-start-simulado">Começar Simulado 🚀</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 2: Quiz Wizard (Hidden by default) -->
+      <section class="section section-light quiz-section" id="quiz-section" style="display: none;">
+        <div class="simulado-layout container-box">
+          
+          <!-- Column 1: Questions Wizard -->
+          <div class="quiz-wizard-card glass-panel">
+            <div class="quiz-question-header">
+              <div>
+                <span class="q-code-label" id="q-code-wrapper">Questão <strong id="q-number-label">TD01</strong></span>
+                <span class="q-level-badge" id="q-level-label">Fácil</span>
+              </div>
+              <span class="q-type-badge" id="q-type-label">múltipla escolha</span>
+            </div>
+
+            <h2 id="q-title-label" class="q-title">Carregando tema...</h2>
+            
+            <!-- Enunciado block -->
+            <div class="q-enunciado-block">
+              <h3>Enunciado da Questão:</h3>
+              <p id="q-enunciado-text">Carregando enunciado...</p>
+            </div>
+
+            <!-- Pergunta block -->
+            <div class="q-question-block">
+              <h3>Pergunta:</h3>
+              <p id="q-question-text">Carregando pergunta...</p>
+            </div>
+
+            <!-- Interactive Caesar Crypt Tool (Only shown for TD18) -->
+            <div class="caesar-tool-wrapper glass-panel" id="caesar-tool-wrapper" style="display: none; margin: 18px 0; padding: 18px;">
+              <h3 style="margin-top: 0; color: #008ac2; font-size: 1.05rem;">🛠️ Laboratório da Cifra de César (Didático)</h3>
+              <p style="font-size: 0.86rem; color: var(--text-soft); margin-bottom: 12px;">
+                Digite qualquer texto abaixo para ver o deslocamento das letras circularmente no alfabeto em tempo real:
+              </p>
+              <div style="display: flex; gap: 12px; margin-bottom: 12px; align-items: center;">
+                <input type="text" id="caesar-input" placeholder="Ex.: desafio dos dados" style="flex: 1; min-height: 38px; border: 1px solid var(--line); padding: 0 10px; border-radius: 6px;" />
+                <label style="font-size: 0.86rem; font-weight: bold;">Chave (+k):
+                  <select id="caesar-shift" style="min-height: 38px; border: 1px solid var(--line); border-radius: 6px; padding: 0 6px;">
+                    <option value="3" selected>3 (Padrão TD18)</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                  </select>
+                </label>
+              </div>
+              <div style="padding: 10px 14px; background: var(--surface-soft); border-radius: 6px; border-left: 4px solid var(--cyan);">
+                <span style="font-size: 0.82rem; font-weight: 800; text-transform: uppercase; color: var(--text-soft);">Saída Cifrada:</span>
+                <strong id="caesar-output" style="display: block; font-family: monospace; font-size: 1.15rem; color: var(--text); word-break: break-all; margin-top: 4px;">ghvdilr grv gdgrv</strong>
+              </div>
+            </div>
+
+            <!-- Alternative Answers list -->
+            <div class="q-options-wrapper" id="q-options-wrapper">
+              <!-- Radio/Checkbox list generated via JS -->
+            </div>
+
+            <!-- Discursivas Textarea -->
+            <div class="q-discursiva-wrapper" id="q-discursiva-wrapper" style="display: none;">
+              <label for="discursiva-input">Digite o algoritmo ou texto da resposta construída:</label>
+              <textarea id="discursiva-input" rows="8" placeholder="Escreva aqui a fundamentação teórica ou descrição algorítmica do seu squad..." class="glass-textarea"></textarea>
+              <p class="discursiva-notice">Dica: Desenvolva uma resposta detalhada, explicando a lógica e fornecendo exemplos práticos.</p>
+            </div>
+
+            <!-- Action buttons -->
+            <div class="quiz-actions-row">
+              <button class="btn btn-secondary" id="btn-hint">💡 Dica Metodológica</button>
+              <button class="btn btn-primary" id="btn-check-answer">Verificar Resposta</button>
+            </div>
+
+            <!-- Hint Panel -->
+            <div class="hint-panel" id="hint-panel" style="display: none;">
+              <strong style="color: var(--amber);">💡 Apoio Conceitual:</strong>
+              <p id="hint-text">Dica conceitual...</p>
+            </div>
+
+            <!-- Verification Feedback -->
+            <div class="feedback-panel" id="feedback-panel" style="display: none;">
+              <p id="feedback-text">Feedback explicativo...</p>
+            </div>
+            
+            <!-- Navigation controls -->
+            <div class="quiz-nav-row">
+              <button class="btn btn-secondary" id="btn-prev">⬅ Anterior</button>
+              <button class="btn btn-secondary" id="btn-next">Próximo ➡</button>
+              <button class="btn btn-primary" id="btn-finish" style="display: none; background: linear-gradient(135deg, var(--green), #42f7c8); color: #001826;">Finalizar Simulado 🏁</button>
+            </div>
+          </div>
+
+          <!-- Column 2: Sidebar Status & Gamification -->
+          <div class="quiz-sidebar-panel">
+            
+            <!-- Points and XP Card -->
+            <div class="sidebar-card glass-panel stats-card">
+              <h3>Seu Progresso</h3>
+              <div class="progress-bar-outer">
+                <div class="progress-bar-inner" id="progress-bar-inner" style="width: 0%;"></div>
+              </div>
+              <div class="stats-row">
+                <span>XP Acumulado:</span>
+                <strong id="xp-counter">0 XP</strong>
+              </div>
+            </div>
+
+            <!-- Questions Checklist Grid -->
+            <div class="sidebar-card glass-panel questions-grid-card">
+              <h3>Navegação de Questões</h3>
+              <p class="status-legend">
+                <span class="leg-un"></span> Não visitado
+                <span class="leg-correct"></span> Correto
+                <span class="leg-incorrect"></span> Incorreto
+                <span class="leg-disc"></span> Discursiva
+              </p>
+              <div class="sidebar-questions-list" id="sidebar-questions-list">
+                <!-- Buttons generated via JS -->
+              </div>
+            </div>
+
+            <!-- Badges Unlocked Grid -->
+            <div class="sidebar-card glass-panel achievements-card">
+              <h3>Medalhas Conquistadas</h3>
+              <div class="badges-list" id="badges-list">
+                <!-- Badges generated via JS -->
+              </div>
+            </div>
+            
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 3: Final Results & Export (Hidden by default) -->
+      <section class="section section-dark results-section" id="results-section" style="display: none;">
+        <div class="results-container container-box">
+          <div class="results-card glass-panel text-center" style="max-width: 720px; margin: 0 auto; padding: 48px; text-align: center;">
+            <div class="trophy-icon" style="font-size: 4.5rem; margin-bottom: 20px; filter: drop-shadow(0 0 15px rgba(50,240,161,0.4));">🏆</div>
+            <h1 style="color: var(--text-inverse);">Parabéns, Squad <span id="res-squad-name">Infinity Tech</span>!</h1>
+            <p style="color: var(--muted-inverse); font-size: 1.1rem; line-height: 1.6; margin-bottom: 24px;">
+              Vocês concluíram a rodada de treino do Desafio dos Dados 2026.
+            </p>
+            <div style="padding: 20px; background: rgba(255,255,255,0.05); border-radius: 12px; margin-bottom: 32px; border: 1px solid var(--line-dark);">
+              <p id="res-score-text" style="color: var(--text-inverse); font-size: 1.05rem; line-height: 1.6; margin: 0;"></p>
+            </div>
+            
+            <h3 style="color: var(--text-inverse); margin-bottom: 16px;">Conquistas Consolidadas:</h3>
+            <div class="results-medals-list" id="res-medals-list" style="display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; margin-bottom: 40px;">
+              <!-- Medal list -->
+            </div>
+
+            <div class="results-actions" style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+              <button class="btn btn-primary" id="btn-export-txt">💾 Exportar Respostas (.TXT)</button>
+              <button class="btn btn-secondary" id="btn-restart-quiz">Reiniciar Simulado 🔄</button>
+            </div>
+            <p style="font-size: 0.86rem; color: var(--muted-inverse); margin-top: 24px;">
+              Dica: O arquivo exportado contém as respostas de múltipla escolha marcadas e as suas redações discursivas, facilitando o preenchimento no formulário oficial do Desafio.
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Toast Notifications Container -->
+    <div class="toast-container" id="toast-container-element"></div>
+
+    <footer class="site-footer">
+      <div class="footer-brand">
+        <a class="brand" href="index.html">
+          <span class="brand-mark" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+          </span>
+          <span>
+            <strong>Desafio</strong>
+            <strong>dos Dados <em>2026</em></strong>
+          </span>
+        </a>
+        <p>Espaço de simulação e treino de squads para o Desafio dos Dados 2026.</p>
+      </div>
+      <div class="footer-links">
+        <a href="index.html">Início</a>
+        <a href="index.html#sobre">Sobre</a>
+        <a href="index.html#dados">Painel</a>
+        <a href="simulado.html">Treino dos Squads</a>
+        <a href="orientacao.html">Área do Professor</a>
+      </div>
+      <p class="copyright">© 2026 Desafio dos Dados. Versão beta - Treino.</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script src="js/simulado.js"></script>
+  </body>
+</html>
