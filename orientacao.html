@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Área do Professor Orientador do Desafio dos Dados 2026. Acesso a gabaritos comentados, rubricas de respostas discursivas e orientações de apoio."
+    />
+    <title>Orientação Docente | Desafio dos Dados 2026</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body class="teacher-portal-page">
+    <header class="site-header" data-header>
+      <a class="brand" href="index.html" aria-label="Ir para a página inicial">
+        <span class="brand-mark" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+        <span>
+          <strong>Desafio</strong>
+          <strong>dos Dados <em>2026</em></strong>
+        </span>
+      </a>
+
+      <button class="nav-toggle" type="button" aria-label="Abrir menu" aria-expanded="false" data-nav-toggle>
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav class="main-nav" aria-label="Navegação principal" data-nav>
+        <a href="index.html">Início</a>
+        <a href="index.html#sobre">Sobre</a>
+        <a href="index.html#fases">Fases</a>
+        <a href="index.html#dados">Painel</a>
+        <a href="orientacao.html" class="active">Área do Professor</a>
+      </nav>
+
+      <a class="header-action" href="index.html#participar">Voltar</a>
+    </header>
+
+    <main>
+      <!-- Hero Section -->
+      <section class="hero section-dark challenge-hero-small" aria-labelledby="portal-title">
+        <div class="hero-bg" aria-hidden="true"></div>
+        <div class="hero-content">
+          <div class="hero-copy">
+            <span class="section-label">Portal do Orientador</span>
+            <h1 id="portal-title" style="font-size: clamp(2.2rem, 5vw, 4.2rem);">Orientação Docente</h1>
+            <p>
+              Espaço integrado de orientação metodológica, gabarito e estruturação de ideias 
+              para a Etapa 1 - Fase 1 (Transformação Digital) dos squads do Desafio dos Dados 2026.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Lockscreen Section -->
+      <section class="section section-light" id="lockscreen-section">
+        <div class="lockscreen-container">
+          <div class="lockscreen-card glass-panel">
+            <div class="lock-icon" aria-hidden="true">🔒</div>
+            <h2>Acesso Restrito ao Orientador</h2>
+            <p>
+              O gabarito comentado, as rubricas de respostas discursivas e o checklist docente 
+              são de acesso exclusivo para professores orientadores.
+            </p>
+            <div class="lock-input-group">
+              <input type="password" id="teacher-access-key" placeholder="Senha de Acesso Docente" aria-label="Chave de acesso" />
+              <button class="btn btn-primary" id="btn-unlock-gabarito">Acessar Portal</button>
+            </div>
+            <p id="lock-feedback-msg" class="lock-error-msg" hidden></p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Restricted Content (Exibido após desbloqueio) -->
+      <div id="restricted-content" style="display: none;">
+        <!-- Uso Ético Banner -->
+        <section class="section section-light ethics-section" aria-labelledby="ethics-title">
+          <div class="ethics-container container-box">
+            <div class="ethics-card danger-outline-panel">
+              <h2 id="ethics-title" class="danger-title">⚠️ Uso Ético deste Material</h2>
+              <p>
+                Este documento é um apoio de orientação, revisão e estudo para os squads. 
+                <strong>Não deve ser entregue como resposta final nem copiado pelos estudantes nas questões discursivas.</strong>
+              </p>
+              <p>
+                O regulamento de 2026 informa que respostas com identificação de prompts originados por 
+                inteligência artificial podem ser zeradas. Use as rubricas para orientar a argumentação, 
+                pedir exemplos próprios dos alunos e revisar se todos os comandos do enunciado foram atendidos.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Gabarito Comentado Section -->
+        <section class="section section-dark" id="gabarito-section" aria-labelledby="gabarito-title">
+          <div class="section-heading compact">
+            <span class="section-label">Etapa 1 - Fase 1</span>
+            <h2 id="gabarito-title">Gabarito Comentado</h2>
+            <p>Selecione as dificuldades ou pesquise termos para explorar a resolução detalhada das 20 questões da fase.</p>
+          </div>
+
+          <div class="gabarito-filter-bar container-box">
+            <div class="gabarito-tabs-filter">
+              <button class="active" type="button" data-gabarito-filter="todos">Todas</button>
+              <button type="button" data-gabarito-filter="facil">Fácil</button>
+              <button type="button" data-gabarito-filter="medio">Médio</button>
+              <button type="button" data-gabarito-filter="dificil">Difícil</button>
+            </div>
+            <div class="gabarito-search-box">
+              <input type="text" id="gabarito-search-input" placeholder="Pesquisar por código, tema, justificativa..." aria-label="Pesquisar no gabarito" />
+              <button class="btn btn-secondary" id="gabarito-search-btn">Buscar</button>
+            </div>
+          </div>
+
+          <div class="gabarito-grid container-box" id="gabarito-grid-container">
+            <!-- Gerado via JS -->
+          </div>
+        </section>
+
+        <!-- Rubricas Respostas Construídas Section -->
+        <section class="section section-light" id="rubricas-section" aria-labelledby="rubricas-title">
+          <div class="section-heading compact">
+            <span class="section-label">Metodologia de Avaliação</span>
+            <h2 id="rubricas-title">Rubricas para Respostas Construídas</h2>
+            <p>Selecione a questão discursiva para consultar as regras de excelência e a estrutura recomendada.</p>
+          </div>
+
+          <div class="rubricas-layout container-box glass-panel">
+            <div class="rubrica-tabs-group" id="rubrica-tabs-element">
+              <button class="rubrica-tab-btn active" data-rubrica-id="td07">TD07 - Aprendizado de Máquina</button>
+              <button class="rubrica-tab-btn" data-rubrica-id="td16">TD16 - IA para Reciclagem</button>
+              <button class="rubrica-tab-btn" data-rubrica-id="td18">TD18 - Algoritmo Cifra de César</button>
+            </div>
+
+            <div class="rubrica-panel-content" id="rubrica-panel-viewport">
+              <!-- Renderizado via JS -->
+            </div>
+          </div>
+        </section>
+
+        <!-- Squads & Etapa 2 Suggestions -->
+        <section class="section section-dark" id="squads-section" aria-labelledby="squads-title">
+          <div class="section-heading compact">
+            <span class="section-label">Propostas Preliminares</span>
+            <h2 id="squads-title">Sugestões de Projetos (10 Squads)</h2>
+            <p>Abaixo estão 10 temas sugeridos com as respectivas tecnologias centrais, ODS e mídias recomendadas para aquecimento.</p>
+          </div>
+
+          <div class="squads-grid container-box">
+            <!-- Squad 1 -->
+            <article class="squad-card glass-panel">
+              <div class="squad-header">
+                <span class="squad-number">Squad 01</span>
+                <span class="squad-tag">ODS 11 &amp; 12</span>
+              </div>
+              <h3>E-lixo com Logística Reversa Escolar</h3>
+              <p class="squad-problem"><strong>Problema:</strong> Descarte inadequado de pilhas, celulares e cabos na comunidade escolar.</p>
+              <div class="squad-details">
+                <p><strong>Dados:</strong> Questionários de volume de resíduos estimáveis por turma.</p>
+                <p><strong>Tecnologia:</strong> Dashboard analítico com mapa de ecopontos.</p>
+                <p><strong>Transmídia:</strong> Infográfico do descarte + vídeo curto.</p>
+              </div>
+            </article>
+
+            <!-- Squad 2 -->
+            <article class="squad-card glass-panel">
+              <div class="squad-header">
+                <span class="squad-number">Squad 02</span>
+                <span class="squad-tag">ODS 4 &amp; 16</span>
+              </div>
+              <h3>Combate a Golpes Digitais na Família</h3>
+              <p class="squad-problem"><strong>Problema:</strong> Vulnerabilidade de jovens e idosos a phishing e links falsos.</p>
+              <div class="squad-details">
+                <p><strong>Dados:</strong> Registro anônimo de fraudes recebidas pela comunidade.</p>
+                <p><strong>Tecnologia:</strong> Classificador de risco digital + assistente interativo.</p>
+                <p><strong>Transmídia:</strong> Simulação de golpes + guia de prevenção.</p>
+              </div>
+            </article>
+
+            <!-- Squad 3 -->
+            <article class="squad-card glass-panel">
+              <div class="squad-header">
+                <span class="squad-number">Squad 03</span>
+                <span class="squad-tag">ODS 7 &amp; 13</span>
+              </div>
+              <h3>Consumo Energético Consciente</h3>
+              <p class="squad-problem"><strong>Problema:</strong> Climatizadores e luzes operando fora dos horários letivos.</p>
+              <div class="squad-details">
+                <p><strong>Dados:</strong> Histórico de faturamento de energia e temperatura local.</p>
+                <p><strong>Tecnologia:</strong> Painel de consumo e previsão simples de demanda.</p>
+                <p><strong>Transmídia:</strong> Plano de economia + vídeo de impacto escolar.</p>
+              </div>
+            </article>
+
+            <!-- Squad 4 -->
+            <article class="squad-card glass-panel">
+              <div class="squad-header">
+                <span class="squad-number">Squad 04</span>
+                <span class="squad-tag">ODS 11 &amp; 12</span>
+              </div>
+              <h3>IA para Separação de Recicláveis</h3>
+              <p class="squad-problem"><strong>Problema:</strong> Erros de descarte que reduzem a reciclagem e contaminam coletores.</p>
+              <div class="squad-details">
+                <p><strong>Dados:</strong> Fotos de resíduos e levantamento de erros de separação.</p>
+                <p><strong>Tecnologia:</strong> Visão computacional ou classificador visual prototipado.</p>
+                <p><strong>Transmídia:</strong> Vídeo demonstrativo + infográfico explicativo.</p>
+              </div>
+            </article>
+
+            <!-- Squad 5 -->
+            <article class="squad-card glass-panel">
+              <div class="squad-header">
+                <span class="squad-number">Squad 05</span>
+                <span class="squad-tag">ODS 4 &amp; 16</span>
+              </div>
+              <h3>Checagem Educativa de Desinformação</h3>
+              <p class="squad-problem"><strong>Problema:</strong> Boatos sobre clima, saúde ou tecnologia que circulam na comunidade.</p>
+              <div class="squad-details">
+                <p><strong>Dados:</strong> Mensagens reais anonimizadas capturadas em grupos sociais.</p>
+                <p><strong>Tecnologia:</strong> Matriz de verificação e checklist guiado por fontes.</p>
+                <p><strong>Transmídia:</strong> Vídeo tutorial + guia de bolso rápido.</p>
+              </div>
+            </article>
+
+            <!-- Squad 6 -->
+            <article class="squad-card glass-panel">
+              <div class="squad-header">
+                <span class="squad-number">Squad 06</span>
+                <span class="squad-tag">ODS 2 &amp; 12</span>
+              </div>
+              <h3>Horta Inteligente e Segurança Alimentar</h3>
+              <p class="squad-problem"><strong>Problema:</strong> Baixo consumo de vegetais frescos e desperdício de merenda escolar.</p>
+              <div class="squad-details">
+                <p><strong>Dados:</strong> Monitoramento de umidade do solo e produção da horta.</p>
+                <p><strong>Tecnologia:</strong> Painel de telemetria de sensores IoT simulados.</p>
+                <p><strong>Transmídia:</strong> Diário visual de plantio + vídeo de conscientização.</p>
+              </div>
+            </article>
+
+            <!-- Squad 7 -->
+            <article class="squad-card glass-panel">
+              <div class="squad-header">
+                <span class="squad-number">Squad 07</span>
+                <span class="squad-tag">ODS 3 &amp; 11</span>
+              </div>
+              <h3>Mobilidade Segura Casa-Escola</h3>
+              <p class="squad-problem"><strong>Problema:</strong> Estudantes expostos a riscos no trânsito ou falta de acessibilidade.</p>
+              <div class="squad-details">
+                <p><strong>Dados:</strong> Tempos de deslocamento, calçadas danificadas e pontos críticos.</p>
+                <p><strong>Tecnologia:</strong> Mapa colaborativo de rotas com análise de riscos.</p>
+                <p><strong>Transmídia:</strong> Mapa interativo + narrativa em vídeo.</p>
+              </div>
+            </article>
+
+            <!-- Squad 8 -->
+            <article class="squad-card glass-panel">
+              <div class="squad-header">
+                <span class="squad-number">Squad 08</span>
+                <span class="squad-tag">ODS 4 &amp; 10</span>
+              </div>
+              <h3>Acessibilidade Digital Escolar</h3>
+              <p class="squad-problem"><strong>Problema:</strong> Materiais didáticos em formatos inacessíveis para alunos PCD.</p>
+              <div class="squad-details">
+                <p><strong>Dados:</strong> Auditorias em PDFs e sites utilizados rotineiramente.</p>
+                <p><strong>Tecnologia:</strong> Repositório acessível e classificador de conformidade.</p>
+                <p><strong>Transmídia:</strong> Guia de boas práticas + vídeo acessível com legenda/Libras.</p>
+              </div>
+            </article>
+
+            <!-- Squad 9 -->
+            <article class="squad-card glass-panel">
+              <div class="squad-header">
+                <span class="squad-number">Squad 09</span>
+                <span class="squad-tag">ODS 11 &amp; 13</span>
+              </div>
+              <h3>Riscos Ambientais Locais</h3>
+              <p class="squad-problem"><strong>Problema:</strong> Entupimento de bueiros e pontos de alagamento próximos à escola.</p>
+              <div class="squad-details">
+                <p><strong>Dados:</strong> Relatos fotográficos de acúmulo de lixo e histórico de cheias.</p>
+                <p><strong>Tecnologia:</strong> Painel georreferenciado e mapa de calor de vulnerabilidade.</p>
+                <p><strong>Transmídia:</strong> Vídeo de apelo à comunidade + mapa de prevenção.</p>
+              </div>
+            </article>
+
+            <!-- Squad 10 -->
+            <article class="squad-card glass-panel">
+              <div class="squad-header">
+                <span class="squad-number">Squad 10</span>
+                <span class="squad-tag">ODS 4 &amp; 16</span>
+              </div>
+              <h3>Uso Responsável e Ético de IA</h3>
+              <p class="squad-problem"><strong>Problema:</strong> Utilização de IA para tarefas sem critérios de privacidade ou autoria.</p>
+              <div class="squad-details">
+                <p><strong>Dados:</strong> Questionários aplicados sobre frequência de uso e dependência.</p>
+                <p><strong>Tecnologia:</strong> Guia interativo de decisão e fluxograma lógico de ética.</p>
+                <p><strong>Transmídia:</strong> Cartilha em PDF + vídeo explicativo.</p>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <!-- Checklist Docente Section -->
+        <section class="section section-light" id="checklist-section" aria-labelledby="checklist-title">
+          <div class="section-heading compact">
+            <span class="section-label">Controle &amp; Validação</span>
+            <h2 id="checklist-title">Checklist do Professor Orientador</h2>
+            <p>Certifique-se de que os squads atendem a todas as diretrizes regulamentares antes do envio final.</p>
+          </div>
+
+          <div class="checklist-panel container-box glass-panel" style="max-width: 800px; margin: 0 auto;">
+            <div class="checklist-grid-items" style="display: grid; gap: 20px; padding: 20px;">
+              <label class="checklist-item-check" style="display: flex; gap: 16px; align-items: start; cursor: pointer;">
+                <input type="checkbox" id="check-squad-size" class="persist-check" style="width: 22px; height: 22px; margin-top: 3px;" />
+                <div class="check-text">
+                  <strong style="display: block; font-size: 1.1rem; color: var(--text);">Tamanho dos Squads</strong>
+                  <span style="color: var(--text-soft); font-size: 0.95rem;">Cada squad possui exatamente de 3 a 5 integrantes ativos.</span>
+                </div>
+              </label>
+
+              <label class="checklist-item-check" style="display: flex; gap: 16px; align-items: start; cursor: pointer;">
+                <input type="checkbox" id="check-author-text" class="persist-check" style="width: 22px; height: 22px; margin-top: 3px;" />
+                <div class="check-text">
+                  <strong style="display: block; font-size: 1.1rem; color: var(--text);">Originalidade e Escrita Autoral</strong>
+                  <span style="color: var(--text-soft); font-size: 0.95rem;">As respostas discursivas estão autorais, sem traços de cópia direta de prompts e com exemplos locais.</span>
+                </div>
+              </label>
+
+              <label class="checklist-item-check" style="display: flex; gap: 16px; align-items: start; cursor: pointer;">
+                <input type="checkbox" id="check-evidence" class="persist-check" style="width: 22px; height: 22px; margin-top: 3px;" />
+                <div class="check-text">
+                  <strong style="display: block; font-size: 1.1rem; color: var(--text);">Evidências Científicas</strong>
+                  <span style="color: var(--text-soft); font-size: 0.95rem;">Garantir o uso de fontes oficiais nas justificativas (leis compiladas, relatórios técnicos, etc.).</span>
+                </div>
+              </label>
+
+              <label class="checklist-item-check" style="display: flex; gap: 16px; align-items: start; cursor: pointer;">
+                <input type="checkbox" id="check-transmedia" class="persist-check" style="width: 22px; height: 22px; margin-top: 3px;" />
+                <div class="check-text">
+                  <strong style="display: block; font-size: 1.1rem; color: var(--text);">Planejamento Transmídia (Etapa 2)</strong>
+                  <span style="color: var(--text-soft); font-size: 0.95rem;">Preparação prévia para as três mídias obrigatórias, incluindo o roteiro de vídeo para a próxima fase.</span>
+                </div>
+              </label>
+            </div>
+          </div>
+        </section>
+
+        <!-- Cronograma & Regras Section -->
+        <section class="section section-dark timeline-section" id="datas-section" aria-labelledby="datas-title">
+          <div class="section-heading compact">
+            <span class="section-label">Acompanhamento</span>
+            <h2 id="datas-title">Datas e Regras Críticas</h2>
+            <p>Abaixo estão os prazos oficiais estabelecidos pelo edital do desafio para controle do orientador.</p>
+          </div>
+
+          <div class="timeline" aria-label="Linha do tempo docente">
+            <article class="timeline-item">
+              <span>01</span>
+              <h3>Fase 1</h3>
+              <time datetime="2026-05-26">26/05 a 02/06 (9h)</time>
+              <p>Envio das respostas de múltipla escolha e discursivas no formulário oficial da Fase 1.</p>
+            </article>
+            <article class="timeline-item">
+              <span>02</span>
+              <h3>Fase 2</h3>
+              <time datetime="2026-06-02">02/06 a 09/06 (9h)</time>
+              <p>Abertura do formulário de submissões de dados e andamento de novas questões teóricas.</p>
+            </article>
+            <article class="timeline-item">
+              <span>03</span>
+              <h3>Fase 3</h3>
+              <time datetime="2026-06-09">09/06 a 16/06 (9h)</time>
+              <p>Conclusão da Etapa 1, envios finais e consolidação das planilhas de respostas.</p>
+            </article>
+            <article class="timeline-item">
+              <span>04</span>
+              <h3>Classificação</h3>
+              <time datetime="2026-06-24">24/06 (20h)</time>
+              <p>Divulgação dos classificados para a Etapa 2 e abertura oficial do regulamento transmídia.</p>
+            </article>
+            <article class="timeline-item">
+              <span>05</span>
+              <h3>Entrega Final</h3>
+              <time datetime="2026-08-31">31/08 (23h59)</time>
+              <p>Envio das mídias transmídia (mínimo 3 mídias, incluindo vídeo obrigatório).</p>
+            </article>
+          </div>
+        </section>
+
+        <!-- Documentos de Apoio Section -->
+        <section class="section section-light" id="documentos-section" aria-labelledby="docs-title">
+          <div class="section-heading compact">
+            <span class="section-label">Download Seguro</span>
+            <h2 id="docs-title">Documentação de Apoio</h2>
+            <p>Cópias simuladas de regulamentos oficiais e cadernos de perguntas para fins pedagógicos.</p>
+          </div>
+
+          <div class="documents-download-grid container-box">
+            <div class="document-card glass-panel">
+              <div class="doc-icon" aria-hidden="true">📄</div>
+              <div class="doc-info">
+                <h3>Edital Oficial Desafio 2026</h3>
+                <p>Regulamento completo, critérios de avaliação da Etapa 1 e Etapa 2.</p>
+              </div>
+              <button class="btn btn-primary download-desafio-btn" data-doc-name="Edital_Oficial_Desafio_2026">Download (Simulado)</button>
+            </div>
+
+            <div class="document-card glass-panel">
+              <div class="doc-icon" aria-hidden="true">📄</div>
+              <div class="doc-info">
+                <h3>Caderno de Questões - Fase 1</h3>
+                <p>Textos motivacionais e enunciados sobre Transformação Digital.</p>
+              </div>
+              <button class="btn btn-primary download-desafio-btn" data-doc-name="Questoes_Caderno_Fase_1">Download (Simulado)</button>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <!-- Toast Notifications -->
+    <div class="toast-container" id="toast-container-element"></div>
+
+    <footer class="site-footer">
+      <div class="footer-brand">
+        <a class="brand" href="index.html">
+          <span class="brand-mark" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+          </span>
+          <span>
+            <strong>Desafio</strong>
+            <strong>dos Dados <em>2026</em></strong>
+          </span>
+        </a>
+        <p>Espaço de orientação docente demonstrativo para o Desafio dos Dados 2026.</p>
+      </div>
+      <div class="footer-links">
+        <a href="index.html">Início</a>
+        <a href="index.html#sobre">Sobre</a>
+        <a href="index.html#dados">Painel</a>
+        <a href="orientacao.html">Área do Professor</a>
+      </div>
+      <p class="copyright">© 2026 Desafio dos Dados. Versão beta - Orientação.</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+  </body>
+</html>
