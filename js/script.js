@@ -35,8 +35,7 @@ const nav = document.querySelector("[data-nav]");
 const counters = document.querySelectorAll("[data-counter]");
 const filterButtons = document.querySelectorAll("[data-filter]");
 const dashboardTitle = document.querySelector("[data-dashboard-title]");
-const interestForm = document.querySelector("[data-interest-form]");
-const feedback = document.querySelector("[data-form-feedback]");
+
 
 const dashboardLabels = {
   geral: "Visão geral",
@@ -108,17 +107,7 @@ filterButtons.forEach((button) => {
   });
 });
 
-interestForm?.addEventListener("submit", (event) => {
-  event.preventDefault();
-  const formData = new FormData(interestForm);
-  const teamName = String(formData.get("equipe") || "").trim();
 
-  feedback.textContent = teamName
-    ? `Interesse registrado para a equipe ${teamName}. Esta versão ainda não envia dados para o servidor.`
-    : "Interesse registrado localmente. Esta versão ainda não envia dados para o servidor.";
-
-  interestForm.reset();
-});
 
 window.addEventListener("scroll", updateHeaderState, { passive: true });
 window.addEventListener("resize", () => {
