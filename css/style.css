@@ -3072,32 +3072,36 @@ h3 {
 }
 
 .flashing-warning {
-  animation: border-flash 2.5s infinite ease-in-out;
+  animation: border-flash 1.2s infinite ease-in-out;
 }
 
 @keyframes border-flash {
   0%, 100% {
-    border-color: rgba(239, 68, 68, 0.45);
-    box-shadow: 0 0 4px rgba(239, 68, 68, 0.05);
+    border-color: #ef4444 !important;
+    box-shadow: 0 0 6px rgba(239, 68, 68, 0.3);
+    background: rgba(239, 68, 68, 0.08) !important;
   }
   50% {
-    border-color: rgba(239, 68, 68, 0.85);
-    box-shadow: 0 0 16px rgba(239, 68, 68, 0.25);
+    border-color: #ff1a1a !important;
+    box-shadow: 0 0 20px rgba(255, 26, 26, 0.65);
+    background: rgba(239, 68, 68, 0.22) !important;
   }
 }
 
 [data-theme="light"] .flashing-warning {
-  animation: border-flash-light 2.5s infinite ease-in-out;
+  animation: border-flash-light 1.2s infinite ease-in-out;
 }
 
 @keyframes border-flash-light {
   0%, 100% {
-    border-color: rgba(220, 38, 38, 0.4);
-    box-shadow: 0 0 4px rgba(220, 38, 38, 0.03);
+    border-color: #dc2626 !important;
+    box-shadow: 0 0 6px rgba(220, 38, 38, 0.25);
+    background: rgba(239, 68, 68, 0.05) !important;
   }
   50% {
-    border-color: rgba(220, 38, 38, 0.8);
-    box-shadow: 0 0 14px rgba(220, 38, 38, 0.2);
+    border-color: #ff0000 !important;
+    box-shadow: 0 0 18px rgba(255, 0, 0, 0.5);
+    background: rgba(239, 68, 68, 0.16) !important;
   }
 }
 
@@ -3209,6 +3213,8 @@ h3 {
 /* Selector Gate Section */
 .squad-select-section {
   display: block;
+  padding-top: 130px !important;
+  padding-bottom: 50px !important;
 }
 
 
