@@ -2093,13 +2093,19 @@ h3 {
   margin: -6px 0 16px;
   line-height: 1.4;
 }
+.legend-item {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+}
 .status-legend span {
   display: inline-block;
   width: 10px;
   height: 10px;
   border-radius: 3px;
   vertical-align: middle;
-  margin-right: 4px;
+  margin-right: 6px;
+  flex-shrink: 0;
 }
 .leg-un { border: 1px solid var(--line); background: transparent; }
 .leg-correct { background: var(--green); }
