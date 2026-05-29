@@ -711,25 +711,68 @@ function updateStartupGate() {
   }
 }
 
+// Local Database Persistence Layer (localStorage fallback)
+function saveLocalDatabase() {
+  try {
+    if (selectedSquad) {
+      localStorage.setItem("desafio_selected_squad", JSON.stringify(selectedSquad));
+    } else {
+      localStorage.removeItem("desafio_selected_squad");
+    }
+    localStorage.setItem("desafio_answers_state", JSON.stringify(answersState));
+    localStorage.setItem("desafio_notes_state", JSON.stringify(notesState));
+    localStorage.setItem("desafio_xp", xp.toString());
+    localStorage.setItem("desafio_unlocked_badges", JSON.stringify(Array.from(unlockedBadges)));
+    localStorage.setItem("desafio_streak_count", streakCount.toString());
+    localStorage.setItem("desafio_current_level", currentLevel.toString());
+    localStorage.setItem("desafio_current_question_index", currentQuestionIndex.toString());
+  } catch (e) {
+    console.warn("Could not save simulator progress to localStorage", e);
+  }
+}
+
+function loadLocalDatabase() {
+  try {
+    const savedSquad = localStorage.getItem("desafio_selected_squad");
+    if (!savedSquad) return false;
+
+    selectedSquad = JSON.parse(savedSquad);
+    answersState = JSON.parse(localStorage.getItem("desafio_answers_state") || "{}");
+    notesState = JSON.parse(localStorage.getItem("desafio_notes_state") || "{}");
+    xp = parseInt(localStorage.getItem("desafio_xp") || "0");
+    
+    const savedBadges = JSON.parse(localStorage.getItem("desafio_unlocked_badges") || "[]");
+    unlockedBadges = new Set(savedBadges);
+
+    streakCount = parseInt(localStorage.getItem("desafio_streak_count") || "0");
+    currentLevel = parseInt(localStorage.getItem("desafio_current_level") || "1");
+    currentQuestionIndex = parseInt(localStorage.getItem("desafio_current_question_index") || "0");
+
+    return true;
+  } catch (e) {
+    console.warn("Could not load simulator progress from localStorage", e);
+    return false;
+  }
+}
+
+function clearLocalDatabase() {
+  try {
+    localStorage.removeItem("desafio_selected_squad");
+    localStorage.removeItem("desafio_answers_state");
+    localStorage.removeItem("desafio_notes_state");
+    localStorage.removeItem("desafio_xp");
+    localStorage.removeItem("desafio_unlocked_badges");
+    localStorage.removeItem("desafio_streak_count");
+    localStorage.removeItem("desafio_current_level");
+    localStorage.removeItem("desafio_current_question_index");
+  } catch (e) {
+    console.warn("Could not clear simulator progress from localStorage", e);
+  }
+}
+
 // Initialize Squad Select
 function initSimulado() {
   if (!quizSection || !resultsSection) return;
-
-  // Render the selection screen on load
-  squadSelectSection.style.display = "block";
-  quizSection.style.display = "none";
-  resultsSection.style.display = "none";
-
-  currentQuestionIndex = 0;
-  answersState = {};
-  hintsUsed = {};
-  xp = 0;
-  unlockedBadges.clear();
-  streakCount = 0;
-  currentLevel = 1;
-  notesState = {};
-  updateXpDisplay();
-  renderSidebar();
 
   // Setup Advanced Didactics & Gamification
   setupAudioToggle();
@@ -737,7 +780,40 @@ function initSimulado() {
   setupLogicSimulator();
   setupScratchpadNotes();
   setupDidacticDrawer();
-  updateLevelProgress();
+
+  // Try to load existing local database session
+  const hasSession = loadLocalDatabase();
+
+  if (hasSession && selectedSquad) {
+    // Resume simulation
+    squadSelectSection.style.display = "none";
+    quizSection.style.display = "grid";
+    resultsSection.style.display = "none";
+
+    syncSquadUI();
+    updateXpDisplay();
+    updateLevelProgress();
+    updateStreakDisplay();
+    renderSidebar();
+    loadQuestion(currentQuestionIndex);
+  } else {
+    // Start fresh selection screen
+    squadSelectSection.style.display = "block";
+    quizSection.style.display = "none";
+    resultsSection.style.display = "none";
+
+    currentQuestionIndex = 0;
+    answersState = {};
+    hintsUsed = {};
+    xp = 0;
+    unlockedBadges.clear();
+    streakCount = 0;
+    currentLevel = 1;
+    notesState = {};
+    updateXpDisplay();
+    updateLevelProgress();
+    renderSidebar();
+  }
 
   // Change listeners for dropdowns
   startSquadSelect?.addEventListener("change", updateStartupGate);
@@ -766,6 +842,7 @@ function initSimulado() {
       selectedSquad = SQUADS_LIST.find(s => s.id === squadVal);
     }
 
+    saveLocalDatabase(); // Save session when starting
     syncSquadUI();
     loadQuestion(0);
     squadSelectSection.style.display = "none";
@@ -788,9 +865,11 @@ function initSimulado() {
         } else {
           selectedSquad = SQUADS_LIST.find(s => s.id === squadId);
         }
+        saveLocalDatabase(); // Save on squad change
         syncSquadUI();
       } else {
         selectedSquad = null;
+        saveLocalDatabase();
         syncSquadUI();
       }
     });
@@ -1019,6 +1098,7 @@ function loadQuestion(index) {
           answersState[q.code] = checkedInputs.map(i => i.value);
           checkedInputs.forEach(i => i.closest(".option-item").classList.add("selected"));
         }
+        saveLocalDatabase(); // Save option selection to local db
         btnCheckAnswer.disabled = false;
         updateProgress();
         renderSidebar();
@@ -1056,6 +1136,7 @@ function loadQuestion(index) {
   if (q.tipo === "resposta construída") {
     const handleInput = () => {
       answersState[q.code] = discursivaTextarea.value;
+      saveLocalDatabase(); // Save text input to local db
       updateProgress();
       renderSidebar();
     };
@@ -1120,6 +1201,7 @@ function checkAnswerAndGiveFeedback() {
     
     showVerifyFeedback(true, "Rascunho salvo! Esta resposta discursiva será gravada em seu relatório final de entrega.");
     checkAndUnlockBadges();
+    saveLocalDatabase(); // Save checked discursiva state
     renderSidebar();
     return;
   }
@@ -1195,6 +1277,7 @@ function checkAnswerAndGiveFeedback() {
   }
 
   checkAndUnlockBadges();
+  saveLocalDatabase(); // Save verified choices and badges
   renderSidebar();
 }
 
@@ -2324,6 +2407,7 @@ function setupDidacticDrawer() {
     xp += 5;
     updateXpDisplay();
     updateLevelProgress();
+    saveLocalDatabase();
     playSound("levelup");
     showToast("🎓 Conceito Estudado! +5 XP de bônus obtido!", "success");
     
