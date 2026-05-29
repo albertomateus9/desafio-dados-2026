@@ -52,7 +52,9 @@
           
           <!-- Flashing Warning Banner -->
           <div class="db-warning-banner flashing-warning" style="margin-bottom: 24px;">
-            <span class="warning-icon">⚠️</span>
+            <div class="warning-circle-badge">
+              <span class="warning-circle-inner">!</span>
+            </div>
             <div class="warning-content">
               <strong>ATENÇÃO: NÃO HÁ BANCO DE DADOS NESTA PÁGINA!</strong>
               <p>Suas respostas são salvas localmente apenas na sessão do navegador. Se você <strong>recarregar a página (F5)</strong> ou fechar o navegador, <strong>perderá todo o seu progresso!</strong></p>
@@ -70,8 +72,8 @@
             <!-- Left Side Selection Fields -->
             <div style="display: flex; flex-direction: column; gap: 16px;">
               <div>
-                <label for="start-squad-select" style="display: block; font-weight: bold; margin-bottom: 6px; color: var(--text-inverse); font-size: 0.9rem;">1. Escolha seu Squad:</label>
-                <select id="start-squad-select" class="glass-input" style="width: 100%; padding: 12px; border-radius: 6px; background: rgba(255,255,255,0.05); color: var(--text-inverse); border: 1px solid var(--line-dark); outline: none;">
+                <label for="start-squad-select" style="display: block; font-weight: bold; margin-bottom: 6px; color: var(--text-inverse); font-size: 0.9rem;">👥 1. Escolha seu Squad:</label>
+                <select id="start-squad-select" class="glass-input glass-select" style="width: 100%; padding: 12px; border-radius: 6px; background: rgba(255,255,255,0.05); color: var(--text-inverse); border: 1px solid var(--line-dark); outline: none;">
                   <option value="" disabled selected>-- Selecione seu Squad --</option>
                   <option value="581">Squad 01 — Infinity Tech (ID: 581)</option>
                   <option value="568">Squad 02 — AS++ (ID: 568)</option>
@@ -88,8 +90,8 @@
               </div>
 
               <div>
-                <label for="start-year-select" style="display: block; font-weight: bold; margin-bottom: 6px; color: var(--text-inverse); font-size: 0.9rem;">2. Selecione o Ano:</label>
-                <select id="start-year-select" class="glass-input" style="width: 100%; padding: 12px; border-radius: 6px; background: rgba(255,255,255,0.05); color: var(--text-inverse); border: 1px solid var(--line-dark); outline: none;">
+                <label for="start-year-select" style="display: block; font-weight: bold; margin-bottom: 6px; color: var(--text-inverse); font-size: 0.9rem;">📅 2. Selecione o Ano:</label>
+                <select id="start-year-select" class="glass-input glass-select" style="width: 100%; padding: 12px; border-radius: 6px; background: rgba(255,255,255,0.05); color: var(--text-inverse); border: 1px solid var(--line-dark); outline: none;">
                   <option value="2026" selected>Edição de 2026 (Atual)</option>
                   <option value="2025">Edição de 2025 (Histórico)</option>
                   <option value="2024">Edição de 2024 (Histórico)</option>
@@ -98,8 +100,8 @@
               </div>
 
               <div>
-                <label for="start-phase-select" style="display: block; font-weight: bold; margin-bottom: 6px; color: var(--text-inverse); font-size: 0.9rem;">3. Selecione a Fase:</label>
-                <select id="start-phase-select" class="glass-input" style="width: 100%; padding: 12px; border-radius: 6px; background: rgba(255,255,255,0.05); color: var(--text-inverse); border: 1px solid var(--line-dark); outline: none;">
+                <label for="start-phase-select" style="display: block; font-weight: bold; margin-bottom: 6px; color: var(--text-inverse); font-size: 0.9rem;">🎯 3. Selecione a Fase:</label>
+                <select id="start-phase-select" class="glass-input glass-select" style="width: 100%; padding: 12px; border-radius: 6px; background: rgba(255,255,255,0.05); color: var(--text-inverse); border: 1px solid var(--line-dark); outline: none;">
                   <option value="fase1" selected>Fase 1: Transformação Digital</option>
                   <option value="fase2">Fase 2: Lógica &amp; Programação</option>
                   <option value="fase3">Fase 3: Armazenamento de Dados</option>
@@ -109,17 +111,17 @@
             </div>
 
             <!-- Right Side Chronogram/Dates panel -->
-            <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--line-dark); border-radius: 8px; padding: 18px;" class="chronogram-box">
-              <h4 style="margin: 0 0 12px 0; color: var(--amber); font-size: 1rem; font-weight: 800; border-bottom: 1px solid var(--line-dark); padding-bottom: 6px; display: flex; align-items: center; gap: 6px;">📅 Cronograma Oficial 2026</h4>
-              <ul style="list-style: none; padding: 0; margin: 0; font-size: 0.8rem; line-height: 1.7; color: var(--text-soft); display: flex; flex-direction: column; gap: 6px;">
-                <li><strong>Inscrições:</strong> 04/05 a 01/06</li>
-                <li><strong>Etapa 1 (Fase 1):</strong> 26/05 a 02/06 (9h)</li>
-                <li><strong>Etapa 1 (Fase 2):</strong> 02/06 (13h) a 09/06 (9h)</li>
-                <li><strong>Etapa 1 (Fase 3):</strong> 09/06 (13h) a 16/06 (9h)</li>
-                <li><strong>Classificação:</strong> 24/06 (20h)</li>
-                <li><strong>Etapa 2 (Projetos):</strong> 24/06 a 31/08</li>
-                <li><strong>Avaliação final:</strong> 31/08 a 14/09</li>
-                <li><strong>Resultado final:</strong> 17/09</li>
+            <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--line-dark); border-radius: 12px; padding: 20px;" class="chronogram-box">
+              <h4 style="margin: 0 0 16px 0; color: var(--amber); font-size: 1rem; font-weight: 800; border-bottom: 1px solid var(--line-dark); padding-bottom: 8px; display: flex; align-items: center; gap: 6px;">📅 Cronograma Oficial 2026</h4>
+              <ul class="chronogram-list">
+                <li class="chronogram-item active"><strong>Inscrições:</strong> 04/05 a 01/06 <span class="live-badge">● Em Andamento</span></li>
+                <li class="chronogram-item active"><strong>Etapa 1 (Fase 1):</strong> 26/05 a 02/06 (9h) <span class="live-badge">● Em Andamento</span></li>
+                <li class="chronogram-item"><strong>Etapa 1 (Fase 2):</strong> 02/06 (13h) a 09/06 (9h)</li>
+                <li class="chronogram-item"><strong>Etapa 1 (Fase 3):</strong> 09/06 (13h) a 16/06 (9h)</li>
+                <li class="chronogram-item"><strong>Classificação:</strong> 24/06 (20h)</li>
+                <li class="chronogram-item"><strong>Etapa 2 (Projetos):</strong> 24/06 a 31/08</li>
+                <li class="chronogram-item"><strong>Avaliação final:</strong> 31/08 a 14/09</li>
+                <li class="chronogram-item"><strong>Resultado final:</strong> 17/09</li>
               </ul>
             </div>
           </div>
@@ -147,7 +149,9 @@
           
           <!-- Sticky Flashing Warning Banner -->
           <div class="db-warning-banner-sticky flashing-warning" style="margin-bottom: 10px;">
-            <span class="warning-icon" style="font-size: 1.6rem;">⚠️</span>
+            <div class="warning-circle-badge" style="width: 32px; height: 32px; border-width: 1.5px; box-shadow: 0 0 10px rgba(239, 68, 68, 0.25);">
+              <span class="warning-circle-inner" style="font-size: 1.25rem; margin-top: -1px;">!</span>
+            </div>
             <div class="warning-content">
               <strong style="font-size: 0.9rem; margin-bottom: 2px;">ATENÇÃO: NÃO HÁ BANCO DE DADOS NESSA PÁGINA!</strong>
               <p style="margin: 0; font-size: 0.8rem; font-weight: 500; color: var(--text-soft);">

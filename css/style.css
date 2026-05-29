@@ -2973,36 +2973,77 @@ h3 {
 /* Flashing Warning Banner */
 .db-warning-banner,
 .db-warning-banner-sticky {
-  background: rgba(239, 68, 68, 0.08);
-  border: 1.5px dashed #ef4444;
-  border-radius: 8px;
-  padding: 16px 20px;
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.12), rgba(239, 68, 68, 0.04)) !important;
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(239, 68, 68, 0.45) !important;
+  border-radius: var(--radius-md) !important;
+  padding: 18px 24px;
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 20px;
   text-align: left;
-  margin-bottom: 20px;
-  color: #fca5a5;
-  box-shadow: 0 4px 15px rgba(239, 68, 68, 0.05);
+  margin-bottom: 24px;
+  color: #fddcdc;
+  box-shadow: 0 8px 32px rgba(239, 68, 68, 0.08) !important;
 }
 
 [data-theme="light"] .db-warning-banner,
 [data-theme="light"] .db-warning-banner-sticky {
-  background: rgba(239, 68, 68, 0.05);
-  border-color: #dc2626;
-  color: #991b1b;
-  box-shadow: 0 4px 15px rgba(239, 68, 68, 0.02);
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.06), rgba(239, 68, 68, 0.02)) !important;
+  border-color: rgba(220, 38, 38, 0.5) !important;
+  color: #7f1d1d;
+  box-shadow: 0 8px 32px rgba(220, 38, 38, 0.04) !important;
 }
 
 .db-warning-banner-sticky {
   grid-column: 1 / -1;
-  margin-bottom: 0;
+  margin-bottom: 12px;
+  padding: 12px 20px;
 }
 
-.warning-icon {
-  font-size: 2.25rem;
-  animation: pulse-warning 1s infinite alternate;
+/* Customized Warning Badges */
+.warning-circle-badge {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(239, 68, 68, 0.15);
+  border: 2px solid #ef4444;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   flex-shrink: 0;
+  box-shadow: 0 0 15px rgba(239, 68, 68, 0.25);
+  animation: pulse-warning-badge 2s infinite ease-in-out;
+}
+
+.warning-circle-inner {
+  color: #ef4444;
+  font-size: 1.7rem;
+  font-weight: 900;
+  font-family: serif;
+  line-height: 1;
+  margin-top: -2px;
+}
+
+[data-theme="light"] .warning-circle-badge {
+  background: rgba(239, 68, 68, 0.08);
+  border-color: #dc2626;
+  box-shadow: 0 0 10px rgba(220, 38, 38, 0.15);
+}
+
+[data-theme="light"] .warning-circle-inner {
+  color: #dc2626;
+}
+
+@keyframes pulse-warning-badge {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 8px rgba(239, 68, 68, 0.25);
+  }
+  50% {
+    transform: scale(1.08);
+    box-shadow: 0 0 18px rgba(239, 68, 68, 0.55);
+  }
 }
 
 .warning-content strong {
@@ -3030,55 +3071,139 @@ h3 {
   color: #334155;
 }
 
-@keyframes pulse-warning {
-  from {
-    transform: scale(1);
-    opacity: 1;
-    filter: drop-shadow(0 0 2px rgba(239, 68, 68, 0.4));
-  }
-  to {
-    transform: scale(1.15);
-    opacity: 0.75;
-    filter: drop-shadow(0 0 8px rgba(239, 68, 68, 0.8));
-  }
-}
-
 .flashing-warning {
-  animation: border-flash 1.5s infinite;
+  animation: border-flash 2.5s infinite ease-in-out;
 }
 
 @keyframes border-flash {
-  0% {
-    border-color: #ef4444;
-    box-shadow: 0 0 4px rgba(239, 68, 68, 0.2);
+  0%, 100% {
+    border-color: rgba(239, 68, 68, 0.45);
+    box-shadow: 0 0 4px rgba(239, 68, 68, 0.05);
   }
   50% {
-    border-color: #b91c1c;
-    box-shadow: 0 0 12px rgba(239, 68, 68, 0.4);
-  }
-  100% {
-    border-color: #ef4444;
-    box-shadow: 0 0 4px rgba(239, 68, 68, 0.2);
+    border-color: rgba(239, 68, 68, 0.85);
+    box-shadow: 0 0 16px rgba(239, 68, 68, 0.25);
   }
 }
 
 [data-theme="light"] .flashing-warning {
-  animation: border-flash-light 1.5s infinite;
+  animation: border-flash-light 2.5s infinite ease-in-out;
 }
 
 @keyframes border-flash-light {
-  0% {
-    border-color: #dc2626;
-    box-shadow: 0 0 4px rgba(220, 38, 38, 0.1);
+  0%, 100% {
+    border-color: rgba(220, 38, 38, 0.4);
+    box-shadow: 0 0 4px rgba(220, 38, 38, 0.03);
   }
   50% {
-    border-color: #991b1b;
-    box-shadow: 0 0 10px rgba(220, 38, 38, 0.3);
+    border-color: rgba(220, 38, 38, 0.8);
+    box-shadow: 0 0 14px rgba(220, 38, 38, 0.2);
   }
-  100% {
-    border-color: #dc2626;
-    box-shadow: 0 0 4px rgba(220, 38, 38, 0.1);
-  }
+}
+
+/* Customized Dropdowns and Selects */
+.glass-select {
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%23a0b2c6' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3E%3C/svg%3E");
+  background-position: right 14px center;
+  background-repeat: no-repeat;
+  background-size: 20px;
+  padding-right: 44px !important;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  border: 1px solid var(--line-dark) !important;
+}
+
+[data-theme="light"] .glass-select {
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%23102033' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3E%3C/svg%3E");
+}
+
+.glass-select:hover {
+  border-color: var(--cyan) !important;
+  box-shadow: 0 0 12px rgba(33, 216, 255, 0.25);
+  background-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+.glass-select:focus {
+  border-color: var(--cyan) !important;
+  box-shadow: 0 0 16px rgba(33, 216, 255, 0.35);
+  background-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+/* Vertical Timeline Chronogram Styling */
+.chronogram-list {
+  position: relative;
+  padding-left: 20px;
+  list-style: none;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.chronogram-list::before {
+  content: "";
+  position: absolute;
+  left: 5px;
+  top: 8px;
+  bottom: 8px;
+  width: 2px;
+  background: var(--line-dark);
+}
+
+.chronogram-item {
+  position: relative;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: var(--text-soft);
+  text-align: left;
+}
+
+.chronogram-item::before {
+  content: "";
+  position: absolute;
+  left: -19px;
+  top: 6px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--text-soft);
+  opacity: 0.6;
+  border: 2px solid var(--bg);
+  transition: all 0.3s;
+}
+
+.chronogram-item.active::before {
+  background: var(--green);
+  opacity: 1;
+  box-shadow: 0 0 10px var(--green);
+  transform: scale(1.2);
+}
+
+.chronogram-item.active {
+  color: var(--text-inverse);
+  font-weight: 700;
+}
+
+[data-theme="light"] .chronogram-item.active {
+  color: var(--text);
+}
+
+/* Glowing Live Badge */
+.live-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(50, 240, 161, 0.15);
+  color: var(--green);
+  border: 1px solid rgba(50, 240, 161, 0.3);
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-size: 0.62rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  margin-left: 6px;
+  vertical-align: middle;
+  letter-spacing: 0.5px;
 }
 
 /* Selector Gate Section */
