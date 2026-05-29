@@ -197,9 +197,9 @@ input {
 
 .hero {
   position: relative;
-  min-height: 100vh;
+  min-height: auto;
   overflow: hidden;
-  padding: 150px 0 76px;
+  padding: 120px 0 50px;
 }
 
 .hero::after {
@@ -224,19 +224,27 @@ input {
   position: relative;
   z-index: 2;
   display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.62fr);
+  grid-template-columns: 1fr;
   align-items: center;
-  gap: 54px;
+  gap: 30px;
   width: var(--container);
   margin: 0 auto;
+  text-align: center;
+}
+
+.hero-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .hero-copy h1 {
-  max-width: 720px;
-  margin: 0;
-  font-size: clamp(3.3rem, 7vw, 7.4rem);
-  line-height: 0.9;
-  letter-spacing: 0;
+  max-width: 800px;
+  margin: 0 auto;
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  line-height: 1.1;
+  text-align: center;
+  letter-spacing: -0.02em;
 }
 
 .hero-copy h1::first-line {
@@ -244,24 +252,26 @@ input {
 }
 
 .hero-copy p {
-  max-width: 610px;
-  margin: 28px 0 0;
+  max-width: 640px;
+  margin: 18px auto 0;
   color: var(--muted-inverse);
-  font-size: clamp(1.05rem, 1.5vw, 1.28rem);
-  line-height: 1.65;
+  font-size: clamp(1.05rem, 1.5vw, 1.22rem);
+  line-height: 1.6;
+  text-align: center;
 }
 
 .hero-actions,
 .hero-proof {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 16px;
-  margin-top: 34px;
+  margin-top: 30px;
 }
 
 .hero-proof {
   gap: 26px;
-  margin-top: 40px;
+  margin-top: 36px;
 }
 
 .hero-proof div {
@@ -2601,5 +2611,360 @@ h3 {
 .projection-mode .concept-panel {
   font-size: 1.15rem !important;
 }
+
+/* ============================================================
+   SQUADS SITE STRUCTURE ADDITIONS
+   ============================================================ */
+
+/* Simulator CTA Banner inside squads section */
+.squads-simulator-cta {
+  padding: 38px 30px;
+  margin: 0 auto 34px;
+  border: 1px solid var(--line-dark);
+  border-radius: var(--radius-lg);
+  background: linear-gradient(135deg, rgba(6, 17, 31, 0.95), rgba(10, 28, 49, 0.85));
+  color: var(--text-inverse);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(2, 8, 18, 0.45);
+}
+
+.squads-simulator-cta::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--cyan), var(--green), var(--cyan));
+}
+
+.squads-simulator-cta .cta-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  background: rgba(50, 240, 161, 0.15);
+  color: var(--green);
+  border: 1px solid rgba(50, 240, 161, 0.3);
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 850;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 16px;
+  animation: pulse-glow 2s infinite ease-in-out;
+}
+
+.squads-simulator-cta h2 {
+  font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+  color: var(--text-inverse);
+  margin: 0 0 12px 0;
+  font-weight: 850;
+  line-height: 1.2;
+}
+
+.squads-simulator-cta p {
+  max-width: 640px;
+  color: var(--muted-inverse);
+  line-height: 1.6;
+  font-size: 0.98rem;
+  margin: 0 0 24px 0;
+}
+
+.squads-simulator-cta .cta-actions {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.squads-simulator-cta .cta-actions .btn {
+  min-height: 52px;
+  padding: 0 38px;
+  font-size: 1.05rem;
+  font-weight: 900;
+  border-radius: var(--radius-sm);
+  transition: transform 200ms ease, box-shadow 200ms ease;
+}
+
+.squads-simulator-cta .cta-actions .btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(50, 240, 161, 0.4);
+}
+
+/* Inline Stats Bar */
+.squads-stats-bar {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 20px 40px;
+  margin: 0 auto 50px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  box-shadow: 0 10px 30px rgba(16, 32, 51, 0.04);
+}
+
+.squads-stats-bar .stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+}
+
+.squads-stats-bar .stat-value {
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: #008ac2;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.squads-stats-bar .stat-label {
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: var(--text-soft);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.squads-stats-bar .stat-divider {
+  width: 1px;
+  height: 40px;
+  background: var(--line);
+}
+
+/* Teacher Mode Answer Highlights */
+.option-item.teacher-correct {
+  border: 2px solid var(--green) !important;
+  background: rgba(50, 240, 161, 0.08) !important;
+  box-shadow: 0 0 16px rgba(50, 240, 161, 0.25) !important;
+  position: relative;
+}
+
+.option-item.teacher-correct::after {
+  content: "Gabarito";
+  position: absolute;
+  top: -8px;
+  right: 12px;
+  background: var(--green);
+  color: #001826;
+  font-size: 0.68rem;
+  font-weight: 900;
+  padding: 2px 8px;
+  border-radius: 999px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  box-shadow: 0 4px 10px rgba(50, 240, 161, 0.3);
+  z-index: 5;
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 4px rgba(50, 240, 161, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 12px rgba(50, 240, 161, 0.5);
+  }
+}
+
+@media (max-width: 680px) {
+  .squads-stats-bar {
+    flex-direction: column;
+    gap: 20px;
+    padding: 24px;
+  }
+  .squads-stats-bar .stat-divider {
+    width: 60%;
+    height: 1px;
+    margin: 0 auto;
+  }
+}
+
+/* ============================================================
+   DIDACTIC TOOLS DRAWER & WHITEBOARD STYLES
+   ============================================================ */
+.didactic-tools-drawer {
+  border-radius: var(--radius-md);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 8px 32px rgba(255, 189, 51, 0.04);
+}
+
+.didactic-tools-drawer .tools-tabs .tab-btn {
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+}
+
+.didactic-tools-drawer .tools-tabs .tab-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: var(--text-inverse);
+}
+
+[data-theme="light"] .didactic-tools-drawer .tools-tabs .tab-btn:hover {
+  background: rgba(0, 0, 0, 0.06);
+  color: var(--text);
+}
+
+.didactic-tools-drawer .tools-tabs .tab-btn.active {
+  background: var(--amber) !important;
+  color: #001826 !important;
+  box-shadow: 0 4px 12px rgba(255, 189, 51, 0.2);
+}
+
+.didactic-tools-drawer .color-pick {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.didactic-tools-drawer .color-pick:hover {
+  transform: scale(1.2);
+}
+
+.didactic-tools-drawer .color-pick.active {
+  box-shadow: 0 0 8px currentColor;
+}
+
+/* Audio Toggle Button in Header */
+.audio-toggle-btn:hover {
+  transform: scale(1.15);
+}
+
+/* Streak Row & Fire Combo Widget */
+#streak-row {
+  animation: slide-down 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  box-shadow: 0 4px 15px rgba(255, 189, 51, 0.1);
+}
+
+#streak-counter {
+  animation: pop-pulse 0.4s ease;
+}
+
+/* Level Bar Progression */
+.level-bar-outer {
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.level-bar-inner {
+  box-shadow: 0 0 10px rgba(50, 240, 161, 0.5);
+}
+
+/* Keyframes for new widgets */
+@keyframes slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pop-pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.3); }
+  100% { transform: scale(1); }
+}
+
+/* Light / Dark Mode adaptive adjustments */
+[data-theme="light"] .didactic-tools-drawer {
+  background: rgba(255, 189, 51, 0.03) !important;
+  border-color: rgba(255, 189, 51, 0.25) !important;
+  color: var(--text) !important;
+}
+
+[data-theme="light"] .didactic-tools-drawer h3 {
+  color: #c48c08 !important;
+}
+
+[data-theme="light"] .tool-tab-content textarea {
+  background: #ffffff !important;
+  color: #000000 !important;
+  border-color: var(--line) !important;
+}
+
+[data-theme="light"] .tool-tab-content select {
+  background: #ffffff !important;
+  color: #000000 !important;
+  border-color: var(--line) !important;
+}
+
+[data-theme="light"] #scratchpad-canvas {
+  background: #071323 !important; /* Retain dark background inside canvas for light theme too for white/green/cyan colors visibility */
+  border-color: #102a45 !important;
+}
+
+[data-theme="light"] .didactic-tools-drawer .tools-tabs .tab-btn {
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--text);
+}
+
+/* ============================================================
+   FLASHCARD COMPONENT WITH 3D FLIP EFFECT
+   ============================================================ */
+.flashcard-container {
+  perspective: 1000px;
+}
+
+.flashcard-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+  border-radius: 8px;
+}
+
+.flashcard-inner.flipped {
+  transform: rotateY(180deg);
+}
+
+.flashcard-front, .flashcard-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.flashcard-front {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--line);
+  color: var(--text);
+}
+
+[data-theme="dark"] .flashcard-front {
+  background: rgba(255, 255, 255, 0.02);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.flashcard-back {
+  background: rgba(255, 189, 51, 0.04);
+  border: 1px solid var(--amber);
+  color: var(--text);
+  transform: rotateY(180deg);
+}
+
+[data-theme="light"] .flashcard-front {
+  background: #ffffff;
+  color: #000000;
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="light"] .flashcard-back {
+  background: rgba(255, 189, 51, 0.06);
+  border-color: #c48c08;
+  color: #000000;
+}
+
+
 
 

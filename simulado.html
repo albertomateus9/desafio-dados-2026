@@ -40,6 +40,7 @@
         <a href="orientacao.html">Área do Professor</a>
       </nav>
 
+      <button class="audio-toggle-btn" id="btn-toggle-audio" aria-label="Alternar som" type="button" style="background: transparent; border: none; cursor: pointer; font-size: 1.25rem; color: inherit; padding: 8px; display: inline-flex; align-items: center; justify-content: center; margin-right: 12px; transition: transform 200ms ease;">🔊</button>
       <button class="theme-toggle-btn" aria-label="Alternar tema" type="button">🌙</button>
       <a class="header-action" href="index.html">Voltar ao Início</a>
     </header>
@@ -109,9 +110,122 @@
               <p class="discursiva-notice">Dica: Desenvolva uma resposta detalhada, explicando a lógica e fornecendo exemplos práticos.</p>
             </div>
 
+            <!-- Interactive Didactic Tools (Whiteboard / Canvas / Truth Table) -->
+            <div class="didactic-tools-drawer glass-panel" id="didactic-tools-drawer" style="display: none; margin: 18px 0; padding: 18px; border-left: 4px solid var(--amber); background: rgba(255, 189, 51, 0.02); text-align: left;">
+              <div class="tools-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 10px;">
+                <h3 style="margin: 0; color: var(--amber); font-size: 1.05rem; display: flex; align-items: center; gap: 8px;">
+                  <span>✏️</span> Lousa &amp; Ferramentas de Estudo
+                </h3>
+                <div class="tools-tabs" style="display: flex; gap: 6px; flex-wrap: wrap;">
+                  <button type="button" class="tab-btn active" data-tool-tab="draw" style="padding: 4px 10px; border-radius: 4px; font-size: 0.8rem; font-weight: bold; border: 0; cursor: pointer; background: var(--amber); color: #001826;">Lousa Desenho</button>
+                  <button type="button" class="tab-btn" data-tool-tab="notes" style="padding: 4px 10px; border-radius: 4px; font-size: 0.8rem; font-weight: bold; border: 0; cursor: pointer; background: rgba(255,255,255,0.08); color: var(--text-inverse);">Rascunho Texto</button>
+                  <button type="button" class="tab-btn" data-tool-tab="truthtable" style="padding: 4px 10px; border-radius: 4px; font-size: 0.8rem; font-weight: bold; border: 0; cursor: pointer; background: rgba(255,255,255,0.08); color: var(--text-inverse);">Tabela Verdade</button>
+                  <button type="button" class="tab-btn" data-tool-tab="flashcards" style="padding: 4px 10px; border-radius: 4px; font-size: 0.8rem; font-weight: bold; border: 0; cursor: pointer; background: rgba(255,255,255,0.08); color: var(--text-inverse);">Fichas de Estudo</button>
+                </div>
+              </div>
+              
+              <!-- Tab 1: Draw Canvas -->
+              <div class="tool-tab-content" id="tab-draw">
+                <p style="font-size: 0.82rem; color: var(--muted-inverse); margin: 0 0 10px 0;">Desenhe livremente para esboçar esquemas, lógicas e cálculos:</p>
+                <canvas id="scratchpad-canvas" width="550" height="240" style="border: 1px solid var(--line-dark); border-radius: 8px; background: #071323; display: block; cursor: crosshair; touch-action: none; width: 100%;"></canvas>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px;">
+                  <div style="display: flex; gap: 10px; align-items: center;">
+                    <span style="font-size: 0.8rem; font-weight: bold; color: var(--text-inverse);">Cor:</span>
+                    <button type="button" class="color-pick active" data-color="#32f0a1" style="width: 20px; height: 20px; border-radius: 50%; border: 2px solid white; background: var(--green); cursor: pointer; padding: 0;"></button>
+                    <button type="button" class="color-pick" data-color="#21d8ff" style="width: 20px; height: 20px; border-radius: 50%; border: 0; background: var(--cyan); cursor: pointer; padding: 0;"></button>
+                    <button type="button" class="color-pick" data-color="#ffffff" style="width: 20px; height: 20px; border-radius: 50%; border: 0; background: #ffffff; cursor: pointer; padding: 0;"></button>
+                  </div>
+                  <button type="button" id="btn-clear-canvas" class="btn btn-secondary" style="min-height: 32px; padding: 0 12px; font-size: 0.8rem;">Limpar Lousa</button>
+                </div>
+              </div>
+              
+              <!-- Tab 2: Text Notes -->
+              <div class="tool-tab-content" id="tab-notes" style="display: none;">
+                <p style="font-size: 0.82rem; color: var(--muted-inverse); margin: 0 0 10px 0;">Escreva anotações ou rascunhos de cálculos (salvos por questão):</p>
+                <textarea id="scratchpad-text" rows="6" style="width: 100%; border: 1px solid var(--line-dark); border-radius: 6px; padding: 10px; font-size: 0.9rem; font-family: monospace; outline: none; background: rgba(255,255,255,0.05); color: var(--text-inverse);" placeholder="Digite suas notas aqui..."></textarea>
+              </div>
+ 
+              <!-- Tab 3: Truth Table Tool -->
+              <div class="tool-tab-content" id="tab-truthtable" style="display: none;">
+                <p style="font-size: 0.82rem; color: var(--muted-inverse); margin: 0 0 10px 0;">Simulador de Portas Lógicas para testar lógica condicional:</p>
+                <div style="display: flex; gap: 12px; align-items: center; justify-content: center; margin-bottom: 12px; flex-wrap: wrap;">
+                  <label style="font-size: 0.86rem; font-weight: bold; color: var(--text-inverse); display: flex; align-items: center; gap: 4px;">A:
+                    <select id="logic-a" style="padding: 4px; border-radius: 4px; border: 1px solid var(--line-dark); background: rgba(255,255,255,0.05); color: var(--text-inverse);">
+                      <option value="0" style="background: var(--bg-strong);">0 (Falso)</option>
+                      <option value="1" style="background: var(--bg-strong);">1 (Verdadeiro)</option>
+                    </select>
+                  </label>
+                  <label style="font-size: 0.86rem; font-weight: bold; color: var(--text-inverse); display: flex; align-items: center; gap: 4px;">Operador:
+                    <select id="logic-op" style="padding: 4px; border-radius: 4px; border: 1px solid var(--line-dark); background: rgba(255,255,255,0.05); color: var(--text-inverse);">
+                      <option value="AND" style="background: var(--bg-strong);">E (AND)</option>
+                      <option value="OR" style="background: var(--bg-strong);">OU (OR)</option>
+                      <option value="XOR" style="background: var(--bg-strong);">OU EXCLUSIVO (XOR)</option>
+                    </select>
+                  </label>
+                  <label style="font-size: 0.86rem; font-weight: bold; color: var(--text-inverse); display: flex; align-items: center; gap: 4px;">B:
+                    <select id="logic-b" style="padding: 4px; border-radius: 4px; border: 1px solid var(--line-dark); background: rgba(255,255,255,0.05); color: var(--text-inverse);">
+                      <option value="0" style="background: var(--bg-strong);">0 (Falso)</option>
+                      <option value="1" style="background: var(--bg-strong);">1 (Verdadeiro)</option>
+                    </select>
+                  </label>
+                </div>
+                
+                <!-- Circuit diagram graphic representation -->
+                <div class="logic-circuit-visual" style="display: flex; align-items: center; justify-content: center; gap: 10px; margin: 15px 0; padding: 12px; background: rgba(0,0,0,0.2); border-radius: 8px; border: 1px dashed var(--line-dark); overflow-x: auto;">
+                  <div class="inputs" style="display: flex; flex-direction: column; gap: 20px;">
+                    <div id="visual-input-a" class="circuit-node" style="padding: 6px 12px; border-radius: 4px; background: rgba(255,255,255,0.05); border: 1px solid var(--line-dark); color: var(--text-inverse); font-family: monospace; font-size: 0.82rem; font-weight: bold; transition: all 0.3s; white-space: nowrap;">A: 0</div>
+                    <div id="visual-input-b" class="circuit-node" style="padding: 6px 12px; border-radius: 4px; background: rgba(255,255,255,0.05); border: 1px solid var(--line-dark); color: var(--text-inverse); font-family: monospace; font-size: 0.82rem; font-weight: bold; transition: all 0.3s; white-space: nowrap;">B: 0</div>
+                  </div>
+                  <div class="wires-in" style="display: flex; flex-direction: column; justify-content: space-around; height: 60px; width: 25px; flex-shrink: 0;">
+                    <div id="wire-a" style="height: 2px; width: 100%; background: #334e68; transition: all 0.3s;"></div>
+                    <div id="wire-b" style="height: 2px; width: 100%; background: #334e68; transition: all 0.3s;"></div>
+                  </div>
+                  <div id="visual-gate" style="padding: 10px 16px; border-radius: 6px; background: var(--bg-strong); border: 2px solid var(--line-dark); color: var(--amber); font-weight: 900; font-size: 0.9rem; font-family: monospace; transition: all 0.3s; text-transform: uppercase; white-space: nowrap; flex-shrink: 0;">AND</div>
+                  <div class="wires-out" style="width: 25px; display: flex; align-items: center; flex-shrink: 0;">
+                    <div id="wire-out" style="height: 2px; width: 100%; background: #334e68; transition: all 0.3s;"></div>
+                  </div>
+                  <div id="visual-result" class="circuit-node" style="padding: 8px 14px; border-radius: 4px; background: rgba(255,255,255,0.05); border: 1px solid var(--line-dark); color: var(--text-inverse); font-family: monospace; font-size: 0.82rem; font-weight: bold; transition: all 0.3s; white-space: nowrap;">SAÍDA: 0</div>
+                </div>
+                
+                <div style="text-align: center; padding: 6px; border-radius: 6px; font-weight: bold; color: var(--text-inverse); font-size: 0.9rem; display: none;">
+                  Resultado: <span id="logic-result" style="color: var(--green); font-size: 1.1rem;">0 (Falso)</span>
+                </div>
+              </div>
+
+              <!-- Tab 4: Flashcards -->
+              <div class="tool-tab-content" id="tab-flashcards" style="display: none;">
+                <p style="font-size: 0.82rem; color: var(--muted-inverse); margin: 0 0 10px 0;">Fichas interativas de conceitos-chave (Estude e ganhe XP de bônus):</p>
+                <div class="flashcard-container" id="flashcard-click-trigger" style="perspective: 1000px; margin: 10px auto; width: 100%; max-width: 440px; height: 160px; cursor: pointer;">
+                  <div class="flashcard-inner" id="flashcard-inner" style="position: relative; width: 100%; height: 100%; text-align: center; transition: transform 0.6s; transform-style: preserve-3d; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
+                    
+                    <!-- Front side -->
+                    <div class="flashcard-front" style="position: absolute; width: 100%; height: 100%; backface-visibility: hidden; background: rgba(255,255,255,0.05); border: 1px solid var(--line-dark); border-radius: 8px; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 15px; box-sizing: border-box;">
+                      <span style="font-size: 0.76rem; font-weight: 800; text-transform: uppercase; color: var(--amber); letter-spacing: 0.5px;" id="flashcard-front-title">Questão TD01</span>
+                      <p style="font-size: 0.88rem; line-height: 1.4; margin: 8px 0 0 0; color: var(--text-inverse); font-weight: 500;" id="flashcard-front-concept">Conceito principal...</p>
+                      <span style="font-size: 0.72rem; color: var(--muted-inverse); margin-top: auto; opacity: 0.8;">🔄 Clique para revelar a dica de lousa</span>
+                    </div>
+                    
+                    <!-- Back side -->
+                    <div class="flashcard-back" style="position: absolute; width: 100%; height: 100%; backface-visibility: hidden; background: rgba(255, 189, 51, 0.05); border: 1px solid var(--amber); border-radius: 8px; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 15px; box-sizing: border-box; transform: rotateY(180deg);">
+                      <span style="font-size: 0.76rem; font-weight: 800; text-transform: uppercase; color: var(--amber); letter-spacing: 0.5px;">Dica de Lousa (Notas)</span>
+                      <p style="font-size: 0.86rem; line-height: 1.4; margin: 8px 0 0 0; color: var(--text-inverse); font-style: italic;" id="flashcard-back-notes">Notas da lousa...</p>
+                      <span style="font-size: 0.72rem; color: var(--muted-inverse); margin-top: auto; opacity: 0.8;">🔄 Clique para voltar ao conceito</span>
+                    </div>
+                    
+                  </div>
+                </div>
+                <div style="text-align: center; margin-top: 12px;">
+                  <button type="button" id="btn-claim-flashcard-xp" class="btn btn-primary" style="background: linear-gradient(135deg, var(--amber), #ff9900); color: #001826; border: 0; min-height: 38px; padding: 0 16px; font-weight: 800; border-radius: 6px; box-shadow: 0 4px 12px rgba(255,189,51,0.25);">Estudei esse Conceito (+5 XP) 🎓</button>
+                </div>
+              </div>
+            </div>    </div>
+              </div>
+            </div>
+
             <!-- Action buttons -->
             <div class="quiz-actions-row">
               <button class="btn btn-secondary" id="btn-hint">💡 Dica Metodológica</button>
+              <button class="btn btn-secondary" id="btn-toggle-lousa">✏️ Abrir Lousa</button>
               <button class="btn btn-primary" id="btn-check-answer">Verificar Resposta</button>
             </div>
 
@@ -192,13 +306,33 @@
               <div class="progress-bar-outer">
                 <div class="progress-bar-inner" id="progress-bar-inner" style="width: 0%;"></div>
               </div>
-              <div class="stats-row">
+              
+              <div class="stats-row" style="margin-top: 14px;">
                 <span>XP Acumulado:</span>
                 <strong id="xp-counter">0 XP</strong>
               </div>
+              
               <div class="stats-row" style="margin-top: 8px;">
+                <span>Nível do Squad:</span>
+                <strong id="level-label" style="color: var(--green);">Nível 1</strong>
+              </div>
+              <div class="level-bar-outer" style="height: 6px; background: rgba(255,255,255,0.1); border-radius: 99px; overflow: hidden; margin-top: 6px;">
+                <div class="level-bar-inner" id="level-bar-inner" style="width: 0%; height: 100%; background: var(--green); transition: width 300ms ease;"></div>
+              </div>
+              <div style="display: flex; justify-content: space-between; font-size: 0.72rem; color: var(--muted-inverse); margin-top: 4px;">
+                <span id="level-xp-current">0 XP</span>
+                <span id="level-xp-next">40 XP para o Nível 2</span>
+              </div>
+              
+              <div class="stats-row" style="margin-top: 12px; border-top: 1px solid var(--line-dark); padding-top: 10px;">
                 <span>Rank do Squad:</span>
                 <strong id="rank-label" style="color: var(--cyan);">Explorador 🌐</strong>
+              </div>
+              
+              <!-- Fire Streak row -->
+              <div class="stats-row streak-row" id="streak-row" style="display: none; margin-top: 10px; background: rgba(255, 189, 51, 0.12); padding: 6px 10px; border-radius: var(--radius-sm); border-left: 3px solid var(--amber); align-items: center; justify-content: space-between;">
+                <span style="color: var(--amber); font-weight: bold; display: flex; align-items: center; gap: 4px; font-size: 0.84rem;">🔥 Combo de Acertos:</span>
+                <strong id="streak-counter" style="color: var(--amber); font-size: 1.05rem;">0x</strong>
               </div>
             </div>
 

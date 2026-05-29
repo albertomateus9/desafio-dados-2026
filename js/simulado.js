@@ -7,61 +7,61 @@ const SQUADS_LIST = [
     id: "581",
     name: "Infinity Tech",
     members: "Emilly Layse Nunes Eleres, Felipe Diamantino da Silva, <strong>Estefany Lourrane Moreira da Silva (Líder)</strong>, Pedro Lucas Espindola Moraes",
-    images: ["emilly_layse_nunes_eleres.webp", "felipe_diamantino_da_silva.webp", "estefany_lourrane_moreira_da_silva.webp", "pedro_lucas_espindola_moraes.webp"]
+    images: ["aluno_1.webp", "aluno_2.webp", "aluno_3.webp", "aluno_4.webp"]
   },
   {
     id: "568",
     name: "AS++",
     members: "<strong>Carla Regina dos Santos (Líder)</strong>, Myrza da Silva Alhadef, Dafne da Silva Carvalho",
-    images: ["carla_regina_dos_santos.webp", "myrza_da_silva_alhadef.webp", "dafne_da_silva_carvalho.webp"]
+    images: ["aluno_5.webp", "aluno_6.webp", "dafne_da_silva_carvalho.webp"]
   },
   {
     id: "570",
     name: "Tronadores",
     members: "Matheus Neyson do Carmo de Souza, Yan Walber de Oliveira Mandu, Hendrew Nascimento Negrão, <strong>Rodrigo Daniel Batista dos Santos (Líder)</strong>",
-    images: ["matheus_neyson_do_carmo_de_souza.webp", "yan_walber_de_oliveira_mandu.webp", "hendrew_nascimento_negrao.webp", "rodrigo_daniel_batista_dos_santos.webp"]
+    images: ["aluno_7.webp", "aluno_8.webp", "aluno_9.webp", "aluno_10.webp"]
   },
   {
     id: "571",
     name: "Comando SQL",
     members: "<strong>Christian dos Santos Paraguassu (Líder)</strong>, Carlos Eduardo dos Santos Teixeira, Miguel Rocca de Araújo",
-    images: ["christian_dos_santos_paraguassu.webp", "carlos_eduardo_dos_santos_teixeira.webp", "miguel_rocca_de_araujo.webp"]
+    images: ["aluno_11.webp", "aluno_12.webp", "miguel_rocca_de_araujo.webp"]
   },
   {
     id: "572",
     name: "REJY",
     members: "Emanuela Souza Amaral, Rykelme Cavalcante de Moura, Yago de Jesus Ferreira de Souza, <strong>João Guilherme Teixeira Cardoso da Silva (Líder)</strong>",
-    images: ["emanuela_souza_amaral.webp", "rykelme_cavalcante_de_moura.webp", "yago_de_jesus_ferreira_de_souza.webp", "joao_guilherme_teixeira_cardoso_da_silva.webp"]
+    images: ["aluno_13.webp", "aluno_14.webp", "aluno_15.webp", "aluno_16.webp"]
   },
   {
     id: "574",
     name: "Requiem",
     members: "Wallace Reis Soares, Aryane Nazare Melo de Oliveira, Gustavo Barroso Santiago, <strong>Pedro Sales de Souza (Líder)</strong>",
-    images: ["wallace_reis_soares.webp", "aryane_nazare_melo_de_oliveira.webp", "gustavo_barroso_santiago.webp", "pedro_sales_de_souza.webp"]
+    images: ["aluno_17.webp", "aluno_18.webp", "aluno_19.webp", "aluno_20.webp"]
   },
   {
     id: "578",
     name: "Tec",
     members: "<strong>Kauã Gabriel Fernandes Amaral (Líder)</strong>, Samuel Abner Silva da Silva, Rômulo Caio da Silva de Oliveira",
-    images: ["kaua_gabriel_fernandes_amaral.webp", "samuel_abner_silva_da_silva.webp", "romulo_caio_da_silva_de_oliveira.webp"]
+    images: ["aluno_21.webp", "aluno_22.webp", "romulo_caio_da_silva_de_oliveira.webp"]
   },
   {
     id: "576",
     name: "Smile Friends",
     members: "Abner Santiago Amaral Lopes, Josué Carvalho de Abreu, Marcelo Henrique Pereira Silva de Souza, <strong>Luiz Henrique Ferreira Araújo (Líder)</strong>",
-    images: ["abner_santiago_amaral_lopes.webp", "josue_carvalho_de_abreu.webp", "marcelo_henrique_pereira_silva_de_souza.webp", "luiz_henrique_ferreira_araujo.webp"]
+    images: ["aluno_23.webp", "aluno_24.webp", "aluno_25.webp", "aluno_26.webp"]
   },
   {
     id: "579",
     name: "MFCP",
     members: "<strong>Miguel Carlos Chaves Rodrigues (Líder)</strong>, Felipe Gabriel França da Costa, Cauã Giovanni Pinheiro dos Santos, Pedro Vinícius Costa da Silva",
-    images: ["miguel_carlos_chaves_rodrigues.webp", "felipe_gabriel_franca_da_costa.webp", "caua_giovanni_pinheiro_dos_santos.webp", "pedro_vinicius_costa_da_silva.webp"]
+    images: ["aluno_27.webp", "aluno_28.webp", "aluno_29.webp", "aluno_30.webp"]
   },
   {
     id: "580",
     name: "JJM",
     members: "<strong>João Danilo Gomes Acácio (Líder)</strong>, Mikael Chrystian Duarte Melo, João Guilherme Seabra de Castro",
-    images: ["joao_danilo_gomes_acacio.webp", "mikael_chrystian_duarte_melo.webp", "joao_guilherme_seabra_de_castro.webp"]
+    images: ["aluno_31.webp", "mikael_chrystian_duarte_melo.webp", "aluno_32.webp"]
   }
 ];
 
@@ -524,7 +524,13 @@ let xp = 0;
 let unlockedBadges = new Set();
 
 // Teacher Mode State
-let isTeacherMode = false;
+let isTeacherMode = sessionStorage.getItem("desafio_teacher_unlocked") === "true";
+
+// Gamification and Audio State
+let audioMuted = localStorage.getItem("desafio_audio_muted") === "true";
+let streakCount = 0;
+let currentLevel = 1;
+let notesState = {}; // Save notes per question code
 
 // Elements
 const squadSelectSection = document.getElementById("squad-select-section");
@@ -586,9 +592,20 @@ function initSimulado() {
   hintsUsed = {};
   xp = 0;
   unlockedBadges.clear();
+  streakCount = 0;
+  currentLevel = 1;
+  notesState = {};
   updateXpDisplay();
   renderSidebar();
   loadQuestion(0);
+
+  // Setup Advanced Didactics & Gamification
+  setupAudioToggle();
+  setupScratchpadCanvas();
+  setupLogicSimulator();
+  setupScratchpadNotes();
+  setupDidacticDrawer();
+  updateLevelProgress();
 
   // Set up the sidebar squad selection listener
   const sidebarSelectDropdown = document.getElementById("squad-select-dropdown");
@@ -672,7 +689,18 @@ function initSimulado() {
     hintsUsed = {};
     xp = 0;
     unlockedBadges.clear();
+    streakCount = 0;
+    currentLevel = 1;
+    notesState = {};
     updateXpDisplay();
+    updateStreakDisplay();
+    
+    // Clear drawing canvas if it exists
+    const canvas = document.getElementById("scratchpad-canvas");
+    if (canvas) {
+      const ctx = canvas.getContext("2d");
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
     
     if (sidebarSelectDropdown) {
       sidebarSelectDropdown.value = "";
@@ -695,20 +723,32 @@ function initSimulado() {
   const teacherProjectionControls = document.getElementById("teacher-projection-controls");
   const conceptPanel = document.getElementById("concept-panel");
 
+  // Sync initial state of Teacher Mode UI elements
+  if (isTeacherMode) {
+    if (btnToggleTeacherMode) btnToggleTeacherMode.innerHTML = "<span>👨‍🏫</span> Desativar Modo Aula";
+    if (teacherProjectionControls) teacherProjectionControls.style.display = "block";
+  } else {
+    if (btnToggleTeacherMode) btnToggleTeacherMode.innerHTML = "<span>👨‍🏫</span> Ativar Modo Aula";
+    if (teacherProjectionControls) teacherProjectionControls.style.display = "none";
+  }
+
   btnToggleTeacherMode?.addEventListener("click", () => {
     if (isTeacherMode) {
       isTeacherMode = false;
+      sessionStorage.setItem("desafio_teacher_unlocked", "false");
       if (btnToggleTeacherMode) btnToggleTeacherMode.innerHTML = "<span>👨‍🏫</span> Ativar Modo Aula";
       if (teacherProjectionControls) teacherProjectionControls.style.display = "none";
       const teacherPanel = document.getElementById("teacher-panel");
       if (teacherPanel) teacherPanel.style.display = "none";
+      loadQuestion(currentQuestionIndex); // reload to hide highlights
     } else {
       const pwd = prompt("Digite a senha do professor:");
-      if (pwd === "admin2026") {
+      if (pwd === "admin2026" || pwd === "dados2026") {
         isTeacherMode = true;
+        sessionStorage.setItem("desafio_teacher_unlocked", "true");
         if (btnToggleTeacherMode) btnToggleTeacherMode.innerHTML = "<span>👨‍🏫</span> Desativar Modo Aula";
         if (teacherProjectionControls) teacherProjectionControls.style.display = "block";
-        loadQuestion(currentQuestionIndex);
+        loadQuestion(currentQuestionIndex); // reload to show highlights
       } else {
         alert("Senha incorreta!");
       }
@@ -734,8 +774,20 @@ function initSimulado() {
 
 // Load Question in Wizard
 function loadQuestion(index) {
+  // Save notes of the previous question before changing currentQuestionIndex
+  const scratchpadText = document.getElementById("scratchpad-text");
+  const prevQuestion = QUESTIONS_DATABASE[currentQuestionIndex];
+  if (scratchpadText && prevQuestion) {
+    notesState[prevQuestion.code] = scratchpadText.value;
+  }
+
   currentQuestionIndex = index;
   const q = QUESTIONS_DATABASE[index];
+
+  // Load notes of the new question
+  if (scratchpadText) {
+    scratchpadText.value = notesState[q.code] || "";
+  }
 
   // Update UI Elements
   if (questionNumberLabel) questionNumberLabel.textContent = q.code;
@@ -777,12 +829,20 @@ function loadQuestion(index) {
     questionOptionsWrapper.innerHTML = "";
     const selectedAnswers = answersState[q.code] || [];
 
+    const correctDecrypted = q.resposta_enc ? atob(q.resposta_enc) : "";
+    const correctArray = correctDecrypted.split(",");
+
     q.options.forEach(opt => {
       const optionChar = opt.charAt(0); // A, B, C, D, E
       const isChecked = selectedAnswers.includes(optionChar);
+      const isCorrectOption = correctArray.includes(optionChar);
       
       const label = document.createElement("label");
-      label.className = `option-item glass-panel ${isChecked ? 'selected' : ''}`;
+      
+      let itemClass = "option-item glass-panel";
+      if (isChecked) itemClass += " selected";
+      if (isTeacherMode && isCorrectOption) itemClass += " teacher-correct";
+      label.className = itemClass;
       
       const inputType = q.tipo === "múltipla seleção" ? "checkbox" : "radio";
       const input = document.createElement("input");
@@ -876,6 +936,7 @@ function loadQuestion(index) {
     if (teacherPanel) teacherPanel.style.display = "none";
   }
 
+  updateFlashcardUI();
   updateProgress();
 }
 
@@ -897,6 +958,8 @@ function checkAnswerAndGiveFeedback() {
       xp += 15; // 15 XP for discursivas
       localStorage.setItem(stateKey, "true");
       updateXpDisplay();
+      playSound("correct");
+      checkLevelUp();
     }
     
     showVerifyFeedback(true, "Rascunho salvo! Esta resposta discursiva será gravada em seu relatório final de entrega.");
@@ -928,6 +991,7 @@ function checkAnswerAndGiveFeedback() {
   const stateKeyXP = `${q.code}_xp_awarded`;
   
   if (isCorrect) {
+    playSound("correct");
     showVerifyFeedback(true, q.justificativa);
     btnCheckAnswer.disabled = true;
     
@@ -936,17 +1000,42 @@ function checkAnswerAndGiveFeedback() {
 
     // Award XP (if not already awarded for this question)
     if (!localStorage.getItem(stateKeyXP)) {
+      streakCount++;
+      
       const hintBonus = hintsUsed[q.code] ? 5 : 10;
-      xp += hintBonus;
+      let finalBonus = hintBonus;
+      let comboBonus = 0;
+      
+      if (streakCount >= 2) {
+        comboBonus = streakCount - 1;
+        finalBonus += comboBonus;
+      }
+      
+      xp += finalBonus;
       localStorage.setItem(stateKeyXP, "true");
       updateXpDisplay();
       
+      updateStreakDisplay();
+      
+      if (comboBonus > 0) {
+        showToast(`🔥 Combo! Seu squad acertou ${streakCount} questões seguidas! (+${comboBonus} XP Combo)`);
+      }
+      
+      checkLevelUp();
+      
       // Trigger celebration
       triggerConfetti();
+    } else {
+      streakCount++;
+      updateStreakDisplay();
     }
   } else {
+    playSound("incorrect");
     showVerifyFeedback(false, "Alternativa incorreta! Revise o enunciado, leia a 'Dica' se precisar, e tente novamente.");
     answersState[`${q.code}_status`] = "verified-incorrect";
+    
+    streakCount = 0;
+    updateStreakDisplay();
   }
 
   checkAndUnlockBadges();
@@ -1026,6 +1115,7 @@ function updateXpDisplay() {
   if (xpCounter) {
     xpCounter.textContent = `${xp} XP`;
   }
+  updateLevelProgress();
 }
 
 // Gamification: Badges system
@@ -1075,18 +1165,8 @@ function unlockBadge(id) {
     unlockedBadges.add(id);
     const badge = BADGES.find(b => b.id === id);
     if (badge) {
-      // Small trigger toast notification for unlocking
-      const toastContainer = document.getElementById("toast-container-element");
-      if (toastContainer) {
-        const toast = document.createElement("div");
-        toast.className = "toast";
-        toast.innerHTML = `<span class="toast-icon">${badge.icon}</span> <span class="toast-message">Conquista Desbloqueada: ${badge.title}!</span>`;
-        toastContainer.appendChild(toast);
-        setTimeout(() => {
-          toast.classList.add("fade-out");
-          setTimeout(() => { toastContainer.removeChild(toast); }, 350);
-        }, 4000);
-      }
+      playSound("badge");
+      showToast(`Conquista Desbloqueada: ${badge.title}!`, badge.icon);
     }
   }
 }
@@ -1688,7 +1768,446 @@ function encryptCaesar(str, shift) {
   return result;
 }
 
+// ============================================================
+// GAMIFICATION & AUDIO SYNTHESIZER UTILITIES
+// ============================================================
+
+function playSound(type) {
+  if (audioMuted) return;
+  try {
+    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    
+    if (type === "correct") {
+      playTone(audioCtx, 523.25, "sine", 0.08, 0.08); // C5
+      setTimeout(() => playTone(audioCtx, 659.25, "sine", 0.12, 0.08), 80); // E5
+    } else if (type === "incorrect") {
+      playTone(audioCtx, 180, "triangle", 0.15, 0.12);
+      setTimeout(() => playTone(audioCtx, 120, "triangle", 0.2, 0.12), 100);
+    } else if (type === "badge" || type === "levelup") {
+      const notes = [261.63, 329.63, 392.00, 523.25, 659.25]; // C4, E4, G4, C5, E5
+      notes.forEach((freq, i) => {
+        setTimeout(() => playTone(audioCtx, freq, "sine", 0.12, 0.06), i * 100);
+      });
+    }
+  } catch (e) {
+    console.warn("Web Audio API blocked or not supported", e);
+  }
+}
+
+function playTone(ctx, freq, type, duration, volume) {
+  const osc = ctx.createOscillator();
+  const gain = ctx.createGain();
+  osc.type = type;
+  osc.frequency.value = freq;
+  
+  gain.gain.setValueAtTime(volume, ctx.currentTime);
+  gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + duration);
+  
+  osc.connect(gain);
+  gain.connect(ctx.destination);
+  
+  osc.start();
+  osc.stop(ctx.currentTime + duration);
+}
+
+function getLevelInfo(totalXp) {
+  if (totalXp < 40) {
+    return { level: 1, currentMin: 0, nextMin: 40, label: "Nível 1" };
+  } else if (totalXp < 90) {
+    return { level: 2, currentMin: 40, nextMin: 90, label: "Nível 2" };
+  } else if (totalXp < 150) {
+    return { level: 3, currentMin: 90, nextMin: 150, label: "Nível 3" };
+  } else if (totalXp < 220) {
+    return { level: 4, currentMin: 150, nextMin: 220, label: "Nível 4" };
+  } else {
+    return { level: 5, currentMin: 220, nextMin: 9999, label: "Nível 5 (Máximo)" };
+  }
+}
+
+function checkLevelUp() {
+  const info = getLevelInfo(xp);
+  if (info.level > currentLevel) {
+    currentLevel = info.level;
+    playSound("levelup");
+    showToast(`🌟 Nível Subiu! Seu squad subiu para o Nível ${currentLevel}! 🚀`, "🌟");
+    triggerConfetti();
+  }
+  updateLevelProgress();
+}
+
+function updateLevelProgress() {
+  const levelLabel = document.getElementById("level-label");
+  const levelBarInner = document.getElementById("level-bar-inner");
+  const xpCurrent = document.getElementById("level-xp-current");
+  const xpNext = document.getElementById("level-xp-next");
+  
+  if (!levelLabel || !levelBarInner || !xpCurrent || !xpNext) return;
+  
+  const info = getLevelInfo(xp);
+  currentLevel = info.level;
+  
+  levelLabel.textContent = `Nível ${info.level}`;
+  
+  if (info.level === 5) {
+    levelBarInner.style.width = "100%";
+    xpCurrent.textContent = `${xp} XP`;
+    xpNext.textContent = "Nível Máximo alcançado!";
+  } else {
+    const levelRange = info.nextMin - info.currentMin;
+    const progressInLevel = xp - info.currentMin;
+    const pct = Math.min(100, Math.max(0, (progressInLevel / levelRange) * 100));
+    
+    levelBarInner.style.width = `${pct}%`;
+    xpCurrent.textContent = `${xp} XP`;
+    xpNext.textContent = `${info.nextMin - xp} XP para o Nível ${info.level + 1}`;
+  }
+}
+
+function updateStreakDisplay() {
+  const streakRow = document.getElementById("streak-row");
+  const streakCounter = document.getElementById("streak-counter");
+  if (!streakRow || !streakCounter) return;
+
+  if (streakCount >= 2) {
+    streakCounter.textContent = `${streakCount}x`;
+    streakRow.style.display = "flex";
+  } else {
+    streakRow.style.display = "none";
+  }
+}
+
+function showToast(message, icon = "🌟") {
+  const toastContainer = document.getElementById("toast-container-element");
+  if (toastContainer) {
+    const toast = document.createElement("div");
+    toast.className = "toast";
+    toast.innerHTML = `<span class="toast-icon">${icon}</span> <span class="toast-message">${message}</span>`;
+    toastContainer.appendChild(toast);
+    setTimeout(() => {
+      toast.classList.add("fade-out");
+      setTimeout(() => {
+        if (toast.parentNode === toastContainer) {
+          toastContainer.removeChild(toast);
+        }
+      }, 350);
+    }, 4000);
+  }
+}
+
+// ============================================================
+// STUDY TOOLS & DIDACTICS INITIALIZERS
+// ============================================================
+
+function setupAudioToggle() {
+  const btnToggleAudio = document.getElementById("btn-toggle-audio");
+  if (!btnToggleAudio) return;
+
+  btnToggleAudio.textContent = audioMuted ? "🔇" : "🔊";
+  
+  const newBtn = btnToggleAudio.cloneNode(true);
+  btnToggleAudio.parentNode.replaceChild(newBtn, btnToggleAudio);
+
+  newBtn.addEventListener("click", () => {
+    audioMuted = !audioMuted;
+    localStorage.setItem("desafio_audio_muted", audioMuted.toString());
+    newBtn.textContent = audioMuted ? "🔇" : "🔊";
+    if (!audioMuted) {
+      playSound("correct");
+    }
+  });
+}
+
+function setupScratchpadCanvas() {
+  const canvas = document.getElementById("scratchpad-canvas");
+  const clearBtn = document.getElementById("btn-clear-canvas");
+  const colorBtns = document.querySelectorAll(".color-pick");
+  if (!canvas) return;
+
+  let drawing = false;
+  let drawColor = "#32f0a1"; // Green default
+  let lastX = 0;
+  let lastY = 0;
+
+  function getCanvasMousePos(canvasDom, clientX, clientY) {
+    const rect = canvasDom.getBoundingClientRect();
+    return {
+      x: (clientX - rect.left) * (canvasDom.width / rect.width),
+      y: (clientY - rect.top) * (canvasDom.height / rect.height)
+    };
+  }
+
+  function startDrawing(e) {
+    drawing = true;
+    const clientX = e.clientX || (e.touches && e.touches[0].clientX);
+    const clientY = e.clientY || (e.touches && e.touches[0].clientY);
+    const pos = getCanvasMousePos(canvas, clientX, clientY);
+    lastX = pos.x;
+    lastY = pos.y;
+  }
+
+  function draw(e) {
+    if (!drawing) return;
+    const ctx = canvas.getContext("2d");
+    const clientX = e.clientX || (e.touches && e.touches[0].clientX);
+    const clientY = e.clientY || (e.touches && e.touches[0].clientY);
+    const pos = getCanvasMousePos(canvas, clientX, clientY);
+    
+    ctx.beginPath();
+    ctx.strokeStyle = drawColor;
+    ctx.lineWidth = 3;
+    ctx.lineCap = "round";
+    ctx.lineJoin = "round";
+    ctx.moveTo(lastX, lastY);
+    ctx.lineTo(pos.x, pos.y);
+    ctx.stroke();
+    
+    lastX = pos.x;
+    lastY = pos.y;
+    
+    if (e.touches) {
+      e.preventDefault();
+    }
+  }
+
+  function stopDrawing() {
+    drawing = false;
+  }
+
+  canvas.removeEventListener("mousedown", startDrawing);
+  canvas.removeEventListener("mousemove", draw);
+  canvas.removeEventListener("mouseup", stopDrawing);
+  canvas.removeEventListener("mouseleave", stopDrawing);
+  canvas.removeEventListener("touchstart", startDrawing);
+  canvas.removeEventListener("touchmove", draw);
+  canvas.removeEventListener("touchend", stopDrawing);
+
+  canvas.addEventListener("mousedown", startDrawing);
+  canvas.addEventListener("mousemove", draw);
+  canvas.addEventListener("mouseup", stopDrawing);
+  canvas.addEventListener("mouseleave", stopDrawing);
+
+  canvas.addEventListener("touchstart", startDrawing, { passive: false });
+  canvas.addEventListener("touchmove", draw, { passive: false });
+  canvas.addEventListener("touchend", stopDrawing);
+
+  clearBtn?.addEventListener("click", () => {
+    const ctx = canvas.getContext("2d");
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  });
+
+  colorBtns.forEach(btn => {
+    btn.addEventListener("click", () => {
+      colorBtns.forEach(b => {
+        b.classList.remove("active");
+        b.style.border = "0";
+      });
+      btn.classList.add("active");
+      btn.style.border = "2px solid white";
+      drawColor = btn.getAttribute("data-color");
+    });
+  });
+}
+
+function setupScratchpadNotes() {
+  const scratchpadText = document.getElementById("scratchpad-text");
+  if (!scratchpadText) return;
+
+  scratchpadText.addEventListener("input", () => {
+    const q = QUESTIONS_DATABASE[currentQuestionIndex];
+    if (q) {
+      notesState[q.code] = scratchpadText.value;
+    }
+  });
+}
+
+function setupLogicSimulator() {
+  const logicA = document.getElementById("logic-a");
+  const logicB = document.getElementById("logic-b");
+  const logicOp = document.getElementById("logic-op");
+  const logicResult = document.getElementById("logic-result");
+  if (!logicA || !logicB || !logicOp || !logicResult) return;
+
+  function updateLogicSimulator() {
+    const aVal = parseInt(logicA.value);
+    const bVal = parseInt(logicB.value);
+    const op = logicOp.value;
+    
+    let res = 0;
+    if (op === "AND") {
+      res = aVal && bVal;
+    } else if (op === "OR") {
+      res = aVal || bVal;
+    } else if (op === "XOR") {
+      res = aVal !== bVal ? 1 : 0;
+    }
+    
+    logicResult.textContent = res ? "1 (Verdadeiro)" : "0 (Falso)";
+    logicResult.style.color = res ? "var(--green)" : "var(--text-soft)";
+
+    // Visual circuit updates
+    const visA = document.getElementById("visual-input-a");
+    const visB = document.getElementById("visual-input-b");
+    const visGate = document.getElementById("visual-gate");
+    const visRes = document.getElementById("visual-result");
+    const wireA = document.getElementById("wire-a");
+    const wireB = document.getElementById("wire-b");
+    const wireOut = document.getElementById("wire-out");
+
+    if (visA) {
+      visA.textContent = `A: ${aVal}`;
+      visA.style.background = aVal ? "rgba(33, 216, 255, 0.15)" : "rgba(255,255,255,0.05)";
+      visA.style.borderColor = aVal ? "var(--cyan)" : "var(--line-dark)";
+    }
+    if (visB) {
+      visB.textContent = `B: ${bVal}`;
+      visB.style.background = bVal ? "rgba(33, 216, 255, 0.15)" : "rgba(255,255,255,0.05)";
+      visB.style.borderColor = bVal ? "var(--cyan)" : "var(--line-dark)";
+    }
+    if (visGate) {
+      visGate.textContent = op;
+      visGate.style.borderColor = res ? "var(--green)" : "var(--line-dark)";
+      visGate.style.color = res ? "var(--green)" : "var(--amber)";
+    }
+    if (visRes) {
+      visRes.textContent = `SAÍDA: ${res}`;
+      visRes.style.background = res ? "rgba(50, 240, 161, 0.15)" : "rgba(255,255,255,0.05)";
+      visRes.style.borderColor = res ? "var(--green)" : "var(--line-dark)";
+      visRes.style.color = res ? "var(--green)" : "var(--text-inverse)";
+    }
+    if (wireA) wireA.style.background = aVal ? "var(--cyan)" : "#334e68";
+    if (wireB) wireB.style.background = bVal ? "var(--cyan)" : "#334e68";
+    if (wireOut) wireOut.style.background = res ? "var(--green)" : "#334e68";
+  }
+
+  logicA.addEventListener("change", updateLogicSimulator);
+  logicB.addEventListener("change", updateLogicSimulator);
+  logicOp.addEventListener("change", updateLogicSimulator);
+  updateLogicSimulator();
+}
+
 // Start simulation engine on load
 window.addEventListener("DOMContentLoaded", () => {
   initSimulado();
 });
+
+function setupDidacticDrawer() {
+  const btnToggleLousa = document.getElementById("btn-toggle-lousa");
+  const drawer = document.getElementById("didactic-tools-drawer");
+  if (!btnToggleLousa || !drawer) return;
+
+  btnToggleLousa.addEventListener("click", () => {
+    const isHidden = drawer.style.display === "none";
+    drawer.style.display = isHidden ? "block" : "none";
+    btnToggleLousa.textContent = isHidden ? "✏️ Fechar Lousa" : "✏️ Abrir Lousa";
+    btnToggleLousa.classList.toggle("active", isHidden);
+  });
+
+  // Tab switching logic
+  const tabBtns = drawer.querySelectorAll(".tab-btn");
+  const tabContents = drawer.querySelectorAll(".tool-tab-content");
+
+  tabBtns.forEach(btn => {
+    btn.addEventListener("click", () => {
+      const targetTab = btn.getAttribute("data-tool-tab");
+      
+      // Update tab buttons active state
+      tabBtns.forEach(b => {
+        b.classList.remove("active");
+        b.style.background = "rgba(255,255,255,0.08)";
+        b.style.color = "var(--text-inverse)";
+      });
+      btn.classList.add("active");
+      btn.style.background = "var(--amber)";
+      btn.style.color = "#001826";
+
+      // Update tab contents visibility
+      tabContents.forEach(content => {
+        content.style.display = "none";
+      });
+      const targetContent = document.getElementById(`tab-${targetTab}`);
+      if (targetContent) {
+        targetContent.style.display = "block";
+      }
+
+      if (targetTab === "draw") {
+        setupScratchpadCanvas();
+      } else if (targetTab === "flashcards") {
+        updateFlashcardUI();
+      }
+    });
+  });
+
+  // Flashcard Interactivity
+  const flashcardTrigger = document.getElementById("flashcard-click-trigger");
+  const flashcardInner = document.getElementById("flashcard-inner");
+  if (flashcardTrigger && flashcardInner) {
+    flashcardTrigger.addEventListener("click", () => {
+      flashcardInner.classList.toggle("flipped");
+    });
+  }
+
+  // Claim XP logic
+  const btnClaimXp = document.getElementById("btn-claim-flashcard-xp");
+  
+  btnClaimXp?.addEventListener("click", (e) => {
+    e.stopPropagation(); // Avoid flipping the card when clicking the button
+    const q = QUESTIONS_DATABASE[currentQuestionIndex];
+    if (!q) return;
+
+    const claimedFlashcards = new Set(JSON.parse(localStorage.getItem("desafio_claimed_flashcards") || "[]"));
+
+    if (claimedFlashcards.has(q.code)) {
+      showToast("Você já coletou o bônus de estudo deste conceito!", "info");
+      return;
+    }
+
+    claimedFlashcards.add(q.code);
+    localStorage.setItem("desafio_claimed_flashcards", JSON.stringify(Array.from(claimedFlashcards)));
+    
+    // Add XP
+    xp += 5;
+    updateXpDisplay();
+    updateLevelProgress();
+    playSound("levelup");
+    showToast("🎓 Conceito Estudado! +5 XP de bônus obtido!", "success");
+    
+    // Visual feedback on button
+    btnClaimXp.textContent = "Conceito Concluído! ✓";
+    btnClaimXp.style.opacity = "0.7";
+    btnClaimXp.disabled = true;
+  });
+}
+
+function updateFlashcardUI() {
+  const q = QUESTIONS_DATABASE[currentQuestionIndex];
+  if (!q) return;
+
+  const ped = PEDAGOGICAL_DATA[q.code];
+  const frontTitle = document.getElementById("flashcard-front-title");
+  const frontConcept = document.getElementById("flashcard-front-concept");
+  const backNotes = document.getElementById("flashcard-back-notes");
+  const btnClaimXp = document.getElementById("btn-claim-flashcard-xp");
+  const flashcardInner = document.getElementById("flashcard-inner");
+
+  // Reset flip
+  if (flashcardInner) {
+    flashcardInner.classList.remove("flipped");
+  }
+
+  if (frontTitle) frontTitle.textContent = `Ficha da Questão ${q.code}`;
+  if (frontConcept) frontConcept.textContent = ped ? ped.concept : "Conceito de ciência de dados relevante para a questão.";
+  if (backNotes) backNotes.textContent = ped ? ped.notes : "Notas adicionais de lousa do professor.";
+
+  const claimedFlashcards = new Set(JSON.parse(localStorage.getItem("desafio_claimed_flashcards") || "[]"));
+  if (btnClaimXp) {
+    if (claimedFlashcards.has(q.code)) {
+      btnClaimXp.textContent = "Conceito Concluído! ✓";
+      btnClaimXp.style.opacity = "0.7";
+      btnClaimXp.disabled = true;
+    } else {
+      btnClaimXp.textContent = "Estudei esse Conceito (+5 XP) 🎓";
+      btnClaimXp.style.opacity = "1";
+      btnClaimXp.disabled = false;
+    }
+  }
+}
