@@ -7,61 +7,61 @@ const SQUADS_LIST = [
     id: "581",
     name: "Infinity Tech",
     members: "Emilly Layse Nunes Eleres, Felipe Diamantino da Silva, <strong>Estefany Lourrane Moreira da Silva (Líder)</strong>, Pedro Lucas Espindola Moraes",
-    images: ["aluno_1.webp", "aluno_2.webp", "aluno_3.webp", "aluno_4.webp"]
+    images: ["emilly_layse_nunes_eleres.webp", "felipe_diamantino_da_silva.webp", "estefany_lourrane_moreira_da_silva.webp", "pedro_lucas_espindola_moraes.webp"]
   },
   {
     id: "568",
     name: "AS++",
     members: "<strong>Carla Regina dos Santos (Líder)</strong>, Myrza da Silva Alhadef, Dafne da Silva Carvalho",
-    images: ["aluno_5.webp", "aluno_6.webp", "aluno_dafne_cartoon.png"]
+    images: ["carla_regina_dos_santos.webp", "myrza_da_silva_alhadef.webp", "dafne_da_silva_carvalho.webp"]
   },
   {
     id: "570",
     name: "Tronadores",
     members: "Matheus Neyson do Carmo de Souza, Yan Walber de Oliveira Mandu, Hendrew Nascimento Negrão, <strong>Rodrigo Daniel Batista dos Santos (Líder)</strong>",
-    images: ["aluno_7.webp", "aluno_8.webp", "aluno_9.webp", "aluno_10.webp"]
+    images: ["matheus_neyson_do_carmo_de_souza.webp", "yan_walber_de_oliveira_mandu.webp", "hendrew_nascimento_negrao.webp", "rodrigo_daniel_batista_dos_santos.webp"]
   },
   {
     id: "571",
     name: "Comando SQL",
     members: "<strong>Christian dos Santos Paraguassu (Líder)</strong>, Carlos Eduardo dos Santos Teixeira, Miguel Rocca de Araújo",
-    images: ["aluno_11.webp", "aluno_12.webp", "aluno_miguel_cartoon.png"]
+    images: ["christian_dos_santos_paraguassu.webp", "carlos_eduardo_dos_santos_teixeira.webp", "miguel_rocca_de_araujo.webp"]
   },
   {
     id: "572",
     name: "REJY",
     members: "Emanuela Souza Amaral, Rykelme Cavalcante de Moura, Yago de Jesus Ferreira de Souza, <strong>João Guilherme Teixeira Cardoso da Silva (Líder)</strong>",
-    images: ["aluno_13.webp", "aluno_14.webp", "aluno_15.webp", "aluno_16.webp"]
+    images: ["emanuela_souza_amaral.webp", "rykelme_cavalcante_de_moura.webp", "yago_de_jesus_ferreira_de_souza.webp", "joao_guilherme_teixeira_cardoso_da_silva.webp"]
   },
   {
     id: "574",
     name: "Requiem",
     members: "Wallace Reis Soares, Aryane Nazare Melo de Oliveira, Gustavo Barroso Santiago, <strong>Pedro Sales de Souza (Líder)</strong>",
-    images: ["aluno_17.webp", "aluno_18.webp", "aluno_19.webp", "aluno_20.webp"]
+    images: ["wallace_reis_soares.webp", "aryane_nazare_melo_de_oliveira.webp", "gustavo_barroso_santiago.webp", "pedro_sales_de_souza.webp"]
   },
   {
     id: "578",
     name: "Tec",
     members: "<strong>Kauã Gabriel Fernandes Amaral (Líder)</strong>, Samuel Abner Silva da Silva, Rômulo Caio da Silva de Oliveira",
-    images: ["aluno_21.webp", "aluno_22.webp", "aluno_romulo_cartoon.png"]
+    images: ["kaua_gabriel_fernandes_amaral.webp", "samuel_abner_silva_da_silva.webp", "romulo_caio_da_silva_de_oliveira.webp"]
   },
   {
     id: "576",
     name: "Smile Friends",
     members: "Abner Santiago Amaral Lopes, Josué Carvalho de Abreu, Marcelo Henrique Pereira Silva de Souza, <strong>Luiz Henrique Ferreira Araújo (Líder)</strong>",
-    images: ["aluno_23.webp", "aluno_24.webp", "aluno_25.webp", "aluno_26.webp"]
+    images: ["abner_santiago_amaral_lopes.webp", "josue_carvalho_de_abreu.webp", "marcelo_henrique_pereira_silva_de_souza.webp", "luiz_henrique_ferreira_araujo.webp"]
   },
   {
     id: "579",
     name: "MFCP",
     members: "<strong>Miguel Carlos Chaves Rodrigues (Líder)</strong>, Felipe Gabriel França da Costa, Cauã Giovanni Pinheiro dos Santos, Pedro Vinícius Costa da Silva",
-    images: ["aluno_27.webp", "aluno_28.webp", "aluno_29.webp", "aluno_30.webp"]
+    images: ["miguel_carlos_chaves_rodrigues.webp", "felipe_gabriel_franca_da_costa.webp", "caua_giovanni_pinheiro_dos_santos.webp", "pedro_vinicius_costa_da_silva.webp"]
   },
   {
     id: "580",
     name: "JJM",
     members: "<strong>João Danilo Gomes Acácio (Líder)</strong>, Mikael Chrystian Duarte Melo, João Guilherme Seabra de Castro",
-    images: ["aluno_31.webp", "aluno_mikael_cartoon.png", "aluno_sem_rosto.png"]
+    images: ["joao_danilo_gomes_acacio.webp", "mikael_chrystian_duarte_melo.webp", "joao_guilherme_seabra_de_castro.webp"]
   }
 ];
 

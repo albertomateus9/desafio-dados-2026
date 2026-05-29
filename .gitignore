@@ -16,3 +16,6 @@ build/
 # Pastas de saida locais e testes do Playwright
 output/
 
+# Source high-resolution images
+assets/alunos/*.png
+
