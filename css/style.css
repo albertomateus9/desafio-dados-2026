@@ -2966,9 +2966,124 @@ h3 {
 }
 
 [data-theme="light"] .flashcard-back {
-  background: rgba(255, 189, 51, 0.06);
   border-color: #c48c08;
   color: #000000;
+}
+
+/* Flashing Warning Banner */
+.db-warning-banner,
+.db-warning-banner-sticky {
+  background: rgba(239, 68, 68, 0.08);
+  border: 1.5px dashed #ef4444;
+  border-radius: 8px;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  text-align: left;
+  margin-bottom: 20px;
+  color: #fca5a5;
+  box-shadow: 0 4px 15px rgba(239, 68, 68, 0.05);
+}
+
+[data-theme="light"] .db-warning-banner,
+[data-theme="light"] .db-warning-banner-sticky {
+  background: rgba(239, 68, 68, 0.05);
+  border-color: #dc2626;
+  color: #991b1b;
+  box-shadow: 0 4px 15px rgba(239, 68, 68, 0.02);
+}
+
+.db-warning-banner-sticky {
+  grid-column: 1 / -1;
+  margin-bottom: 0;
+}
+
+.warning-icon {
+  font-size: 2.25rem;
+  animation: pulse-warning 1s infinite alternate;
+  flex-shrink: 0;
+}
+
+.warning-content strong {
+  color: #ef4444;
+  font-size: 1.05rem;
+  display: block;
+  margin-bottom: 4px;
+}
+
+[data-theme="light"] .warning-content strong {
+  color: #dc2626;
+}
+
+.warning-content p {
+  margin: 4px 0 0 0;
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
+[data-theme="dark"] .warning-content p {
+  color: #cbd5e1;
+}
+
+[data-theme="light"] .warning-content p {
+  color: #334155;
+}
+
+@keyframes pulse-warning {
+  from {
+    transform: scale(1);
+    opacity: 1;
+    filter: drop-shadow(0 0 2px rgba(239, 68, 68, 0.4));
+  }
+  to {
+    transform: scale(1.15);
+    opacity: 0.75;
+    filter: drop-shadow(0 0 8px rgba(239, 68, 68, 0.8));
+  }
+}
+
+.flashing-warning {
+  animation: border-flash 1.5s infinite;
+}
+
+@keyframes border-flash {
+  0% {
+    border-color: #ef4444;
+    box-shadow: 0 0 4px rgba(239, 68, 68, 0.2);
+  }
+  50% {
+    border-color: #b91c1c;
+    box-shadow: 0 0 12px rgba(239, 68, 68, 0.4);
+  }
+  100% {
+    border-color: #ef4444;
+    box-shadow: 0 0 4px rgba(239, 68, 68, 0.2);
+  }
+}
+
+[data-theme="light"] .flashing-warning {
+  animation: border-flash-light 1.5s infinite;
+}
+
+@keyframes border-flash-light {
+  0% {
+    border-color: #dc2626;
+    box-shadow: 0 0 4px rgba(220, 38, 38, 0.1);
+  }
+  50% {
+    border-color: #991b1b;
+    box-shadow: 0 0 10px rgba(220, 38, 38, 0.3);
+  }
+  100% {
+    border-color: #dc2626;
+    box-shadow: 0 0 4px rgba(220, 38, 38, 0.1);
+  }
+}
+
+/* Selector Gate Section */
+.squad-select-section {
+  display: block;
 }
 
 

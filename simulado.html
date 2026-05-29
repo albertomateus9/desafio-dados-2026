@@ -46,16 +46,124 @@
     </header>
 
     <main class="simulado-main">
-      <!-- Section 2: Quiz Wizard (Visible by default) -->
-      <section class="section section-light quiz-section" id="quiz-section">
+      <!-- Section 1: Startup Selection (Visible by default) -->
+      <section class="section section-light squad-select-section" id="squad-select-section" style="padding: 40px 0;">
+        <div class="container-box select-layout glass-panel" style="max-width: 800px; margin: 0 auto; padding: 30px; text-align: center; border-radius: var(--radius-lg);">
+          
+          <!-- Flashing Warning Banner -->
+          <div class="db-warning-banner flashing-warning" style="margin-bottom: 24px;">
+            <span class="warning-icon">⚠️</span>
+            <div class="warning-content">
+              <strong>ATENÇÃO: NÃO HÁ BANCO DE DADOS NESTA PÁGINA!</strong>
+              <p>Suas respostas são salvas localmente apenas na sessão do navegador. Se você <strong>recarregar a página (F5)</strong> ou fechar o navegador, <strong>perderá todo o seu progresso!</strong></p>
+              <p><strong>IMPORTANTE:</strong> Faça anotações e backup das suas respostas (principalmente as discursivas) em seu caderno ou em um arquivo de texto local (bloco de notas) para evitar qualquer perda!</p>
+            </div>
+          </div>
+
+          <h2 style="margin-bottom: 8px; color: var(--text-inverse); font-weight: 800; font-size: 1.8rem;">Iniciar Simulado Oficial</h2>
+          <p style="color: var(--text-soft); font-size: 0.95rem; margin-bottom: 24px;">
+            Treino oficial para a 1ª Etapa do Desafio dos Dados 2026. As questões deste simulado são as <strong>questões reais oficiais</strong> da 1ª Fase de 2026.
+          </p>
+
+          <div style="display: grid; grid-template-columns: 1.2fr 1fr; gap: 24px; text-align: left; margin-bottom: 24px; flex-wrap: wrap;" class="selection-grid-container">
+            
+            <!-- Left Side Selection Fields -->
+            <div style="display: flex; flex-direction: column; gap: 16px;">
+              <div>
+                <label for="start-squad-select" style="display: block; font-weight: bold; margin-bottom: 6px; color: var(--text-inverse); font-size: 0.9rem;">1. Escolha seu Squad:</label>
+                <select id="start-squad-select" class="glass-input" style="width: 100%; padding: 12px; border-radius: 6px; background: rgba(255,255,255,0.05); color: var(--text-inverse); border: 1px solid var(--line-dark); outline: none;">
+                  <option value="" disabled selected>-- Selecione seu Squad --</option>
+                  <option value="581">Squad 01 — Infinity Tech (ID: 581)</option>
+                  <option value="568">Squad 02 — AS++ (ID: 568)</option>
+                  <option value="570">Squad 03 — Tronadores (ID: 570)</option>
+                  <option value="571">Squad 04 — Comando SQL (ID: 571)</option>
+                  <option value="572">Squad 05 — REJY (ID: 572)</option>
+                  <option value="574">Squad 06 — Requiem (ID: 574)</option>
+                  <option value="578">Squad 07 — Tec (ID: 578)</option>
+                  <option value="576">Squad 08 — Smile Friends (ID: 576)</option>
+                  <option value="579">Squad 09 — MFCP (ID: 579)</option>
+                  <option value="580">Squad 10 — JJM (ID: 580)</option>
+                  <option value="anonymous">Treinar de Forma Anônima / Individual</option>
+                </select>
+              </div>
+
+              <div>
+                <label for="start-year-select" style="display: block; font-weight: bold; margin-bottom: 6px; color: var(--text-inverse); font-size: 0.9rem;">2. Selecione o Ano:</label>
+                <select id="start-year-select" class="glass-input" style="width: 100%; padding: 12px; border-radius: 6px; background: rgba(255,255,255,0.05); color: var(--text-inverse); border: 1px solid var(--line-dark); outline: none;">
+                  <option value="2026" selected>Edição de 2026 (Atual)</option>
+                  <option value="2025">Edição de 2025 (Histórico)</option>
+                  <option value="2024">Edição de 2024 (Histórico)</option>
+                  <option value="2023">Edição de 2023 (Histórico)</option>
+                </select>
+              </div>
+
+              <div>
+                <label for="start-phase-select" style="display: block; font-weight: bold; margin-bottom: 6px; color: var(--text-inverse); font-size: 0.9rem;">3. Selecione a Fase:</label>
+                <select id="start-phase-select" class="glass-input" style="width: 100%; padding: 12px; border-radius: 6px; background: rgba(255,255,255,0.05); color: var(--text-inverse); border: 1px solid var(--line-dark); outline: none;">
+                  <option value="fase1" selected>Fase 1: Transformação Digital</option>
+                  <option value="fase2">Fase 2: Lógica &amp; Programação</option>
+                  <option value="fase3">Fase 3: Armazenamento de Dados</option>
+                  <option value="projetos">Projetos (Etapa 2)</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Right Side Chronogram/Dates panel -->
+            <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--line-dark); border-radius: 8px; padding: 18px;" class="chronogram-box">
+              <h4 style="margin: 0 0 12px 0; color: var(--amber); font-size: 1rem; font-weight: 800; border-bottom: 1px solid var(--line-dark); padding-bottom: 6px; display: flex; align-items: center; gap: 6px;">📅 Cronograma Oficial 2026</h4>
+              <ul style="list-style: none; padding: 0; margin: 0; font-size: 0.8rem; line-height: 1.7; color: var(--text-soft); display: flex; flex-direction: column; gap: 6px;">
+                <li><strong>Inscrições:</strong> 04/05 a 01/06</li>
+                <li><strong>Etapa 1 (Fase 1):</strong> 26/05 a 02/06 (9h)</li>
+                <li><strong>Etapa 1 (Fase 2):</strong> 02/06 (13h) a 09/06 (9h)</li>
+                <li><strong>Etapa 1 (Fase 3):</strong> 09/06 (13h) a 16/06 (9h)</li>
+                <li><strong>Classificação:</strong> 24/06 (20h)</li>
+                <li><strong>Etapa 2 (Projetos):</strong> 24/06 a 31/08</li>
+                <li><strong>Avaliação final:</strong> 31/08 a 14/09</li>
+                <li><strong>Resultado final:</strong> 17/09</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Dynamic Status & Launch Button -->
+          <div id="start-action-container" style="margin-top: 24px; padding: 18px; border-radius: 8px; background: rgba(0,0,0,0.15); border: 1px dashed var(--line-dark);">
+            <div id="start-status-message" style="font-size: 0.9rem; color: var(--text-soft); margin-bottom: 12px; font-weight: 600;">
+              Por favor, escolha seu Squad (ou Treino Anônimo) para liberar o simulado.
+            </div>
+            <button type="button" id="btn-start-simulation" class="btn btn-primary" disabled style="padding: 12px 28px; font-size: 1.05rem; font-weight: 800; border-radius: 6px; cursor: not-allowed; opacity: 0.5;">
+              Iniciar Simulado 🚀
+            </button>
+            <div id="download-materials-box" style="display: none; margin-top: 12px;">
+              <a href="#" id="link-download-pdf" class="btn btn-secondary" style="display: inline-flex; align-items: center; gap: 8px; font-size: 0.85rem;" download>
+                📥 Baixar Caderno de Questões (PDF)
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 2: Quiz Wizard (Hidden by default) -->
+      <section class="section section-light quiz-section" id="quiz-section" style="display: none;">
         <div class="simulado-layout container-box">
           
+          <!-- Sticky Flashing Warning Banner -->
+          <div class="db-warning-banner-sticky flashing-warning" style="margin-bottom: 10px;">
+            <span class="warning-icon" style="font-size: 1.6rem;">⚠️</span>
+            <div class="warning-content">
+              <strong style="font-size: 0.9rem; margin-bottom: 2px;">ATENÇÃO: NÃO HÁ BANCO DE DADOS NESSA PÁGINA!</strong>
+              <p style="margin: 0; font-size: 0.8rem; font-weight: 500; color: var(--text-soft);">
+                Seu progresso é mantido apenas em memória. <strong>Não atualize a página (F5)</strong> ou perderá suas respostas!
+                Faça backup constante das discursivas no seu bloco de notas ou caderno.
+              </p>
+            </div>
+          </div>
+
           <!-- Column 1: Questions Wizard -->
           <div class="quiz-wizard-card glass-panel">
             <div class="quiz-question-header">
-              <div>
+              <div style="display: flex; align-items: center; flex-wrap: wrap; gap: 8px;">
                 <span class="q-code-label" id="q-code-wrapper">Questão <strong id="q-number-label">TD01</strong></span>
                 <span class="q-level-badge" id="q-level-label">Fácil</span>
+                <span style="background: rgba(50,240,161,0.1); border: 1px solid var(--green); color: var(--green); padding: 2px 8px; border-radius: 4px; font-size: 0.72rem; font-weight: 800;">Questões Reais 2026</span>
               </div>
               <span class="q-type-badge" id="q-type-label">múltipla escolha</span>
             </div>
@@ -288,6 +396,7 @@
                   <option value="576">Squad 08 — Smile Friends (ID: 576)</option>
                   <option value="579">Squad 09 — MFCP (ID: 579)</option>
                   <option value="580">Squad 10 — JJM (ID: 580)</option>
+                  <option value="anonymous">Treinar de Forma Anônima / Individual</option>
                 </select>
               </div>
               <div id="squad-info-sidebar" style="display: none; border-top: 1px solid var(--line); padding-top: 10px; margin-top: 10px;">

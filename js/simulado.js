@@ -581,12 +581,145 @@ const btnExportGabarito = document.getElementById("btn-export-gabarito");
 const exportFormatSelect = document.getElementById("export-format-select");
 const btnRestartQuiz = document.getElementById("btn-restart-quiz");
 
+// Startup Selection Elements
+const startSquadSelect = document.getElementById("start-squad-select");
+const startYearSelect = document.getElementById("start-year-select");
+const startPhaseSelect = document.getElementById("start-phase-select");
+const btnStartSimulation = document.getElementById("btn-start-simulation");
+const startStatusMessage = document.getElementById("start-status-message");
+const downloadMaterialsBox = document.getElementById("download-materials-box");
+const linkDownloadPdf = document.getElementById("link-download-pdf");
+
+const PAST_EDITIONS_MAP = {
+  "2025": {
+    "fase1": "fase1_transformacao_digital_2025.pdf",
+    "fase2": "fase2_logica_programacao_2025.pdf",
+    "fase3": "fase3_armazenamento_dados_2025.pdf",
+    "projetos": "etapa2_projetos_orientacoes_2025.pdf"
+  },
+  "2024": {
+    "fase1": "fase1_transformacao_digital_2024.pdf",
+    "fase2": "fase2_logica_programacao_2024.pdf",
+    "fase3": "fase3_armazenamento_dados_2024.pdf",
+    "projetos": "etapa2_projetos_orientacoes_2024.pdf"
+  },
+  "2023": {
+    "fase1": "fase1_transformacao_digital_2023.pdf",
+    "fase2": "fase2_logica_programacao_2023.pdf",
+    "fase3": "fase3_armazenamento_dados_2023.pdf",
+    "projetos": "etapa2_projetos_orientacoes_2023.pdf"
+  }
+};
+
+// Sync squad details with the Sidebar UI panel
+function syncSquadUI() {
+  const sidebarSelectDropdown = document.getElementById("squad-select-dropdown");
+  const squadInfoSidebar = document.getElementById("squad-info-sidebar");
+  const squadMembersList = document.getElementById("squad-members-list");
+  const squadGallerySidebar = document.getElementById("squad-gallery-sidebar");
+
+  if (!selectedSquad) {
+    if (sidebarSelectDropdown) sidebarSelectDropdown.value = "";
+    if (squadInfoSidebar) squadInfoSidebar.style.display = "none";
+    return;
+  }
+
+  if (sidebarSelectDropdown) {
+    sidebarSelectDropdown.value = selectedSquad.id;
+  }
+
+  if (squadInfoSidebar) {
+    squadInfoSidebar.style.display = "block";
+  }
+
+  if (squadMembersList) {
+    squadMembersList.innerHTML = selectedSquad.members;
+  }
+
+  if (squadGallerySidebar) {
+    if (selectedSquad.images.length === 2) {
+      squadGallerySidebar.className = "squad-gallery-sidebar cols-2";
+    } else if (selectedSquad.images.length === 1) {
+      squadGallerySidebar.className = "squad-gallery-sidebar cols-1";
+    } else {
+      squadGallerySidebar.className = "squad-gallery-sidebar";
+    }
+    squadGallerySidebar.innerHTML = selectedSquad.images.map(img => 
+      `<img src="assets/alunos/${img}" alt="Ilustracao do Squad ${selectedSquad.name}" />`
+    ).join("");
+  }
+}
+
+// Update the startup selection message and launch state
+function updateStartupGate() {
+  if (!startSquadSelect || !startYearSelect || !startPhaseSelect || !btnStartSimulation || !startStatusMessage) return;
+
+  const squadVal = startSquadSelect.value;
+  const yearVal = startYearSelect.value;
+  const phaseVal = startPhaseSelect.value;
+
+  // Reset download box
+  if (downloadMaterialsBox) downloadMaterialsBox.style.display = "none";
+
+  // Route based on selections
+  if (yearVal === "2026") {
+    if (phaseVal === "fase1") {
+      if (!squadVal) {
+        btnStartSimulation.disabled = true;
+        btnStartSimulation.style.cursor = "not-allowed";
+        btnStartSimulation.style.opacity = "0.5";
+        startStatusMessage.innerHTML = "Por favor, escolha seu Squad (ou Treino Anônimo) para liberar o simulado.";
+      } else {
+        btnStartSimulation.disabled = false;
+        btnStartSimulation.style.cursor = "pointer";
+        btnStartSimulation.style.opacity = "1";
+        startStatusMessage.innerHTML = "🏁 Simulado de 2026 (Fase 1) liberado! Esta versão contém as <strong>questões reais oficiais</strong> da 1ª Fase de 2026.";
+      }
+    } else if (phaseVal === "fase2") {
+      btnStartSimulation.disabled = true;
+      btnStartSimulation.style.cursor = "not-allowed";
+      btnStartSimulation.style.opacity = "0.5";
+      startStatusMessage.innerHTML = "❌ A Fase 2 (Lógica & Programação) de 2026 estará disponível em: <strong>02/06/2026, às 13h</strong>.";
+    } else if (phaseVal === "fase3") {
+      btnStartSimulation.disabled = true;
+      btnStartSimulation.style.cursor = "not-allowed";
+      btnStartSimulation.style.opacity = "0.5";
+      startStatusMessage.innerHTML = "❌ A Fase 3 (Armazenamento de Dados) de 2026 estará disponível em: <strong>09/06/2026, às 13h</strong>.";
+    } else if (phaseVal === "projetos") {
+      btnStartSimulation.disabled = true;
+      btnStartSimulation.style.cursor = "not-allowed";
+      btnStartSimulation.style.opacity = "0.5";
+      startStatusMessage.innerHTML = "❌ A Etapa de Projetos (Etapa 2) de 2026 estará disponível em: <strong>24/06/2026, às 20h</strong>.";
+    }
+  } else {
+    // Historical year selected (2025, 2024, 2023)
+    btnStartSimulation.disabled = true;
+    btnStartSimulation.style.cursor = "not-allowed";
+    btnStartSimulation.style.opacity = "0.5";
+    
+    const pdfFile = PAST_EDITIONS_MAP[yearVal]?.[phaseVal];
+    if (pdfFile) {
+      startStatusMessage.innerHTML = `⚠️ O simulado interativo para a edição de ${yearVal} não está carregado. Você pode baixar o caderno oficial de questões e gabarito em PDF no cesto de materiais abaixo:`;
+      if (downloadMaterialsBox && linkDownloadPdf) {
+        linkDownloadPdf.href = `edicoes-anteriores/${pdfFile}`;
+        linkDownloadPdf.setAttribute("download", pdfFile);
+        downloadMaterialsBox.style.display = "block";
+      }
+    } else {
+      startStatusMessage.innerHTML = `⚠️ O simulado para ${yearVal} / ${phaseVal} não está disponível.`;
+    }
+  }
+}
+
 // Initialize Squad Select
 function initSimulado() {
   if (!quizSection || !resultsSection) return;
 
-  // Render the quiz UI immediately on startup
-  quizSection.style.display = "grid";
+  // Render the selection screen on load
+  squadSelectSection.style.display = "block";
+  quizSection.style.display = "none";
+  resultsSection.style.display = "none";
+
   currentQuestionIndex = 0;
   answersState = {};
   hintsUsed = {};
@@ -597,7 +730,6 @@ function initSimulado() {
   notesState = {};
   updateXpDisplay();
   renderSidebar();
-  loadQuestion(0);
 
   // Setup Advanced Didactics & Gamification
   setupAudioToggle();
@@ -607,35 +739,59 @@ function initSimulado() {
   setupDidacticDrawer();
   updateLevelProgress();
 
+  // Change listeners for dropdowns
+  startSquadSelect?.addEventListener("change", updateStartupGate);
+  startYearSelect?.addEventListener("change", updateStartupGate);
+  startPhaseSelect?.addEventListener("change", updateStartupGate);
+
+  // Initial trigger to sync launch button states
+  updateStartupGate();
+
+  // Click handler for Launch Simulator
+  btnStartSimulation?.addEventListener("click", () => {
+    const squadVal = startSquadSelect.value;
+    if (!squadVal) {
+      alert("Por favor, selecione seu Squad ou a opção de Treino Anônimo!");
+      return;
+    }
+
+    if (squadVal === "anonymous") {
+      selectedSquad = {
+        id: "anonymous",
+        name: "Anônimo",
+        members: "Treino Individual",
+        images: ["aluno_sem_rosto.webp"]
+      };
+    } else {
+      selectedSquad = SQUADS_LIST.find(s => s.id === squadVal);
+    }
+
+    syncSquadUI();
+    loadQuestion(0);
+    squadSelectSection.style.display = "none";
+    quizSection.style.display = "grid";
+  });
+
   // Set up the sidebar squad selection listener
   const sidebarSelectDropdown = document.getElementById("squad-select-dropdown");
-  const squadInfoSidebar = document.getElementById("squad-info-sidebar");
-  const squadMembersList = document.getElementById("squad-members-list");
-  const squadGallerySidebar = document.getElementById("squad-gallery-sidebar");
-
   if (sidebarSelectDropdown) {
     sidebarSelectDropdown.addEventListener("change", () => {
       const squadId = sidebarSelectDropdown.value;
       if (squadId) {
-        selectedSquad = SQUADS_LIST.find(s => s.id === squadId);
-        if (selectedSquad) {
-          if (squadInfoSidebar) squadInfoSidebar.style.display = "block";
-          if (squadMembersList) squadMembersList.innerHTML = selectedSquad.members;
-          if (squadGallerySidebar) {
-            // Apply grid columns layout based on number of images
-            if (selectedSquad.images.length === 2) {
-              squadGallerySidebar.className = "squad-gallery-sidebar cols-2";
-            } else {
-              squadGallerySidebar.className = "squad-gallery-sidebar";
-            }
-            squadGallerySidebar.innerHTML = selectedSquad.images.map(img => 
-              `<img src="assets/alunos/${img}" alt="Ilustracao do Squad ${selectedSquad.name}" />`
-            ).join("");
-          }
+        if (squadId === "anonymous") {
+          selectedSquad = {
+            id: "anonymous",
+            name: "Anônimo",
+            members: "Treino Individual",
+            images: ["aluno_sem_rosto.webp"]
+          };
+        } else {
+          selectedSquad = SQUADS_LIST.find(s => s.id === squadId);
         }
+        syncSquadUI();
       } else {
         selectedSquad = null;
-        if (squadInfoSidebar) squadInfoSidebar.style.display = "none";
+        syncSquadUI();
       }
     });
   }
@@ -681,7 +837,8 @@ function initSimulado() {
 
   btnRestartQuiz?.addEventListener("click", () => {
     resultsSection.style.display = "none";
-    quizSection.style.display = "grid";
+    squadSelectSection.style.display = "block"; // Redirect to startup selection
+    quizSection.style.display = "none";        // Hide quiz
     
     // Clear selections and reload
     currentQuestionIndex = 0;
@@ -702,14 +859,13 @@ function initSimulado() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
     }
     
-    if (sidebarSelectDropdown) {
-      sidebarSelectDropdown.value = "";
+    // Reset startup select dropdowns
+    if (startSquadSelect) {
+      startSquadSelect.value = "";
     }
     selectedSquad = null;
-    if (squadInfoSidebar) squadInfoSidebar.style.display = "none";
-    
-    renderSidebar();
-    loadQuestion(0);
+    syncSquadUI();
+    updateStartupGate();
   });
 
   btnExportGabarito?.addEventListener("click", () => {
