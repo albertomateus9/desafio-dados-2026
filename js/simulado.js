@@ -13,7 +13,7 @@ const SQUADS_LIST = [
     id: "568",
     name: "AS++",
     members: "<strong>Carla Regina dos Santos (Líder)</strong>, Myrza da Silva Alhadef, Dafne da Silva Carvalho",
-    images: ["aluno_5.webp", "aluno_6.webp", "dafne_da_silva_carvalho.webp"]
+    images: ["aluno_5.webp", "aluno_6.webp", "aluno_dafne_cartoon.png"]
   },
   {
     id: "570",
@@ -25,7 +25,7 @@ const SQUADS_LIST = [
     id: "571",
     name: "Comando SQL",
     members: "<strong>Christian dos Santos Paraguassu (Líder)</strong>, Carlos Eduardo dos Santos Teixeira, Miguel Rocca de Araújo",
-    images: ["aluno_11.webp", "aluno_12.webp", "miguel_rocca_de_araujo.webp"]
+    images: ["aluno_11.webp", "aluno_12.webp", "aluno_miguel_cartoon.png"]
   },
   {
     id: "572",
@@ -43,7 +43,7 @@ const SQUADS_LIST = [
     id: "578",
     name: "Tec",
     members: "<strong>Kauã Gabriel Fernandes Amaral (Líder)</strong>, Samuel Abner Silva da Silva, Rômulo Caio da Silva de Oliveira",
-    images: ["aluno_21.webp", "aluno_22.webp", "romulo_caio_da_silva_de_oliveira.webp"]
+    images: ["aluno_21.webp", "aluno_22.webp", "aluno_romulo_cartoon.png"]
   },
   {
     id: "576",
@@ -61,7 +61,7 @@ const SQUADS_LIST = [
     id: "580",
     name: "JJM",
     members: "<strong>João Danilo Gomes Acácio (Líder)</strong>, Mikael Chrystian Duarte Melo, João Guilherme Seabra de Castro",
-    images: ["aluno_31.webp", "mikael_chrystian_duarte_melo.webp", "aluno_32.webp"]
+    images: ["aluno_31.webp", "aluno_mikael_cartoon.png", "aluno_sem_rosto.png"]
   }
 ];
 
